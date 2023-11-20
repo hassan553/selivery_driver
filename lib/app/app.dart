@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:selivery_driver/binding.dart';
+import 'package:selivery_driver/features/splash/presentation/splash.dart';
+
+import '../core/rescourcs/app_theme.dart';
+
+
+class SeliveryDriver extends StatelessWidget {
+  const SeliveryDriver({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialBinding: MyBinding(),
+      title: 'Selivery ',
+      theme: appTheme(),
+      textDirection: TextDirection.rtl,
+      home:const  SplashView(),
+    );
+  } 
+}
+
+ 
