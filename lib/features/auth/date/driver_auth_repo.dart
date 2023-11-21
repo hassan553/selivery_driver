@@ -41,7 +41,7 @@ class DriverAuthRepo {
           'name': name,
           'gender': 'male',
           'age': 20,
-        
+          'phone': '01092607114'
         }),
         headers: authHeaders,
       );

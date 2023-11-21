@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
 import 'package:selivery_driver/features/profile/presentation/widgets/top_title.dart';
 import '../../../../../core/class/statusrequst.dart';
 import '../../../../../core/contants/api.dart';
@@ -25,8 +26,8 @@ class DriverProfileView extends StatelessWidget {
     return Scaffold(
       appBar: customAppBar(context),
       body:GetBuilder<DriverProfileController>(builder: (controller){
-        if(controller.statusRequest==StatusRequest.loading){
-         return  CircularProgressIndicator();
+        if(controller.isLoading){
+         return  const CustomLoadingWidget();
         }else{
           return driverProfileBody(context);
         }
@@ -45,8 +46,8 @@ class DriverProfileView extends StatelessWidget {
             children: [
                GetBuilder<DriverProfileController>(builder: (controller)=>TopTitleWidget(title1: 'سا',
                  title2: 'ئق',
-                 image: "http://192.168.1.10:8000/${controller.driverProfileModel.driver!.image}",
-                 name: controller.driverProfileModel.driver!.name,
+                 image: "http://192.168.1.10:8000/${controller.driverProfileModel?.image}",
+                 name: controller.driverProfileModel?.name??'',
                ),),
               const CustomDivider(),
               driverCV(),

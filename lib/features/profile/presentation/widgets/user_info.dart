@@ -6,7 +6,7 @@ import 'package:selivery_driver/core/widgets/custom_text.dart';
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../controller/driver_profile_controller.dart';
-import '../../drivermodel.dart';
+import '../../data/driver_profile_model.dart';
 
 class UserInfo extends StatefulWidget {
   final DriverProfileModel? clientModel;
@@ -34,18 +34,18 @@ class _UserInfoState extends State<UserInfo> {
           children: [
             GetBuilder<DriverProfileController>(builder:
                 (controller)=>CustomText(
-              title: 'النوع : ${controller.driverProfileModel.driver!.gender}',
+              title: 'النوع : ${controller.driverProfileModel?.gander??''}',
               fontSize: 16,
             ),),
             GetBuilder<DriverProfileController>(builder:
                 (controller)=>CustomText(
-              title: 'السن : ${controller.driverProfileModel.driver!.age}',
+              title: 'السن : ${controller.driverProfileModel?.age??''}',
               fontSize: 16,
             ),),
             GetBuilder<DriverProfileController>(builder:
                 (controller)=>CustomText(
               title: 'رقم الموبايل : ${controller.
-              driverProfileModel.driver!.phone ?? "0114867777"} ',
+              driverProfileModel?.phone ?? ""} ',
               fontSize: 16,
             ),),
           ],

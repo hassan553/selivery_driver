@@ -1,63 +1,60 @@
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
+import '../../../core/functions/checkinternet.dart';
+import '../data/driver_profile_model.dart';
 import '../data/driverdata.dart';
 
-import '../../../../core/class/statusrequst.dart';
-import '../../../../core/functions/handlingdata.dart';
-import '../drivermodel.dart';
-
 class DriverProfileController extends GetxController{
+  DriverProfileRepo driverProfileRepo = DriverProfileRepo();
+  final TextEditingController gander = TextEditingController();
+  final TextEditingController name = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+  final TextEditingController age = TextEditingController(text: '0');
+  final TextEditingController password = TextEditingController();
 
-  StatusRequest  statusRequest = StatusRequest.none;
-  DriverData driverData = DriverData(Get.find());
-
-  late DriverProfileModel driverProfileModel=DriverProfileModel();
-
-
-  getDriverData() async{
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await driverData.getData();
-    statusRequest = handlingData(response);
-    //print("resonse ${response}");
-    // statusRequest = StatusRequest.success;
-    // print(driverProfileModel);
-    if(StatusRequest.success == statusRequest){
-      print("ok");
-      // if(response.statusCode == 200){
-      //   print("okkk");
-      //  // driverProfileModel= DriverProfileModel.fromJson(response['driver']);
-      //  // print(driverProfileModel);
-      // }else{
-      //   // Get.defaultDialog(title: "33".tr,
-      //   //     middleText: "37".tr);
-      //   print("error get driver");
-      //   statusRequest = StatusRequest.failure;
-      // }
-      driverProfileModel= DriverProfileModel.fromJson(response);
-    }else{
-      print("get profile error");
-      statusRequest = StatusRequest.failure;
-
+  bool isLoading = false;
+  String errorMessage = '';
+  DriverProfileModel? driverProfileModel;
+  void getDriverProfile() async {
+    if (await checkInternet()) {
+      isLoading = true;
+      update();
+      final result = await driverProfileRepo.getDriverProfile();
+      result.fold((l) {
+        isLoading = false;
+        errorMessage = l;
+      }, (r) {
+        isLoading = false;
+        driverProfileModel = r ;
+      });
+    } else {
+      errorMessage = 'لا يوجد اتصال بالانترنت';
     }
     update();
   }
-
-  // updateData(String name,String phone,age)async{
-  //   statusRequest = StatusRequest.loading;
-  //   update();
-  //   var response = await driverData.updateData(name,
-  //       phone, age);
-  //   statusRequest = handlingData(response);
-  //   print("update response ${response}");
-  //   update();
-  // }
-
+    void setControllers() {
+    name.text = driverProfileModel?.name ?? ' ';
+    age.text = driverProfileModel?.age.toString() ?? '0';
+    password.text = driverProfileModel?.password ?? ' ';
+    phone.text = driverProfileModel?.phone ?? ' ';
+    gander.text = driverProfileModel?.gander ?? ' ';
+  }
   @override
   void onInit() {
-    getDriverData();
-    print("oninit");
+    // TODO: implement onInit
     super.onInit();
+    getDriverProfile();
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    name.dispose();
+    gander.dispose();
+    phone.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
 }
