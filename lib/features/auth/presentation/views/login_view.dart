@@ -33,6 +33,13 @@ class _DriverLoginViewState extends State<DriverLoginView> {
   var emailFocus = FocusNode();
 
   var passwordFocus = FocusNode();
+  bool isObscure = true;
+  void changeIcon() {
+    setState(() {
+      isObscure = !isObscure;
+    });
+  }
+
   @override
   void dispose() {
     email.dispose();
@@ -90,7 +97,16 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                         controller: password,
                         hintText: 'كلمه السر',
                         focusNode: passwordFocus,
-                        obscure: true,
+                        obscure: isObscure,
+                        suffixIcon: InkWell(
+                          onTap: () => changeIcon(),
+                          child: Icon(
+                            isObscure
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
                         valid: (String? value) {
                           if (value == null) {
                             return 'قيمه فارغه';

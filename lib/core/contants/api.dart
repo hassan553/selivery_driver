@@ -3,13 +3,13 @@ const authBaseUri = '${baseUri}auth/';
 final clientLogin = Uri.parse('${authBaseUri}login/client');
 final clientRegister = Uri.parse('${authBaseUri}signup/client');
 final driverLogin = Uri.parse('${authBaseUri}login/driver');
-final driverRegister = Uri.parse('${authBaseUri}signup/driver');
+final driverRegister = Uri.parse('http://192.168.1.122:8000/auth/signup/driver');
 final verifyDriverEmailCodeUrl = Uri.parse('${authBaseUri}driver/verify_email');
 final verifyClientEmailCodeUrl = Uri.parse('${authBaseUri}client/verify_email');
 final verifyClientResendEmailCodeUrl =
     Uri.parse('${authBaseUri}resend_verification_code');
 final completeCarInfoUrl = Uri.parse('${baseUri}request');
-final getAllAdsUri = Uri.parse('{$baseUri}dashboard/advertisement');
+final getAllAdsUri = Uri.parse('http://192.168.1.122:8000/advertisement');
 
 final sendNewPasswordUrl = Uri.parse('${baseUri}user/setPassword');
 

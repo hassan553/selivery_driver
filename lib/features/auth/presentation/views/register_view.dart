@@ -4,7 +4,6 @@ import '../../../../../core/widgets/show_awesomeDialog.dart';
 import '../../date/driver_auth_repo.dart';
 import 'car_info_view.dart';
 import '../../verify_email/views/otp_view.dart';
-
 import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/build_rich_text.dart';
@@ -12,11 +11,10 @@ import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_text_filed.dart';
 import '../../../../../core/widgets/snack_bar_widget.dart';
-
 import '../../cubit/register/driver_register_cubit.dart';
 
 class DriverRegisterView extends StatefulWidget {
-  DriverRegisterView({super.key});
+  const DriverRegisterView({super.key});
 
   @override
   State<DriverRegisterView> createState() => _DriverRegisterViewState();
@@ -31,6 +29,13 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
   var nameFocus = FocusNode();
 
   final formKey = GlobalKey<FormState>();
+  bool isObscure = true;
+  void changeIcon() {
+    setState(() {
+      isObscure = !isObscure;
+    });
+  }
+
   @override
   void dispose() {
     email.dispose();
@@ -100,7 +105,16 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                       SizedBox(height: screenSize(context).height * .03),
                       CustomTextFieldWidget(
                         controller: password,
-                        obscure: true,
+                        obscure: isObscure,
+                        suffixIcon: InkWell(
+                          onTap: () => changeIcon(),
+                          child: Icon(
+                            isObscure
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
                         hintText: 'كلمه السر',
                         focusNode: passwordFocus,
                         valid: (String? value) {

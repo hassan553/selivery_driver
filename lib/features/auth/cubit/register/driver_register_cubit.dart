@@ -16,6 +16,8 @@ class DriverRegisterCubit extends Cubit<DriverRegisterState> {
       emit(DriverRegisterLoading());
       final result =
           await driverRegisterRepo.driverRegisterRepo(name, email, password);
+      
+
       result.fold(
         (l) => emit(DriverRegisterError(l)),
         (r) => emit(DriverRegisterSuccess(r)),
