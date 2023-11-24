@@ -11,7 +11,7 @@ class DriverProfileModel {
   String? role;
   bool? available;
   int? iV;
-
+  String? deviceToken;
   DriverProfileModel(
       {this.sId,
       this.name,
@@ -24,7 +24,8 @@ class DriverProfileModel {
       this.phone,
       this.gander,
       this.age,
-      this.iV});
+      this.iV,
+      this.deviceToken});
 
   DriverProfileModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -39,6 +40,7 @@ class DriverProfileModel {
     age = json['age'] ?? 0;
     available = json['available'];
     iV = json['__v'];
+    deviceToken = json['deviceToken'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +57,7 @@ class DriverProfileModel {
     data['role'] = role;
     data['available'] = available;
     data['__v'] = iV;
+    data['deviceToken'] = deviceToken;
     return data;
   }
 }

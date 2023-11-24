@@ -8,6 +8,7 @@ import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
 import '../../../../../core/widgets/custom_text.dart';
+import '../widgets/change_password_widget.dart';
 
 class DriverEditProfileView extends StatefulWidget {
   const DriverEditProfileView({super.key});
@@ -17,14 +18,12 @@ class DriverEditProfileView extends StatefulWidget {
 }
 
 class _DriverEditProfileViewState extends State<DriverEditProfileView> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  DriverProfileController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    DriverProfileController controller = Get.find();
+    controller.setControllers();
     return Scaffold(
       appBar: customAppBar(context),
       body: ListView(
@@ -37,40 +36,47 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Stack(
-                    alignment: Alignment.bottomLeft,
-                    children: [
-                      CircleAvatar(
-                        radius: 40,
-                        child: CustomAssetsImage(path: 'assets/person.png'),
-                      ),
-                      Icon(
-                        Icons.edit,
-                        color: AppColors.black.withOpacity(.7),
-                      ),
-                    ],
-                  ),
-                  editTextFiled(
-                      'الاسم',
-                      controller.driverProfileModel?.name ?? '',
-                      nameController),
-                  editTextFiled(
-                      'رقم الموبايل',
-                      controller.driverProfileModel?.phone ?? "",
-                      phoneController),
-                  editTextFiled(
-                      'السن',
-                      controller.driverProfileModel?.age.toString() ?? '',
-                      ageController),
-                  editTextFiled(
-                      'البريد الالكتروني',
-                      controller.driverProfileModel?.email ?? '',
-                      emailController),
-                  editTextFiled('كلمة السر', "......", passwordController),
-                ],
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Stack(
+                      alignment: Alignment.bottomLeft,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          child: CustomAssetsImage(path: 'assets/person.png'),
+                        ),
+                        Icon(
+                          Icons.edit,
+                          color: AppColors.black.withOpacity(.7),
+                        ),
+                      ],
+                    ),
+                    editTextFiled('الاسم', controller.name),
+                    const SizedBox(height: 15),
+                    editTextFiled('رقم الموبايل', controller.phone),
+                    const SizedBox(height: 15),
+                    editTextFiled('السن', controller.age),
+                    const SizedBox(height: 15),
+                    editTextFiled('النوع', controller.gander),
+                    const SizedBox(height: 15),
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const MyDialog();
+                          },
+                        );
+                      },
+                      child: editTextFiled(
+                          'كلمة المرور', controller.password, false),
+                    ),
+                    const SizedBox(height: 15),
+                  ],
+                ),
               ),
             ),
           ),
@@ -152,19 +158,34 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
     );
   }
 
-  Widget editTextFiled(String prefix, String hint, textcontroller) {
-    return TextField(
-      controller: textcontroller,
+  Widget editTextFiled(String prefix, TextEditingController? controller,
+      [bool? isEnable]) {
+    return TextFormField(
+      controller: controller,
+      onChanged: (value) {
+        setState(() {
+          controller?.text = value;
+          print(controller?.text);
+        });
+      },
+      onTapOutside: (value) {
+        FocusScope.of(context).unfocus();
+      },
+      textDirection: TextDirection.ltr,
       cursorColor: AppColors.black,
       decoration: InputDecoration(
-        //prefixText: prefix,
-        //labelText: prefix,
-        hintText: hint,
+        enabled: isEnable ?? true,
+        prefixText: prefix,
+        prefixStyle: const TextStyle(color: AppColors.black),
         prefixIcon: Icon(
           Icons.edit,
           size: 20,
           color: AppColors.black.withOpacity(.7),
         ),
+        disabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.black)),
+        enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.black)),
         focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: AppColors.black)),
       ),

@@ -42,7 +42,7 @@ class DriverProfileRepo {
       final result = jsonDecode(response.body);
       if (response.statusCode == 200) {
         print(result);
-        clientProfileModel = DriverProfileModel.fromJson(result['user']);
+        clientProfileModel = DriverProfileModel.fromJson(result['driver']);
 
         print(clientProfileModel);
         return Right(clientProfileModel);
@@ -75,7 +75,8 @@ class DriverProfileRepo {
       print(result['message']);
 
       if (response.statusCode == 200) {
-        clientProfileModel = DriverProfileModel.fromJson(result['user']);
+        clientProfileModel = DriverProfileModel.fromJson(result['driver']);
+        print(clientProfileModel);
         return Right(clientProfileModel);
       } else {
         return Left(result['message']);
@@ -87,9 +88,7 @@ class DriverProfileRepo {
   }
 
   Future<Either<String, String>> updateDriverPassword(
-    String newPassword,
-    String oldPassword,
-  ) async {
+      {required String newPassword, required String oldPassword}) async {
     try {
       final response = await http.patch(
         profileClientUpdatePassword,
