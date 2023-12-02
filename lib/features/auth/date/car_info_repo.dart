@@ -20,6 +20,44 @@ class CarInfoRepo {
     }
     return carImage;
   }
+  Future postDataWithFiles(List<File> images) async {
+  try {
+    var headers = {
+      'Accept': 'application/json',
+      "Authorization": 'Bearer ${CacheStorageServices().token}',
+      "Content-Type": 'multipart/form-data',
+    };
+
+    var request = http.MultipartRequest(
+        "POST", Uri.parse('http://192.168.1.122:8000/user/changePicture'));
+    request.headers.addAll(headers);
+
+    for (var image in images) {
+      var length = await image.length();
+      var stream = http.ByteStream(image.openRead());
+
+      var multipartFile = http.MultipartFile(
+        "images[]", // Use an array-like name to denote multiple images
+        stream,
+        length,
+        filename: 'image.jpg', // Set the filename with the desired image type
+      );
+      request.files.add(multipartFile);
+    }
+
+    var myrequest = await request.send();
+
+    var response = await http.Response.fromStream(myrequest);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("tm");
+      print(response.body);
+    } else {
+      print(response.body);
+    }
+  } catch (error) {
+    print(error.toString());
+  }
+}
 
   _uploadImage(String title, File file) async {
     try {

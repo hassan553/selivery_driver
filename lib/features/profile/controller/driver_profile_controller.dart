@@ -7,10 +7,10 @@ import '../data/driverdata.dart';
 
 class DriverProfileController extends GetxController {
   DriverProfileRepo driverProfileRepo = DriverProfileRepo();
-  final TextEditingController gander = TextEditingController();
-  final TextEditingController name = TextEditingController();
-  final TextEditingController phone = TextEditingController();
-  final TextEditingController age = TextEditingController(text: '0');
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController ageController = TextEditingController(text: '0');
   final TextEditingController password = TextEditingController();
 
   bool isLoading = false;
@@ -27,6 +27,7 @@ class DriverProfileController extends GetxController {
       }, (r) {
         isLoading = false;
         driverProfileModel = r;
+        errorMessage = '';
       });
     } else {
       errorMessage = 'لا يوجد اتصال بالانترنت';
@@ -86,7 +87,35 @@ class DriverProfileController extends GetxController {
             context: context,
             message: 'تم التغير بنجاح',
             requestStates: RequestStates.success);
+        getDriverProfile();
       });
+    } else {
+      showSnackBarWidget(
+          context: context,
+          message: 'لا يوجد اتصال بالانترنت',
+          requestStates: RequestStates.error);
+    }
+    update();
+  }
+ bool changeImageLoding = false;
+  changePicture(context) async {
+    if (await checkInternet()) {
+      try {
+        changeImageLoding = true;
+        update();
+        await driverProfileRepo.pickClientImage();
+        changeImageLoding = false;
+         showSnackBarWidget(
+            context: context,
+            message: 'تم التغير بنجاح',
+            requestStates: RequestStates.success);
+      } catch (error) {
+        changeImageLoding = false;
+        showSnackBarWidget(
+            context: context,
+            message: "لقد حدث خطا",
+            requestStates: RequestStates.error);
+      }
     } else {
       showSnackBarWidget(
           context: context,
@@ -97,11 +126,14 @@ class DriverProfileController extends GetxController {
   }
 
   void setControllers() {
-    name.text = driverProfileModel?.name ?? ' ';
-    age.text = driverProfileModel?.age.toString() ?? '0';
-    password.text ='********';
-    phone.text = driverProfileModel?.phone ?? ' ';
-    gander.text = driverProfileModel?.gander ?? ' ';
+    try {
+      nameController.text = driverProfileModel?.name ?? '';
+      ageController.text = driverProfileModel?.age.toString() ?? '';
+      password.text = '********';
+      phoneController.text = driverProfileModel?.phone ?? '';
+      genderController.text = driverProfileModel?.gander ?? '';
+      update();
+    } catch (error) {}
   }
 
   @override
@@ -114,9 +146,9 @@ class DriverProfileController extends GetxController {
   @override
   void dispose() {
     // TODO: implement dispose
-    name.dispose();
-    gander.dispose();
-    phone.dispose();
+    nameController.dispose();
+    genderController.dispose();
+    phoneController.dispose();
     password.dispose();
     super.dispose();
   }

@@ -27,8 +27,8 @@ final driverGoogleSignIn = Uri.parse('${authBaseUri}google/driver');
 ///////profile uri
 const profileUri = '${baseUri}user/profile';
 final profileUpdateImageUri = Uri.parse('{$baseUri}user/changePicture');
-final profileUpdateInfoUri = Uri.parse('{$baseUri}user/updateInfo');
-final profileUpdateInfoUriHZ = '{$baseUri}user/updateInfo';
+final profileUpdateInfoUri = Uri.parse('http://192.168.1.122:8000/user/updateInfo');
+final profileUpdateInfoUriHZ = 'http://192.168.1.122:8000/user/updateInfo';
 final profileClientUpdatePassword = Uri.parse('http://192.168.1.122:8000/user/changePassword');
 //categories
 

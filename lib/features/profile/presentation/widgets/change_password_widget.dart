@@ -22,11 +22,6 @@ class _MyDialogState extends State<MyDialog> {
   var confirmNewPasswordFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
   bool isObscure = true;
-  changeIcon() {
-    setState(() {
-      isObscure = !isObscure;
-    });
-  }
 
   @override
   void dispose() {
@@ -44,7 +39,7 @@ class _MyDialogState extends State<MyDialog> {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Container(
-        height: 380.0,
+        height: 450.0,
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
@@ -95,13 +90,6 @@ class _MyDialogState extends State<MyDialog> {
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: AppColors.black),
                   ),
-                  suffixIcon: InkWell(
-                      onTap: () => changeIcon(),
-                      child: Icon(
-                          isObscure
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: AppColors.black)),
                   prefixIcon: const Icon(Icons.visibility_outlined,
                       color: Colors.black),
                 ),
@@ -140,16 +128,23 @@ class _MyDialogState extends State<MyDialog> {
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: AppColors.black),
                   ),
-                  suffixIcon: InkWell(
-                      onTap: () => changeIcon(),
-                      child: Icon(
-                          isObscure
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: AppColors.black)),
                   prefixIcon: const Icon(Icons.visibility_outlined,
                       color: Colors.black),
                 ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Checkbox(
+                    value: isObscure,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isObscure = value ?? true;
+                      });
+                    },
+                  ),
+                  const Text('اخفاء كلمة المرور'),
+                ],
               ),
               const SizedBox(height: 20),
               Row(

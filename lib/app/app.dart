@@ -18,7 +18,7 @@ class SeliveryDriver extends StatelessWidget {
       title: 'Selivery ',
       theme: appTheme(),
       textDirection: TextDirection.rtl,
-      home:  MainView(),
+      home:MainView(),
     );
   } 
 }
