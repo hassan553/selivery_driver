@@ -92,12 +92,11 @@ class _AllAdsViewState extends State<AllAdsView> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: AppColors.primaryColor)),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Text('as'),
-                    // child: CustomNetworkImage(
-                    //   imagePath: model.image,
-                    //   boxFit: BoxFit.fill,
-                    // ),
+                    borderRadius: BorderRadius.circular(20),                  
+                    child: CustomNetworkImage(
+                      imagePath: model.image,
+                      boxFit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),

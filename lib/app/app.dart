@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:selivery_driver/binding.dart';
+import 'package:selivery_driver/features/auth/presentation/views/car_info_view.dart';
 import 'package:selivery_driver/features/splash/presentation/splash.dart';
 
 import '../core/rescourcs/app_theme.dart';
@@ -18,7 +19,7 @@ class SeliveryDriver extends StatelessWidget {
       title: 'Selivery ',
       theme: appTheme(),
       textDirection: TextDirection.rtl,
-      home:MainView(),
+      home:CompleteCarInfoView(),
     );
   } 
 }

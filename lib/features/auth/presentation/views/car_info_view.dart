@@ -13,9 +13,21 @@ import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/responsive_text.dart';
 
-class CompleteCarInfoView extends StatelessWidget {
-  TextEditingController? controller;
-  CompleteCarInfoView({super.key});
+class CompleteCarInfoView extends StatefulWidget {
+  const CompleteCarInfoView({super.key});
+
+  @override
+  State<CompleteCarInfoView> createState() => _CompleteCarInfoViewState();
+}
+
+class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
+  TextEditingController controller = TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +160,8 @@ class CompleteCarInfoView extends StatelessWidget {
       width: screenSize(context).width * .4,
       child: CustomButton(
         function: () {
-          // CarInfoRepo().pickDriverCompleteCarInfoImage();
+          //CompleteCarInfoCubit.get(context).upload();
+          CarInfoRepo().uploadImages(CompleteCarInfoCubit.get(context).driverLicense);
         },
         title: 'انشاء',
         fontSize: 25,

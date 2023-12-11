@@ -90,7 +90,7 @@ class _MainViewState extends State<MainView> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-       icon: const Icon(Icons.campaign),
+       icon: const Icon(Icons.campaign,size: 30),
         title: ("الاشعارات"),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
