@@ -12,7 +12,8 @@ class DriverAuthRepo {
     try {
       final response = await http.post(
         driverLogin,
-        body: jsonEncode({'email': email, 'password': password}),
+        body: jsonEncode(
+            {'email': email, 'password': password, 'deviceToken': 'as'}),
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
@@ -40,8 +41,9 @@ class DriverAuthRepo {
           'password': password,
           'name': name,
           'gender': 'male',
-          'age': 20,
-          'phone': '01092607114'
+          'age': 22,
+          'phone': '01092607114',
+          'deviceToken': 'as'
         }),
         headers: authHeaders,
       );

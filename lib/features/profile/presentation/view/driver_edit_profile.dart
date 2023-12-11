@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:selivery_driver/features/profile/presentation/widgets/custom_textfield.dart';
+import 'package:selivery_driver/features/profile/presentation/widgets/selecte_gender.dart';
+import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../controller/driver_profile_controller.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_image.dart';
@@ -8,6 +12,7 @@ import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
 import '../../../../../core/widgets/custom_text.dart';
+import '../widgets/change_password_widget.dart';
 
 class DriverEditProfileView extends StatefulWidget {
   const DriverEditProfileView({super.key});
@@ -17,14 +22,17 @@ class DriverEditProfileView extends StatefulWidget {
 }
 
 class _DriverEditProfileViewState extends State<DriverEditProfileView> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  DriverProfileController controller = Get.find();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.setControllers();
+  }
+
   @override
   Widget build(BuildContext context) {
-    DriverProfileController controller = Get.find();
     return Scaffold(
       appBar: customAppBar(context),
       body: ListView(
@@ -35,42 +43,132 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
               color: AppColors.primaryColor.withOpacity(.7),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Stack(
-                    alignment: Alignment.bottomLeft,
+            child: GetBuilder<DriverProfileController>(
+              builder: (controller) => Padding(
+                padding: const EdgeInsets.all(8),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      CircleAvatar(
-                        radius: 40,
-                        child: CustomAssetsImage(path: 'assets/person.png'),
+                      if (controller.changeImageLoding) ...[
+                        const SizedBox(height: 20),
+                        const LinearProgressIndicator(
+                            color: Colors.green, backgroundColor: Colors.red),
+                        const SizedBox(height: 20),
+                      ],
+                      Stack(
+                        alignment: Alignment.bottomLeft,
+                        children: [
+                          SizedBox(
+                            width: 150,
+                            height: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: CustomNetworkImage(
+                                imagePath:
+                                    controller.driverProfileModel?.image ?? '',
+                                boxFit: BoxFit.fill,
+                              ),
+                            ), // Replace with your image path
+                          ),
+                          InkWell(
+                            onTap: () {
+                              controller.changePicture(context);
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: AppColors.primaryColor,
+                              child: Icon(
+                                Icons.edit,
+                                color: AppColors.black.withOpacity(.7),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Icon(
-                        Icons.edit,
-                        color: AppColors.black.withOpacity(.7),
+                      const SizedBox(height: 20),
+                      EditField(
+                          validate: (p0) {
+                            if (p0 == null) {
+                              return 'لا يسمح بقيمه فارغه';
+                            } else if (p0.isEmpty) {
+                              return 'لا يسمح بقيمه فارغه';
+                            }
+                            return null;
+                          },
+                          prefix: 'الاسم',
+                          hint: controller.nameController),
+                      const SizedBox(height: 15),
+                      InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const MyDialog();
+                              },
+                            );
+                          },
+                          child: EditField(
+                              prefix: 'كلمة المرور',
+                              hint: TextEditingController(text: '*****'),
+                              isEnable: false)),
+                      const SizedBox(height: 15),
+                      EditField(
+                          validate: (p0) {
+                            if (p0 == null) {
+                              return 'لا يسمح بقيمه فارغه';
+                            } else if (p0.isEmpty) {
+                              return 'لا يسمح بقيمه فارغه';
+                            } else if (p0.length != 11) {
+                              return 'ادخل رقم صحيح';
+                            }
+                            return null;
+                          },
+                          type: TextInputType.phone,
+                          prefix: 'رقم الموبايل',
+                          hint: controller.phoneController),
+                      const SizedBox(height: 15),
+                      EditField(
+                          validate: (p0) {
+                            int p = 0;
+                            if (p0 != null) {
+                              if (p0.isNotEmpty) {
+                                p = int.parse(p0);
+                              }
+                            }
+                            if (p0 == null) {
+                              return 'لا يسمح بقيمه فارغه';
+                            } else if (p < 21) {
+                              return 'العمر يجب ان يزيد عن 21 عاما';
+                            } else if (p > 100) {
+                              return 'ادخل رقم صحيح';
+                            } else if (p0.isEmpty) {
+                              return 'لا يسمح بقيمه فارغه';
+                            }
+                            return null;
+                          },
+                          type: TextInputType.number,
+                          prefix: 'السن',
+                          hint: controller.ageController),
+                      const SizedBox(height: 15),
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const SelecteGenderWidget();
+                            },
+                          );
+                        },
+                        child: EditField(
+                            prefix: 'النوع',
+                            isEnable: false,
+                            hint: controller.genderController),
                       ),
+                      const SizedBox(height: 15),
                     ],
                   ),
-                  editTextFiled(
-                      'الاسم',
-                      controller.driverProfileModel?.name ?? '',
-                      nameController),
-                  editTextFiled(
-                      'رقم الموبايل',
-                      controller.driverProfileModel?.phone ?? "",
-                      phoneController),
-                  editTextFiled(
-                      'السن',
-                      controller.driverProfileModel?.age.toString() ?? '',
-                      ageController),
-                  editTextFiled(
-                      'البريد الالكتروني',
-                      controller.driverProfileModel?.email ?? '',
-                      emailController),
-                  editTextFiled('كلمة السر', "......", passwordController),
-                ],
+                ),
               ),
             ),
           ),
@@ -127,46 +225,35 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
           const CustomSizedBox(value: .01),
           const CustomSizedBox(value: .03),
           GetBuilder<DriverProfileController>(
-              builder: (controller) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: MaterialButton(
-                      onPressed: () {
-                        // navigateTo(const DriverEditProfileView());
-                        // controller.updateData(nameController.text,
-                        //     phoneController.text,
-                        //     ageController.text);
-                        print("pl");
-                      },
-                      height: 50,
-                      minWidth: 80,
-                      color: AppColors.primaryColor,
-                      child: const Text(
-                        'تحديث',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+            builder: (controller) {
+              return controller.updateProfileLoading
+                  ? const CustomLoadingWidget()
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      child: MaterialButton(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            controller.updateProfile(
+                                context: context,
+                                age: controller.ageController.text,
+                                gender: controller.genderController.text,
+                                name: controller.nameController.text,
+                                phone: controller.phoneController.text);
+                          }
+                        },
+                        height: 50,
+                        minWidth: 80,
+                        color: AppColors.primaryColor,
+                        child: const Text(
+                          'تحديث',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                  )),
+                    );
+            },
+          ),
         ],
-      ),
-    );
-  }
-
-  Widget editTextFiled(String prefix, String hint, textcontroller) {
-    return TextField(
-      controller: textcontroller,
-      cursorColor: AppColors.black,
-      decoration: InputDecoration(
-        //prefixText: prefix,
-        //labelText: prefix,
-        hintText: hint,
-        prefixIcon: Icon(
-          Icons.edit,
-          size: 20,
-          color: AppColors.black.withOpacity(.7),
-        ),
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: AppColors.black)),
       ),
     );
   }
