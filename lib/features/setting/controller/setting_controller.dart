@@ -1,14 +1,11 @@
 import 'package:get/get.dart';
-import 'package:selivery_client/core/functions/checkinternet.dart';
-import 'package:selivery_client/core/functions/global_function.dart';
-import 'package:selivery_client/core/services/cache_storage_services.dart';
-import 'package:selivery_client/core/widgets/show_awesomeDialog.dart';
-import 'package:selivery_client/features/auth/presentation/view/login_view.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../../core/contants/strings.dart';
+import '../../../core/functions/checkinternet.dart';
+import '../../../core/functions/global_function.dart';
 import '../../../core/helper/notifictions_helper.dart';
+import '../../../core/services/cache_storage_services.dart';
 import '../../../core/widgets/snack_bar_widget.dart';
+import '../../auth/presentation/views/login_view.dart';
 
 class SettingController extends GetxController {
   void openWhatsApp() async {
@@ -24,7 +21,7 @@ class SettingController extends GetxController {
 
   subscribe(context) async {
     if (await checkInternet()) {
-      FirebaseMessagingService.subscribeToTopic(topic);
+      FirebaseMessagingService.subscribeToTopic('topic');
       CacheStorageServices().setTopic(true);
     } else {
       showSnackBarWidget(
@@ -37,7 +34,7 @@ class SettingController extends GetxController {
 
   unSubscribe(context) async {
     if (await checkInternet()) {
-      FirebaseMessagingService.unsubscribeFromTopic(topic);
+      FirebaseMessagingService.unsubscribeFromTopic('topic');
       CacheStorageServices().setTopic(false);
     } else {
       showSnackBarWidget(
