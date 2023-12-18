@@ -111,7 +111,8 @@ class CompleteCarInfoView extends StatelessWidget {
   }
 
   Row carInfoTakeImage(
-      BuildContext context, String title, File? file, void Function()? ontap) {
+      BuildContext context, String title,
+      File? file, void Function()? ontap) {
     return Row(
       children: [
         Expanded(
@@ -148,7 +149,7 @@ class CompleteCarInfoView extends StatelessWidget {
       width: screenSize(context).width * .4,
       child: CustomButton(
         function: () {
-          // CarInfoRepo().pickDriverCompleteCarInfoImage();
+          CompleteCarInfoCubit.get(context).completeCarInfo(context);
         },
         title: 'انشاء',
         fontSize: 25,

@@ -1,15 +1,15 @@
-const baseUri = 'http://192.168.1.122:8000/';
+const baseUri = 'http://192.168.1.5:8000/';
 const authBaseUri = '${baseUri}auth/';
 final clientLogin = Uri.parse('${authBaseUri}login/client');
 final clientRegister = Uri.parse('${authBaseUri}signup/client');
-final driverLogin = Uri.parse('${authBaseUri}login/driver');
-final driverRegister = Uri.parse('http://192.168.1.122:8000/auth/signup/driver');
+final driverLogin = Uri.parse('http://192.168.1.5:8000/auth/login/driver');
+final driverRegister = Uri.parse('http://192.168.1.5:8000/auth/signup/driver');
 final verifyDriverEmailCodeUrl = Uri.parse('${authBaseUri}driver/verify_email');
 final verifyClientEmailCodeUrl = Uri.parse('${authBaseUri}client/verify_email');
 final verifyClientResendEmailCodeUrl =
     Uri.parse('${authBaseUri}resend_verification_code');
 final completeCarInfoUrl = Uri.parse('${baseUri}request');
-final getAllAdsUri = Uri.parse('http://192.168.1.122:8000/advertisement');
+final getAllAdsUri = Uri.parse('http://192.168.1.5:8000/advertisement');
 
 final sendNewPasswordUrl = Uri.parse('${baseUri}user/setPassword');
 
@@ -37,6 +37,13 @@ String CategoriesList(id) => "{$baseUri}vehicles/sale/category/$id";
 //getdata for owner sale car
 String ownerData(id) => "{$baseUri}user/driver/$id";
 
+//trips
+String endtrip(id) => "http://192.168.1.5:8000/trip/$id/end_trip";
+String rejecttrip(id) => "http://192.168.1.5:8000/trip/$id/reject";
+String arrivertoclient(id) => "http://192.168.1.5:8000/trip/$id/arrived_to_pickupLocation";
+
+
+
 // add rent car
 const String rentcar = '{$baseUri}vehicles/rent';
 
@@ -45,6 +52,11 @@ String carsWithoutDriver(id) =>
     "{$baseUri}vehicles/rent/without_driver/category/$id";
 
 const String addCarForSale = "{$baseUri}vehicles/sale";
+const String getrequesttrips = "http://192.168.1.5:8000/trip/get_driver_requests";
+ String accepttrips(id) => "http://192.168.1.5:8000/trip/$id/accept";
+ const String mytrips ="http://192.168.1.5:8000/driver/trips";
+
+ //
 /////////
 final authHeaders = {
   'Keep-Alive': 'timeout=5',

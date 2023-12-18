@@ -23,7 +23,8 @@ class CarInfoRepo {
 
   _uploadImage(String title, File file) async {
     try {
-      var request = http.MultipartRequest('Post', profileUpdateImageUri);
+      var request = http.MultipartRequest('POST',
+          Uri.parse("http://192.168.1.5:8000/request"));
       request.fields["carLicense"] = title;
       request.files.add(http.MultipartFile.fromBytes(
           'image', File(file.path).readAsBytesSync(),
@@ -40,14 +41,13 @@ class CarInfoRepo {
     }
   }
 
-  Future<void> _uploadImages(File files) async {
+  Future<void> uploadImages(File files) async {
     try {
       var request = http.MultipartRequest('POST', profileUpdateImageUri);
       request.fields['model'] = 'model';
       request.fields['category'] = '64f4b0fa8edeed76b547e935';
       request.headers['Authorization'] = 'Bearer ${CacheStorageServices().token}';
       request.headers['Content-Type'] = 'multipart/form-data';
-
       request.files.add(http.MultipartFile(
         'carImages', // Field name for car image
         carImage!.readAsBytes().asStream(),
@@ -97,8 +97,7 @@ class CarInfoRepo {
     required String model,
   }) async {
     try {
-      String url = 'http://192.168.1.122:8000/request';
-
+      String url = 'http://192.168.1.5:8000/request';
       FormData formData = FormData.fromMap({
         'carImages': await MultipartFile.fromFile(
           carImage.path,
@@ -116,22 +115,106 @@ class CarInfoRepo {
           driverLicense.path,
           filename: 'image.jpg',
         ),
-        'Category': '64f4b0fa8edeed76b547e935',
-        'model': model,
+        'Category': '6504e2eee1ec5cf383d77e24',
+        'model': "car",
       });
       Response response = await Dio().post(
         url,
         data: formData,
-        options: Options(headers: {'Authorization': 'Bearer ${CacheStorageServices().token}'}),
+        options: Options(
+            headers: {
+              'Authorization':'Bearer ${CacheStorageServices().token}',
+              'Content-Type':"multipart/form-data",
+            },
+        ),
       );
-
+       print(response.statusCode);
+       print(response.data);
       if (response.statusCode == 200) {
         print('Image uploaded successfully');
       } else {
         print('Image upload failed with status code ${response.statusCode}');
       }
     } catch (e) {
-      print('Error uploading image: $e');
+      print('Error uploading image: ${e.toString()}');
+    }
+  }
+
+  Future uploadImages2({
+    required File carImage,
+    required File nationalId,
+    required File carLicense,
+    required File driverLicense,
+    required String model,
+  }) async {
+    try {
+      String url = 'http://192.168.1.5:8000/request';
+      FormData formData = FormData();
+
+      // Add car images
+        formData.files.add(MapEntry(
+          'carImage',
+          await MultipartFile.fromFile(
+            carImage.path,
+            filename: 'car_image.jpg',
+          ),
+        ));
+
+      // Add other files
+      formData.files.addAll([
+        MapEntry(
+          'nationalId',
+          await MultipartFile.fromFile(
+            nationalId.path,
+            filename: 'national_id.jpg',
+          ),
+        ),
+        MapEntry(
+          'carLicense',
+          await MultipartFile.fromFile(
+            carLicense.path,
+            filename: 'car_license.jpg',
+          ),
+        ),
+        MapEntry(
+          'driverLicense',
+          await MultipartFile.fromFile(
+            driverLicense.path,
+            filename: 'driver_license.jpg',
+          ),
+        ),
+      ]);
+
+      // Add other form data
+      // formData.fields.addAll({
+      //   'Category': '6504e2eee1ec5cf383d77e24',
+      //   'model': model,
+      // });
+      var mapEntries = {
+        'Category': '6504e2eee1ec5cf383d77e24',
+        'model': "toyota",
+      }.entries.toList();
+
+      formData.fields.addAll(mapEntries);
+
+      Response response = await Dio().post(
+        url,
+        data: formData,
+        options: Options(
+          headers: {'Authorization': 'Bearer ${CacheStorageServices().token}'},
+        ),
+      );
+
+      print(response.statusCode);
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        print('Images uploaded successfully');
+      } else {
+        print('Images upload failed with status code ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error uploading images: $e');
     }
   }
 }

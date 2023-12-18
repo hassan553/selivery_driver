@@ -27,12 +27,12 @@ class _HomeViewState extends State<HomeView> {
       body: ListView(
         children: const [
           SizedBox(height: 10),
-          CategoryItem(
-            imagePath: 'assets/orderCar.png',
-            title: 'طلب مركبة',
-            isRental: false,
-            screen: GetLocationFromUserView(),
-          ),
+          // CategoryItem(
+          //   imagePath: 'assets/orderCar.png',
+          //   title: 'طلب مركبة',
+          //   isRental: false,
+          //   screen: GetLocationFromUserView(),
+          // ),
           CategoryItem(
             imagePath: 'assets/rentalCar.png',
             title: 'تأجير مركبة',
