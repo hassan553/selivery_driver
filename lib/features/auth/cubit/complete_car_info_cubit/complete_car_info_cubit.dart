@@ -9,10 +9,10 @@ import '../../date/car_info_repo.dart';
 part 'complete_car_info_state.dart';
 
 class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
-  final CarInfoRepo _carInfoRepo;
+  final CarInfoRepo carInfoRepo;
   final PickImage _pickImage;
 
-  CompleteCarInfoCubit(this._carInfoRepo, this._pickImage)
+  CompleteCarInfoCubit(this.carInfoRepo, this._pickImage)
       : super(CompleteCarInfoInitial());
 
   static CompleteCarInfoCubit get(context) => BlocProvider.of(context);
@@ -46,6 +46,15 @@ upload()async{
   await _carInfoRepo.upload('asas',carLicense!);
 }
   void completeCarInfo(context) async {
+    final result = await carInfoRepo.uploadImage(
+      carImage: carImage!,
+      model: "car",
+      driverLicense: driverLicense!,
+      carLicense: carLicense!,
+      nationalId: nationalId!,
+    );
+    print(result);
+    print("ddd");
     if (category == null ||
         model == null ||
         carImage == null ||
@@ -68,16 +77,25 @@ upload()async{
       //   )
       // );
     } else {
+      print("hhh");
       emit(CompleteCarInfoLoading());
-      final result = await _carInfoRepo.uploadImage(
+      final result = await carInfoRepo.uploadImages2(
         carImage: carImage!,
         model: model!,
         driverLicense: driverLicense!,
         carLicense: carLicense!,
         nationalId: nationalId!,
       );
-      result.fold((l) => emit(CompleteCarInfoError()),
-          (r) => emit(CompleteCarInfoSuccess()));
+      print(result);
+      result.fold((l) {
+        print(l.toString());
+        emit(
+          CompleteCarInfoError());
+        },
+          (r) {
+        print(r.toString());
+        emit(CompleteCarInfoSuccess());
+          });
     }
   }
 }

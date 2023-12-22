@@ -123,7 +123,8 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
   }
 
   Row carInfoTakeImage(
-      BuildContext context, String title, File? file, void Function()? ontap) {
+      BuildContext context, String title,
+      File? file, void Function()? ontap) {
     return Row(
       children: [
         Expanded(
@@ -160,8 +161,7 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
       width: screenSize(context).width * .4,
       child: CustomButton(
         function: () {
-          //CompleteCarInfoCubit.get(context).upload();
-          CarInfoRepo().uploadImages(CompleteCarInfoCubit.get(context).driverLicense);
+          CompleteCarInfoCubit.get(context).completeCarInfo(context);
         },
         title: 'انشاء',
         fontSize: 25,
