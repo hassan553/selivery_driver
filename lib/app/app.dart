@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:selivery_driver/binding.dart';
 import 'package:selivery_driver/features/auth/presentation/views/car_info_view.dart';
 import 'package:selivery_driver/features/splash/presentation/splash.dart';
-
 import '../core/rescourcs/app_theme.dart';
 import '../features/home/views/main_view.dart';
 

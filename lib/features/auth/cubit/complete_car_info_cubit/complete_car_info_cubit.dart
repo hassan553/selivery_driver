@@ -42,7 +42,9 @@ class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
     carLicense = await _pickImage.pickImage();
     emit(PickDriverCarLicenseImageState());
   }
-
+upload()async{
+  await _carInfoRepo.upload('asas',carLicense!);
+}
   void completeCarInfo(context) async {
     final result = await carInfoRepo.uploadImage(
       carImage: carImage!,
