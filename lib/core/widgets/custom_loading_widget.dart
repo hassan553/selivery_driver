@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../rescourcs/app_colors.dart';
@@ -7,8 +8,14 @@ class CustomLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(color: AppColors.primaryColor),
+    final platform = Theme.of(context).platform;
+
+    return Center(
+      child: platform == TargetPlatform.iOS
+          ? const CircularProgressIndicator(color: AppColors.primaryColor)
+          : const CupertinoActivityIndicator(
+              color: AppColors.primaryColor,
+            ),
     );
   }
 }

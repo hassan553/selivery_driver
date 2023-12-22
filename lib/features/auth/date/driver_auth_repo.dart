@@ -17,7 +17,7 @@ class DriverAuthRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
-
+      print(result['message']);
       if (response.statusCode == 200) {
         if (result['message'] == 'LoggedIn successfully') {
           await CacheStorageServices().setToken(result['token']);
