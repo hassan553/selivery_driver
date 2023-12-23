@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class FirebaseMessagingService {
@@ -31,6 +32,7 @@ class FirebaseMessagingService {
         // Extract notification details
         final title = notification.title ?? '';
         final body = notification.body ?? '';
+        Get.snackbar("$title","$body");
         print(title);
         print(body);
       }

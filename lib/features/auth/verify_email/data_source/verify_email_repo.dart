@@ -21,6 +21,7 @@ class VerifyDriverEmailAddressRepo {
       final result = jsonDecode(response.body);
       if (response.statusCode == 200) {
         await CacheStorageServices().setToken(result['token']);
+        await CacheStorageServices().setId(result['driver']['_id']);
         return Right(result['message']);
       } else {
         return Left(result['message']);
