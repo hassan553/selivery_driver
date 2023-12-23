@@ -6,7 +6,6 @@ import 'package:selivery_driver/features/splash/presentation/splash.dart';
 import '../core/rescourcs/app_theme.dart';
 import '../features/home/views/main_view.dart';
 
-
 class SeliveryDriver extends StatelessWidget {
   const SeliveryDriver({super.key});
 
@@ -18,9 +17,7 @@ class SeliveryDriver extends StatelessWidget {
       title: 'Selivery ',
       theme: appTheme(),
       textDirection: TextDirection.rtl,
-      home: MainView(),
+      home: const  SplashView(),
     );
-  } 
+  }
 }
-
- 
