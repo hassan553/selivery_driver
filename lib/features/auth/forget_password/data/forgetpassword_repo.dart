@@ -44,7 +44,7 @@ class DriverForgetPasswordRepo {
     }
   }
 
- Future<Either<String, String>> verifyClientForgetPasswordCode(
+  Future<Either<String, String>> verifyClientForgetPasswordCode(
       String email, int code) async {
     try {
       final response = await http.post(
@@ -54,9 +54,11 @@ class DriverForgetPasswordRepo {
       );
       final result = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        print(result['message']);
         CacheStorageServices().setToken(result['token']);
         return Right(result['message']);
       } else {
+        print(result['message']);
         return Left(result['message']);
       }
     } catch (e) {

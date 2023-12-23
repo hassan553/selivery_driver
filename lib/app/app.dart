@@ -20,7 +20,7 @@ class SeliveryDriver extends StatelessWidget {
       title: 'Selivery ',
       theme: appTheme(),
       textDirection: TextDirection.rtl,
-      home:  VerifyDriverEmailOTPView(email: 'asas',screen: MainView()),
+      home: MainView(),
     );
   }
 }
