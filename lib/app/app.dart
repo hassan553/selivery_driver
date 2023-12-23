@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:selivery_driver/binding.dart';
+import '../core/functions/google_sign.dart';
 import '../core/rescourcs/app_theme.dart';
+import '../features/auth/date/social_auth.dart';
 import '../features/home/views/main_view.dart';
-<<<<<<< HEAD
 import '../features/splash/presentation/splash.dart';
-=======
->>>>>>> d977312fc639a58a4730d761a0630a69f8f77357
 
 class SeliveryDriver extends StatelessWidget {
   const SeliveryDriver({super.key});
@@ -19,11 +18,43 @@ class SeliveryDriver extends StatelessWidget {
       title: 'Selivery ',
       theme: appTheme(),
       textDirection: TextDirection.rtl,
-<<<<<<< HEAD
-      home: SplashView(),
-=======
-      home: const  SplashView(),
->>>>>>> d977312fc639a58a4730d761a0630a69f8f77357
+      home: const Texst(),
+    );
+  }
+}
+
+class Texst extends StatelessWidget {
+  const Texst({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Title'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () async {
+                await handleSignInWithGoogle();
+              },
+              child: const Text(
+                "Text Button",
+              ),
+            ),
+            const SizedBox(height: 30),
+            TextButton(
+              onPressed: () {
+                googleLogOut();
+              },
+              child: const Text(
+                "logout",
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

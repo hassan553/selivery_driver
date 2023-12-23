@@ -11,7 +11,7 @@ class CustomLoadingWidget extends StatelessWidget {
     final platform = Theme.of(context).platform;
 
     return Center(
-      child: platform == TargetPlatform.iOS
+      child: platform == TargetPlatform.android
           ? const CircularProgressIndicator(color: AppColors.primaryColor)
           : const CupertinoActivityIndicator(
               color: AppColors.primaryColor,
