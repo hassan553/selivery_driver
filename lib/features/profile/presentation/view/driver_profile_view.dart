@@ -44,11 +44,11 @@ class DriverProfileView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              //  GetBuilder<DriverProfileController>(builder: (controller)=>TopTitleWidget(title1: 'سا',
-              //    title2: 'ئق',
-              //    image: "http://192.168.1.10:8000${controller.driverProfileModel?.image}",
-              //    name: controller.driverProfileModel?.name??'',
-              //  ),),
+               GetBuilder<DriverProfileController>(builder: (controller)=>TopTitleWidget(title1: 'سا',
+                 title2: 'ئق',
+                 image: controller.driverProfileModel?.image??'',
+                 name: controller.driverProfileModel?.name??'',
+               ),),
               const CustomDivider(),
               driverCV(),
               const CustomDivider(),
