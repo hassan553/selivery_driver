@@ -29,13 +29,13 @@ class DriverProfileView extends StatelessWidget {
         if(controller.isLoading){
          return  const CustomLoadingWidget();
         }else{
-          return driverProfileBody(context);
+          return driverProfileBody(context,controller);
         }
       },),
     );
   }
 
-  SingleChildScrollView driverProfileBody(BuildContext context) {
+  SingleChildScrollView driverProfileBody(BuildContext context, DriverProfileController controller) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
@@ -49,6 +49,8 @@ class DriverProfileView extends StatelessWidget {
                  image: controller.driverProfileModel?.image??'',
                  name: controller.driverProfileModel?.name??'',
                ),),
+              
+              const SizedBox(height: 10),
               const CustomDivider(),
               driverCV(),
               const CustomDivider(),

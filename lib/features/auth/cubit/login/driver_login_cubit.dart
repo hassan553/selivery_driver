@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/functions/checkinternet.dart';
 import '../../date/driver_auth_repo.dart';
+import '../../date/social_auth.dart';
 
 part 'driver_login_state.dart';
 
@@ -28,4 +29,20 @@ class DriverLoginCubit extends Cubit<DriverLoginState> {
       emit(const DriverLoginError("لا يوجد اتصال بالانترنت"));
     }
   }
+
+  void loginWithGoogle() async {
+    if (await checkInternet()) {
+      emit(DriverGoogleLoginLoading());
+      final result = await handleSignInWithGoogle();
+      result.fold((l) {
+        emit(DriverGoogleLoginError(l));
+      }, (r) {
+        emit(DriverGoogleLoginSuccess());
+      });
+    } else {
+      emit(const DriverGoogleLoginError("لا يوجد اتصال بالانترنت"));
+    }
+  }
+
+
 }

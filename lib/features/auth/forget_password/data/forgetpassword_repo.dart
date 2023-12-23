@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import '../../../../../../core/contants/api.dart';
@@ -34,6 +33,7 @@ class DriverForgetPasswordRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
+      print('ererR ${result["message"]}');
       if (response.statusCode == 200) {
         return Right(result['message']);
       } else {
@@ -44,9 +44,7 @@ class DriverForgetPasswordRepo {
     }
   }
 
-  final String _token = '';
-
-  Future<Either<String, String>> verifyClientForgetPasswordCode(
+ Future<Either<String, String>> verifyClientForgetPasswordCode(
       String email, int code) async {
     try {
       final response = await http.post(

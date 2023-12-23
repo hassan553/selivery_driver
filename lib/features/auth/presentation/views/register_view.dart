@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/show_awesomeDialog.dart';
 import '../../date/driver_auth_repo.dart';
+import '../widgets/google_sigin_widget.dart';
 import 'car_info_view.dart';
 import '../../verify_email/views/otp_view.dart';
 import '../../../../../core/functions/global_function.dart';
@@ -139,7 +140,7 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                               context,
                               VerifyDriverEmailOTPView(
                                 email: email.text,
-                                screen: CompleteCarInfoView(),
+                                screen: const CompleteCarInfoView(),
                               ));
                         } else if (state is DriverRegisterError) {
                           showErrorAwesomeDialog(
@@ -167,6 +168,7 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                             title: 'ان شاء حساب');
                       }),
                       SizedBox(height: screenSize(context).height * .03),
+                      GoogleSignWidget(onTap: () {}),
                     ],
                   ),
                 ),

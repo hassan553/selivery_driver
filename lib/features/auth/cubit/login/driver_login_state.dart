@@ -25,9 +25,7 @@ class DriverLoginError extends DriverLoginState {
   const DriverLoginError(this.message);
 }
 class DriverGoogleLoginLoading extends DriverLoginState {}
-
 class DriverGoogleLoginSuccess extends DriverLoginState {}
-
 class DriverGoogleLoginError extends DriverLoginState {
   final String message;
 

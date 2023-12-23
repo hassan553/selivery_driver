@@ -17,8 +17,7 @@ final verifyClientForgetPasswordCodeUrl =
 final verifyDriverForgetPasswordCodeUrl =
     Uri.parse('${authBaseUri}driver/verify_password_code');
 
-//google sign in
-final clientGoogleSignIn = Uri.parse('${authBaseUri}google/client');
+
 final driverGoogleSignIn = Uri.parse('${authBaseUri}google/driver');
 ///////profile uri
 const profileUri = '${baseUri}user/profile';
