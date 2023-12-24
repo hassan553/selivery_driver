@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/functions/checkinternet.dart';
 
 import '../../date/driver_auth_repo.dart';
+import '../../date/social_auth.dart';
 
 part 'driver_register_state.dart';
 
@@ -24,6 +25,19 @@ class DriverRegisterCubit extends Cubit<DriverRegisterState> {
       );
     } else {
       emit(const DriverRegisterError("لا يوجد اتصال بالانترنت"));
+    }
+  }
+   void registerWithGoogle() async {
+    if (await checkInternet()) {
+      emit(DriverGoogleRegisterLoading());
+      final result = await handleSignInWithGoogle();
+      result.fold((l) {
+        emit(DriverGoogleRegisterError(l));
+      }, (r) {
+        emit(DriverGoogleRegisterSuccess());
+      });
+    } else {
+      emit(const DriverGoogleRegisterError("لا يوجد اتصال بالانترنت"));
     }
   }
 }

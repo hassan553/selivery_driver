@@ -1,8 +1,7 @@
-//'https://selivery.onrender.com/'; 
+//'https://selivery.onrender.com/';
 const baseUri = 'http://192.168.1.122:8000/';
 const authBaseUri = '${baseUri}auth/';
-final clientLogin = Uri.parse('${authBaseUri}login/client');
-final clientRegister = Uri.parse('${authBaseUri}signup/client');
+final driversGoogleSignIn = Uri.parse('${authBaseUri}google/driver');
 final driverLogin = Uri.parse('${authBaseUri}login/driver');
 final driverRegister = Uri.parse('${authBaseUri}signup/driver');
 final verifyDriverEmailCodeUrl = Uri.parse('${authBaseUri}driver/verify_email');
@@ -24,11 +23,9 @@ final driverGoogleSignIn = Uri.parse('${authBaseUri}google/driver');
 ///////profile uri
 const profileUri = '${baseUri}user/profile';
 final profileUpdateImageUri = Uri.parse('${baseUri}user/changePicture');
-final profileUpdateInfoUri =
-    Uri.parse('${baseUri}user/updateInfo');
+final profileUpdateInfoUri = Uri.parse('${baseUri}user/updateInfo');
 const profileUpdateInfoUriHZ = 'http://192.168.1.122:8000/user/updateInfo';
-final profileClientUpdatePassword =
-    Uri.parse('${baseUri}user/changePassword');
+final profileClientUpdatePassword = Uri.parse('${baseUri}user/changePassword');
 //categories
 
 const String categoriesUrL = '${baseUri}category';

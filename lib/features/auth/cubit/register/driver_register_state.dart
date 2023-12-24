@@ -22,3 +22,12 @@ class DriverRegisterError extends DriverRegisterState {
 
   const DriverRegisterError(this.message);
 }
+class DriverGoogleRegisterLoading extends DriverRegisterState {}
+
+class DriverGoogleRegisterSuccess extends DriverRegisterState {}
+
+class DriverGoogleRegisterError extends DriverRegisterState {
+  final String message;
+
+  const DriverGoogleRegisterError(this.message);
+}
