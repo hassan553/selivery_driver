@@ -11,13 +11,16 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ChatController controller = Get.put(ChatController())..
-    getMessages(CacheStorageServices().id);
+    ChatController controller = Get.put(ChatController())
+      ..getMessages(CacheStorageServices().id);
     return Scaffold(
       appBar: AppBar(
-        title: Text("دردشة مع العميل",style: TextStyle(
-          color: Colors.green,
-        ),),
+        title: const Text(
+          "دردشة مع العميل",
+          style: TextStyle(
+            color: Colors.green,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -31,71 +34,80 @@ class ChatScreen extends StatelessWidget {
                     return ListView.builder(
                       reverse: true,
                       itemBuilder: (context, index) {
-                        return messages[index].senderId==
-                            CacheStorageServices().id? Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0,bottom: 8),
-                            child: Container(
-                              padding: EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
+                        return messages[index].senderId ==
+                                CacheStorageServices().id
+                            ? Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 8.0, bottom: 8),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(3),
+                                    decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20),
+                                        ),
+                                        color: Colors.pinkAccent),
+                                    child: Text(
+                                      messages[index].message,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
-                                  color: Colors.pinkAccent
-                              ),
-                              child: Text(messages[index].message,style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold
-                              ),),
-                            ),
-                          ),
-                        ):Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0,bottom: 8),
-                            child: Container(
-                              padding: EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20),
-                                    bottomRight: Radius.circular(20),
+                                ),
+                              )
+                            : Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, bottom: 8),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(3),
+                                    decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                          bottomRight: Radius.circular(20),
+                                        ),
+                                        color: Colors.greenAccent),
+                                    child: Text(
+                                      messages[index].message,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
-                                  color: Colors.greenAccent
-                              ),
-                              child: Text(messages[index].message,style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold
-                              ),),
-                            ),
-                          ),
-                        );
+                                ),
+                              );
                       },
                       itemCount: messages.length,
                     );
                   } else {
-                    return Center(child: const CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                 }),
           ),
           Row(
             children: [
-              Expanded(child: TextFormField(
+              Expanded(
+                  child: TextFormField(
                 textInputAction: TextInputAction.done,
-                validator: (val){
-                  if(val!.isEmpty){
+                validator: (val) {
+                  if (val!.isEmpty) {
                     return "enter text";
                   }
+                  return null;
                 },
                 controller: controller.chatController,
                 cursorColor: Colors.white,
                 style: const TextStyle(color: Colors.black),
-                onTapOutside:(e)=> FocusManager.instance.primaryFocus!.unfocus(),
+                onTapOutside: (e) =>
+                    FocusManager.instance.primaryFocus!.unfocus(),
                 decoration: InputDecoration(
                   filled: true,
                   hintText: "اكتب الرسالة",
@@ -119,15 +131,20 @@ class ChatScreen extends StatelessWidget {
                   ),
                 ),
               )),
-              IconButton(onPressed: (){
-                controller.sendMessage(MessageModel(
-                    receiverId: clientid,//client
-                    senderId: CacheStorageServices().id,//driver
-                    dateTime: DateTime.now().toString(),
-                    message: controller.chatController!.text));
-                controller.chatController!.clear();
-              },
-                  icon: Icon(Icons.send,color: Colors.green,size: 30,)),
+              IconButton(
+                  onPressed: () {
+                    controller.sendMessage(MessageModel(
+                        receiverId: clientid, //client
+                        senderId: CacheStorageServices().id, //driver
+                        dateTime: DateTime.now().toString(),
+                        message: controller.chatController!.text));
+                    controller.chatController!.clear();
+                  },
+                  icon: const Icon(
+                    Icons.send,
+                    color: Colors.green,
+                    size: 30,
+                  )),
             ],
           )
         ],

@@ -1,14 +1,9 @@
 import 'package:selivery_driver/features/profile/data/driver_profile_model.dart';
-
-import '../../../../core/class/crud.dart';
-
 import '../../../../core/contants/api.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-
 import '../../../core/services/cache_storage_services.dart';
 import '../../../core/widgets/image_picker.dart';
 
@@ -63,7 +58,6 @@ class DriverProfileRepo {
         return Left(result['message']);
       }
     } catch (e) {
-      print(e.toString());
       return Left(e.toString());
     }
   }

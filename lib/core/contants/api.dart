@@ -1,4 +1,5 @@
-const baseUri = 'https://selivery.onrender.com/'; //'http://192.168.1.122:8000/';
+//'https://selivery.onrender.com/'; 
+const baseUri = 'http://192.168.1.122:8000/';
 const authBaseUri = '${baseUri}auth/';
 final clientLogin = Uri.parse('${authBaseUri}login/client');
 final clientRegister = Uri.parse('${authBaseUri}signup/client');
