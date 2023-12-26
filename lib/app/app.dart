@@ -20,43 +20,7 @@ class SeliveryDriver extends StatelessWidget {
       title: 'Selivery ',
       theme: appTheme(),
       textDirection: TextDirection.rtl,
-      home:  SplashView(),
-    );
-  }
-}
-
-class Texst extends StatelessWidget {
-  const Texst({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Title'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            TextButton(
-              onPressed: () async {
-                await handleSignInWithGoogle();
-              },
-              child: const Text(
-                "Text Button",
-              ),
-            ),
-            const SizedBox(height: 30),
-            TextButton(
-              onPressed: () {
-                googleLogOut();
-              },
-              child: const Text(
-                "logout",
-              ),
-            ),
-          ],
-        ),
-      ),
+      home: const SplashView(),
     );
   }
 }

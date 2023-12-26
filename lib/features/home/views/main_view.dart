@@ -13,9 +13,8 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-
 class MainView extends StatefulWidget {
-  MainView({super.key});
+  const MainView({super.key});
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -24,17 +23,17 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
-  IO.Socket ? socket;
+  IO.Socket? socket;
   Position? position;
   //Timer ? timer;
-  Completer<GoogleMapController>? completercontroller ;
-  CameraPosition? kGooglePlex ;
-  Map<String,dynamic> options ={
-    "transports":['websocket'],
-    "autoConnect":false,
+  Completer<GoogleMapController>? completercontroller;
+  CameraPosition? kGooglePlex;
+  Map<String, dynamic> options = {
+    "transports": ['websocket'],
+    "autoConnect": false,
   };
-  address(){
-    Timer.periodic(Duration(seconds: 30), (Timer timer) {
+  address() {
+    Timer.periodic(const Duration(seconds: 30), (Timer timer) {
       setState(() {
         socket!.emit("update_driver_location", {
           "driverId": CacheStorageServices().id,
@@ -46,9 +45,10 @@ class _MainViewState extends State<MainView> {
       });
     });
   }
-  getCurrentLocationForDriver()async{
+
+  getCurrentLocationForDriver() async {
     position = await Geolocator.getCurrentPosition();
-    kGooglePlex =  CameraPosition(
+    kGooglePlex = CameraPosition(
       target: LatLng(position!.latitude, position!.longitude),
       zoom: 14.4746,
     );
@@ -61,27 +61,25 @@ class _MainViewState extends State<MainView> {
     });
   }
 
-  initSocketForDriver(){
-    socket =IO.io("http://192.168.1.5:8000",options);
+  initSocketForDriver() {
+    socket = IO.io("http://192.168.1.5:8000", options);
     socket!.connect();
     socket!.onConnect((_) => print("connect with server"));
-    socket!.emit("driverAuthenticate",CacheStorageServices().id);
+    socket!.emit("driverAuthenticate", CacheStorageServices().id);
   }
 
   @override
   void initState() {
     // TODO: implement initState
-
     super.initState();
+    
+    getCurrentLocationForDriver();
     Future(() async {
       await FirebaseMessagingService.initialize();
     });
-
     //init socket
     initSocketForDriver();
-    //current location
-   getCurrentLocationForDriver();
-   //address
+    //address
     address();
     FirebaseMessagingService.getDeviceToken();
   }
@@ -147,7 +145,7 @@ class _MainViewState extends State<MainView> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-       icon: const Icon(Icons.campaign,size: 30),
+        icon: const Icon(Icons.campaign, size: 30),
         title: ("الاشعارات"),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,

@@ -36,6 +36,7 @@ Future<Either<String, String>> v(String idToken) async {
         headers: authHeaders,
         body: json.encode({"idToken": idToken, 'deviceToken': '1212'}));
     final result = json.decode(request.body);
+    print(result);
     if (request.statusCode == 200) {
       await CacheStorageServices().setToken(result['token']);
       print('google token ${request.body.toString()}');
