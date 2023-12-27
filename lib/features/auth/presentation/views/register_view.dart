@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/show_awesomeDialog.dart';
+import '../../../../core/widgets/custom_loading_widget.dart';
+import '../../../home/views/main_view.dart';
 import '../../date/driver_auth_repo.dart';
+import '../widgets/google_sigin_widget.dart';
 import 'car_info_view.dart';
 import '../../verify_email/views/otp_view.dart';
 import '../../../../../core/functions/global_function.dart';
@@ -139,7 +142,7 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                               context,
                               VerifyDriverEmailOTPView(
                                 email: email.text,
-                                screen: CompleteCarInfoView(),
+                                screen: const CompleteCarInfoView(),
                               ));
                         } else if (state is DriverRegisterError) {
                           showErrorAwesomeDialog(
@@ -167,6 +170,29 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                             title: 'ان شاء حساب');
                       }),
                       SizedBox(height: screenSize(context).height * .03),
+                      BlocConsumer<DriverRegisterCubit, DriverRegisterState>(
+                        listener: (context, state) {
+                          if (state is DriverGoogleRegisterSuccess) {
+                            showSnackBarWidget(
+                                context: context,
+                                message: 'تم تسجيل الدخوال بنجاح',
+                                requestStates: RequestStates.success);
+                            navigateOff(MainView());
+                          } else if (state is DriverGoogleRegisterError) {
+                            print(state.message);
+                            showErrorAwesomeDialog(
+                                context, 'تنبيه', state.message);
+                          }
+                        },
+                        builder: (context, state) {
+                          return state is DriverGoogleRegisterLoading
+                              ? const CustomLoadingWidget()
+                              : GoogleSignWidget(onTap: () {
+                                  BlocProvider.of<DriverRegisterCubit>(context)
+                                      .registerWithGoogle();
+                                });
+                        },
+                      ),
                     ],
                   ),
                 ),

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/functions/global_function.dart';
@@ -8,7 +7,6 @@ import '../../../../../core/widgets/custom_sized_box.dart';
 import '../../../../../core/widgets/image_picker.dart';
 import '../../cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
 import '../../date/car_info_repo.dart';
-
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/responsive_text.dart';
@@ -123,7 +121,8 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
   }
 
   Row carInfoTakeImage(
-      BuildContext context, String title, File? file, void Function()? ontap) {
+      BuildContext context, String title,
+      File? file, void Function()? ontap) {
     return Row(
       children: [
         Expanded(
@@ -160,8 +159,7 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
       width: screenSize(context).width * .4,
       child: CustomButton(
         function: () {
-          //CompleteCarInfoCubit.get(context).upload();
-          CarInfoRepo().uploadImages(CompleteCarInfoCubit.get(context).driverLicense);
+          CompleteCarInfoCubit.get(context).completeCarInfo(context);
         },
         title: 'انشاء',
         fontSize: 25,

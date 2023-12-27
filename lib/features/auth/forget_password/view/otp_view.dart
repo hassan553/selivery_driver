@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -177,7 +176,7 @@ class _NumericKeyboardScreenState extends State<NumericKeyboardScreen> {
                   ? const CustomLoadingWidget()
                   : TextFormField(
                       controller: controller,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.none,
                       autofocus: true,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       focusNode: FocusScopeNode(canRequestFocus: false),

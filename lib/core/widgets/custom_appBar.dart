@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../features/home/views/mytripsscreen.dart';
+import '../../features/home/views/trips.dart';
 import '../contants/strings.dart';
 import 'custom_image.dart';
 import 'responsive_text.dart';
@@ -55,46 +57,101 @@ PreferredSize customAppBar(context) {
               ),
             ],
           ),
-          Visibility(
-            visible:true,// sharedPreferences.getBool(isDriver) ?? false,
-            child: Positioned(
-              bottom: 5,
-              left: 5,
-              child: InkWell(
-                onTap:(){},// () => navigateTo(const OrdersView()),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const ResponsiveText(
-                      text: 'الطلبات',
-                      scaleFactor: .03,
-                      color: AppColors.white,
-                    ),
-                    Stack(
-                      alignment: Alignment.topRight,
-                      children: [
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: CustomAssetsImage(
-                              path: 'assets/Uber Taxi.png',
-                            ),
-                          ),
-                        ),
-                        const CircleAvatar(
-                          backgroundColor: Colors.red,
-                          radius: 8,
-                          child: ResponsiveText(
-                            text: '2',
-                            scaleFactor: .02,
+          Positioned(
+            bottom: 5,
+            left: 5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Visibility(
+                  visible:true,// sharedPreferences.getBool(isDriver) ?? false,
+                  child: Positioned(
+                    bottom: 5,
+                    left: 5,
+                    child: InkWell(
+                      onTap:(){
+                        navigateTo(const TripsScreen());
+                      },// () => navigateTo(const OrdersView()),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const ResponsiveText(
+                            text: 'الطلبات',
+                            scaleFactor: .03,
                             color: AppColors.white,
                           ),
-                        ),
-                      ],
+                          Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: CustomAssetsImage(
+                                    path: 'assets/Uber Taxi.png',
+                                  ),
+                                ),
+                              ),
+                              const CircleAvatar(
+                                backgroundColor: Colors.red,
+                                radius: 8,
+                                child: ResponsiveText(
+                                  text: '2',
+                                  scaleFactor: .02,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                Visibility(
+                  visible:true,// sharedPreferences.getBool(isDriver) ?? false,
+                  child: Positioned(
+                    bottom: 5,
+                    left: 5,
+                    child: InkWell(
+                      onTap:(){
+                        navigateTo(const MyTripsScreen());
+                      },// () => navigateTo(const OrdersView()),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const ResponsiveText(
+                            text: 'الرحالات',
+                            scaleFactor: .03,
+                            color: AppColors.white,
+                          ),
+                          Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: CustomAssetsImage(
+                                    path: 'assets/Uber Taxi.png',
+                                  ),
+                                ),
+                              ),
+                              const CircleAvatar(
+                                backgroundColor: Colors.red,
+                                radius: 8,
+                                child: ResponsiveText(
+                                  text: '2',
+                                  scaleFactor: .02,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

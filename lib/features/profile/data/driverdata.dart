@@ -1,14 +1,9 @@
 import 'package:selivery_driver/features/profile/data/driver_profile_model.dart';
-
-import '../../../../core/class/crud.dart';
-
 import '../../../../core/contants/api.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-
 import '../../../core/services/cache_storage_services.dart';
 import '../../../core/widgets/image_picker.dart';
 
@@ -63,7 +58,6 @@ class DriverProfileRepo {
         return Left(result['message']);
       }
     } catch (e) {
-      print(e.toString());
       return Left(e.toString());
     }
   }
@@ -91,17 +85,14 @@ class DriverProfileRepo {
       return Left(e.toString());
     }
   }
+
   File? carImage;
 
   Future pickClientImage() async {
-    try {
-      carImage = await PickImage().pickImage();
-      if (carImage != null) {    
-        await postDataWithFile(carImage!);
-        await getDriverProfile();
-      }
-    } catch (error) {
-      print(error.toString());
+    carImage = await PickImage().pickImage();
+    if (carImage != null) {
+      await postDataWithFile(carImage!);
+      await getDriverProfile();
     }
   }
 
@@ -113,8 +104,7 @@ class DriverProfileRepo {
         "Content-Type": 'multipart/form-data',
       };
 
-      var request = http.MultipartRequest(
-          "PATCH", Uri.parse('http://192.168.1.122:8000/user/changePicture'));
+      var request = http.MultipartRequest("PATCH", profileUpdateImageUri);
       request.headers.addAll(headers);
       var fileExtension = image.path;
 
@@ -128,18 +118,17 @@ class DriverProfileRepo {
       var myrequest = await request.send();
 
       var response = await http.Response.fromStream(myrequest);
-      Map responsebody = jsonDecode(response.body);
-      print(response.body);
+      final result = jsonDecode(response.body);
+      print(result['message']);
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         print("tm");
         print(response.body);
       } else {
-        print('errrrrrrr');
-        print(response.body);
+        throw Exception(result['message']);
       }
     } catch (error) {
-      print(error.toString());
+      throw Exception(error.toString());
     }
   }
-  
 }

@@ -187,6 +187,7 @@ class _NumericKeyboardScreenState extends State<NumericKeyboardScreen> {
                   : TextFormField(
                       controller: controller,
                       autofocus: true,
+                      keyboardType: TextInputType.none,
                       focusNode: FocusScopeNode(canRequestFocus: false),
                       cursorColor: AppColors.white,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],

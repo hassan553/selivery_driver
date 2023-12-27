@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
 import 'package:selivery_driver/features/home/views/main_view.dart';
 import '../../../../../core/widgets/show_awesomeDialog.dart';
 import '../../verify_email/views/otp_view.dart';
@@ -14,6 +15,7 @@ import '../../../../../core/widgets/snack_bar_widget.dart';
 import '../../cubit/login/driver_login_cubit.dart';
 import '../../date/driver_auth_repo.dart';
 import '../../forget_password/view/forget_password_view.dart';
+import '../widgets/google_sigin_widget.dart';
 import 'register_view.dart';
 
 class DriverLoginView extends StatefulWidget {
@@ -81,6 +83,7 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                         controller: email,
                         hintText: 'البريد الاكتروني',
                         focusNode: emailFocus,
+                        keyboard: TextInputType.emailAddress,
                         submit: (p0) =>
                             FocusScope.of(context).requestFocus(passwordFocus),
                         valid: (String? value) {
@@ -98,6 +101,7 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                         hintText: 'كلمه السر',
                         focusNode: passwordFocus,
                         obscure: isObscure,
+                        keyboard: TextInputType.visiblePassword,
                         suffixIcon: InkWell(
                           onTap: () => changeIcon(),
                           child: Icon(
@@ -168,43 +172,38 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                             title: 'تسجيل الدخوال');
                       }),
                       SizedBox(height: screenSize(context).height * .03),
+                      BlocConsumer<DriverLoginCubit, DriverLoginState>(
+                        listener: (context, state) {
+                          if (state is DriverGoogleLoginSuccess) {
+                            showSnackBarWidget(
+                                context: context,
+                                message: 'تم تسجيل الدخوال بنجاح',
+                                requestStates: RequestStates.success);
+                            navigateOff(MainView());
+                          } else if (state is DriverGoogleLoginError) {
+                            print(state.message);
+                            showErrorAwesomeDialog(
+                                context, 'تنبيه', state.message);
+                          }
+                        },
+                        builder: (context, state) {
+                          return state is DriverGoogleLoginLoading
+                              ? const CustomLoadingWidget()
+                              : GoogleSignWidget(onTap: () {
+                                  BlocProvider.of<DriverLoginCubit>(context)
+                                      .loginWithGoogle();
+                                });
+                        },
+                      ),
                       Align(
                           alignment: Alignment.center,
                           child: CustomTextButton(
                               function: () {
-                                navigateTo(DriverRegisterView());
+                                navigateTo(const DriverRegisterView());
                               },
                               color: AppColors.primaryColor,
                               title: 'انشاء حساب جديد')),
                       SizedBox(height: screenSize(context).height * .03),
-                      Center(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CustomAssetsImage(
-                                path: 'assets/facebook.png',
-                                width: 30,
-                                height: 30,
-                                boxFit: BoxFit.fill,
-                              ),
-                            )),
-                            const SizedBox(width: 10),
-                            Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CustomAssetsImage(
-                                path: 'assets/google.png',
-                                width: 30,
-                                height: 30,
-                                boxFit: BoxFit.fill,
-                              ),
-                            )),
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 ),

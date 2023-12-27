@@ -97,7 +97,8 @@ class DriverProfileController extends GetxController {
     }
     update();
   }
- bool changeImageLoding = false;
+
+  bool changeImageLoding = false;
   changePicture(context) async {
     if (await checkInternet()) {
       try {
@@ -105,10 +106,12 @@ class DriverProfileController extends GetxController {
         update();
         await driverProfileRepo.pickClientImage();
         changeImageLoding = false;
-         showSnackBarWidget(
+        showSnackBarWidget(
             context: context,
             message: 'تم التغير بنجاح',
             requestStates: RequestStates.success);
+
+        print('done');
       } catch (error) {
         changeImageLoding = false;
         showSnackBarWidget(

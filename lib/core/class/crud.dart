@@ -75,9 +75,10 @@ class Crud {
       if (await checkInternet()) {
         var response = await http.get(Uri.parse(linkurl),
             headers: authHeadersWithToken(CacheStorageServices().token));
+        print(response.statusCode);
         if (response.statusCode == 200 || response.statusCode == 201) {
           // Map reponseBody = jsonDecode(response.body);
-          print("responsennnn ${response.body}");
+         // print("responsennnn ${response.body}");
           return Right(jsonDecode(response.body));
         } else {
           return const Left(StatusRequest.serverFailure);
@@ -127,7 +128,9 @@ class Crud {
     var stream = http.ByteStream(image.openRead());
     //stream.cast();
     var multipartFile =
-        http.MultipartFile("images", stream, length, filename: image.path);
+        http.MultipartFile("images", stream,
+            length, filename: image.path);
+
     request.files.add(multipartFile);
 
     // add Data to request
@@ -140,14 +143,10 @@ class Crud {
     // For get Response Body
     var response = await http.Response.fromStream(myrequest);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("tm");
-      print(response.body);
       Map responsebody = jsonDecode(response.body);
       return Right(responsebody);
     } else {
-      print("no hazem");
-      print(response.body);
-      print(response.statusCode);
+
       return const Left(StatusRequest.serverFailure);
     }
   }
