@@ -20,6 +20,13 @@ class CacheStorageServices {
       await _preferences?.setString(_Keys.token, token);
   String get token => _preferences?.getString(_Keys.token) ?? '';
 
+  Future<void> setId(id) async =>
+      await _preferences?.setString(_Keys.id, id);
+  String get id => _preferences?.getString(_Keys.id) ?? '';
+
+  Future<void> setDate(date) async =>
+      await _preferences?.setString(_Keys.date, date);
+  String get date => _preferences?.getString(_Keys.date) ?? '';
   clear() async{
    await _preferences?.clear();
   }
@@ -27,5 +34,7 @@ class CacheStorageServices {
 
 class _Keys {
   static const String token = 'token';
+  static const String id = 'id';
+  static const String date = 'date';
   static const String isEnabled = 'isEnabled';
 }
