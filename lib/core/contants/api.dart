@@ -1,13 +1,18 @@
 //'https://selivery.onrender.com/';
 const baseUri = 'http://192.168.1.122:8000/';
 const authBaseUri = '${baseUri}auth/';
+final clientLogin = Uri.parse('${authBaseUri}login/client');
+final clientRegister = Uri.parse('${authBaseUri}signup/client');
+final driverLogin = Uri.parse('https://selivery.onrender.com/auth/login/driver');
+final driverRegister = Uri.parse('http://192.168.1.122:8000/auth/signup/driver');
 final driversGoogleSignIn = Uri.parse('${authBaseUri}google/driver');
-final driverLogin = Uri.parse('${authBaseUri}login/driver');
-final driverRegister = Uri.parse('${authBaseUri}signup/driver');
+
 final verifyDriverEmailCodeUrl = Uri.parse('${authBaseUri}driver/verify_email');
 final verifyClientEmailCodeUrl = Uri.parse('${authBaseUri}client/verify_email');
 final verifyClientResendEmailCodeUrl =
     Uri.parse('${authBaseUri}resend_verification_code');
+//profile
+final driverProfile = Uri.parse("https://selivery.onrender.com/user/profile");
 final completeCarInfoUrl = Uri.parse('${baseUri}request');
 final getAllAdsUri = Uri.parse('${baseUri}advertisement');
 final sendNewPasswordUrl = Uri.parse('${baseUri}user/setPassword');
@@ -48,6 +53,14 @@ const String getrequesttrips =
     "http://192.168.1.5:8000/trip/get_driver_requests";
 String accepttrips(id) => "http://192.168.1.5:8000/trip/$id/accept";
 const String mytrips = "http://192.168.1.5:8000/driver/trips";
+
+
+
+//payments
+
+final visaUrl = Uri.parse("https://selivery.onrender.com/payments/card_payment");
+final CashUrl = Uri.parse("https://selivery.onrender.com/payments/wallet_payment");
+
 
 /////////
 final authHeaders = {

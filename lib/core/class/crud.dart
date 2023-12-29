@@ -16,12 +16,41 @@ import '../functions/get_token.dart';
 import 'package:path/path.dart';
 
 class Crud {
-  Future<Either<StatusRequest, Map>> postData(String linkurl, Map data) async {
+  Future<Either<StatusRequest, Map>> postData(String linkurl,
+      Map data) async {
     try {
       if (await checkInternet()) {
         var response = await http.post(Uri.parse(linkurl),
             body: data,
-            headers: authHeadersWithTokenIm(CacheStorageServices().token));
+            headers:authHeadersWithTokenIm(CacheStorageServices().token));
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          print(response.statusCode);
+          print(response.body);
+          //Map reponseBody = jsonDecode(response.body);
+          return Right(jsonDecode(response.body));
+        } else {
+          print(response.statusCode);
+          print(response.body);
+          return const Left(StatusRequest.serverFailure);
+        }
+      } else {
+        return const Left(StatusRequest.offlineFailure);
+      }
+    } catch (e) {
+      print("error is ${e.toString()}");
+      return const Left(StatusRequest.serverFailure);
+    }
+  }
+
+  Future<Either<StatusRequest, Map>> postDataForCash(String linkurl,
+      Map data) async {
+    try {
+      if (await checkInternet()) {
+        var response = await http.post(Uri.parse(linkurl),
+            body: data,
+            headers: {
+              "Authorization":"Bearer ${CacheStorageServices().token}",
+            });
         if (response.statusCode == 200 || response.statusCode == 201) {
           print(response.statusCode);
           print(response.body);

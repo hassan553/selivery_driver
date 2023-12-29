@@ -101,8 +101,9 @@ class _AllAdsViewState extends State<AllAdsView> {
                 ),
               ),
               InkWell(
-                onTap: () =>
-                    navigateTo(WebPage(link: model.link ?? '')),
+                onTap: () {
+                   // navigateTo(WebPage(link: model.link ?? '')),
+    },
                 child: Card(
                   elevation: 10,
                   semanticContainer: true,
