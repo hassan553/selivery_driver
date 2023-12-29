@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/contants/api.dart';
+import '../../../core/helper/notifictions_helper.dart';
 import '../../../core/services/cache_storage_services.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -34,7 +35,8 @@ Future<Either<String, String>> v(String idToken) async {
     print('ooo$idToken');
     var request = await http.post(driversGoogleSignIn,
         headers: authHeaders,
-        body: json.encode({"idToken": idToken, 'deviceToken': '1212'}));
+        body: json.encode({"idToken": idToken, 'deviceToken': await FirebaseMessagingService.getDeviceToken()
+        }));
     final result = json.decode(request.body);
     print(result);
     if (request.statusCode == 200) {

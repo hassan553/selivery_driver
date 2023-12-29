@@ -1,15 +1,18 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
 import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
 import '../../../../../core/widgets/image_picker.dart';
+import '../../../../controllers/categoriescontroller.dart';
 import '../../cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
 import '../../date/car_info_repo.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/responsive_text.dart';
+import 'package:get/get.dart';
 
 class CompleteCarInfoView extends StatefulWidget {
   const CompleteCarInfoView({super.key});
@@ -20,6 +23,14 @@ class CompleteCarInfoView extends StatefulWidget {
 
 class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
   TextEditingController controller = TextEditingController();
+  CategoriesController categoriesController = Get.put(CategoriesController());
+  @override
+  void initState() {
+    super.initState();
+    categoriesController.getCategories();
+    print('all categories ${categoriesController.categories}');
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -52,6 +63,9 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
                         children: [
                           const CustomSizedBox(value: .01),
                           const CustomSizedBox(value: .01),
+                          definedCarType(
+                            context,
+                          ),
                           const CustomSizedBox(value: .01),
                           carInfoTakeImage(
                               context,
@@ -121,8 +135,7 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
   }
 
   Row carInfoTakeImage(
-      BuildContext context, String title,
-      File? file, void Function()? ontap) {
+      BuildContext context, String title, File? file, void Function()? ontap) {
     return Row(
       children: [
         Expanded(
@@ -157,13 +170,19 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
   SizedBox carInfoButtonWidget(BuildContext context) {
     return SizedBox(
       width: screenSize(context).width * .4,
-      child: CustomButton(
-        function: () {
-          CompleteCarInfoCubit.get(context).completeCarInfo(context);
+      child: BlocBuilder<CompleteCarInfoCubit, CompleteCarInfoState>(
+        builder: (context, state) {
+          return state is CompleteCarInfoLoading
+              ? const CustomLoadingWidget()
+              : CustomButton(
+                  function: () {
+                    CompleteCarInfoCubit.get(context).hassann();
+                  },
+                  title: 'انشاء',
+                  fontSize: 25,
+                  color: const Color(0xff014842),
+                );
         },
-        title: 'انشاء',
-        fontSize: 25,
-        color: const Color(0xff014842),
       ),
     );
   }

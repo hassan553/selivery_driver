@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
@@ -6,6 +7,47 @@ import '../../../../core/contants/api.dart';
 import '../../../../core/widgets/image_picker.dart';
 
 class CarInfoRepo {
+  void hassan({
+    required File carImage,
+    required File nationalId,
+    required File carLicense,
+    required File driverLicense,
+    required String model,
+  }) async {
+    try {
+      var headers = {'Authorization': 'Bearer ${CacheStorageServices().token}'};
+      var request = http.MultipartRequest('POST', completeCarInfoUrl);
+      request.fields.addAll({
+        'category': '6553bc4b524c058dcc993aa3',
+        'model': 'Toyota Crolla 2008'
+      });
+
+      request.files
+          .add(await http.MultipartFile.fromPath('carImages', carImage.path));
+      request.files.add(
+          await http.MultipartFile.fromPath('nationalId', nationalId.path));
+      request.files.add(
+          await http.MultipartFile.fromPath('carLicense', carLicense.path));
+      request.files.add(await http.MultipartFile.fromPath(
+          'driverLicense', driverLicense.path));
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        print(await response.stream.bytesToString());
+        print('done');
+      } else {
+        print(response.reasonPhrase);
+        print(response.statusCode);
+        print('error');
+        print(CacheStorageServices().token);
+      }
+    } catch (error) {
+      print(error.toString());
+    }
+  }
+
   File? carImage;
 
   Future<File?> pickDriverCompleteCarInfoImage() async {
@@ -22,7 +64,6 @@ class CarInfoRepo {
 
   Future postDataWithFiles(List<File> images) async {
     try {
-
       var headers = {
         'Accept': 'application/json',
         "Authorization": 'Bearer ${CacheStorageServices().token}',
@@ -82,58 +123,57 @@ class CarInfoRepo {
     }
   }
 
-
   Future<void> uploadImages(File? files) async {
-    if(files!=null){
-      try{
-        var request = http.MultipartRequest('POST',  Uri.parse('http://192.168.1.122:8000/request'));
+    if (files != null) {
+      try {
+        var request = http.MultipartRequest(
+            'POST', Uri.parse('http://192.168.1.122:8000/request'));
 
-      request.fields['model'] = 'model';
-      request.fields['category'] = '64f4b0fa8edeed76b547e935';
-      request.headers['Authorization'] =
-          'Bearer ${CacheStorageServices().token}';
-      request.headers['Content-Type'] = 'multipart/form-data';
-      request.files.add(http.MultipartFile(
-        'carImages', // Field name for car image
-        carImage!.readAsBytes().asStream(),
+        request.fields['model'] = 'model';
+        request.fields['category'] = '64f4b0fa8edeed76b547e935';
+        request.headers['Authorization'] =
+            'Bearer ${CacheStorageServices().token}';
+        request.headers['Content-Type'] = 'multipart/form-data';
+        request.files.add(http.MultipartFile(
+          'carImages', // Field name for car image
+          carImage!.readAsBytes().asStream(),
 
-        carImage!.lengthSync(),
-        filename: carImage!.path.split('/').last,
-      ));
+          carImage!.lengthSync(),
+          filename: carImage!.path.split('/').last,
+        ));
 
-      request.files.add(http.MultipartFile(
-        'nationalId', // Field name for driver image
-        carImage!.readAsBytes().asStream(),
-        carImage!.lengthSync(),
-        filename: carImage!.path.split('/').last,
-      ));
+        request.files.add(http.MultipartFile(
+          'nationalId', // Field name for driver image
+          carImage!.readAsBytes().asStream(),
+          carImage!.lengthSync(),
+          filename: carImage!.path.split('/').last,
+        ));
 
-      request.files.add(http.MultipartFile(
-        'carLicense', // Field name for car image
-        carImage!.readAsBytes().asStream(),
+        request.files.add(http.MultipartFile(
+          'carLicense', // Field name for car image
+          carImage!.readAsBytes().asStream(),
 
-        carImage!.lengthSync(),
-        filename: carImage!.path.split('/').last,
-      ));
+          carImage!.lengthSync(),
+          filename: carImage!.path.split('/').last,
+        ));
 
-      request.files.add(http.MultipartFile(
-        'driverLicense', // Field name for driver image
-        carImage!.readAsBytes().asStream(),
-        carImage!.lengthSync(),
-        filename: carImage!.path.split('/').last,
-      ));
-      var res = await request.send();
-      print(res.statusCode);
-      if (res.statusCode == 200) {
-        print('image upload success');
-      } else {
-        print('image upload failed');
+        request.files.add(http.MultipartFile(
+          'driverLicense', // Field name for driver image
+          carImage!.readAsBytes().asStream(),
+          carImage!.lengthSync(),
+          filename: carImage!.path.split('/').last,
+        ));
+        var res = await request.send();
+        print(res.statusCode);
+        if (res.statusCode == 200) {
+          print('image upload success');
+        } else {
+          print('image upload failed');
+        }
+      } catch (error) {
+        print(error.toString());
       }
-    } catch (error) {
-      print(error.toString());
     }
-    }
-    
   }
 
   //try this code
@@ -145,7 +185,8 @@ class CarInfoRepo {
     required String model,
   }) async {
     try {
-      String url = 'http://192.168.1.122:8000/request';
+      String url = '${baseUri}request';
+
       FormData formData = FormData.fromMap({
         'carImages': await MultipartFile.fromFile(
           carImage.path,
@@ -169,17 +210,15 @@ class CarInfoRepo {
       Response response = await Dio().post(
         url,
         data: formData,
-
         options: Options(
-            headers: {
-              'Authorization':'Bearer ${CacheStorageServices().token}',
-              'Content-Type':"multipart/form-data",
-            },
+          headers: {
+            'Authorization': 'Bearer ${CacheStorageServices().token}',
+            'Content-Type': "multipart/form-data",
+          },
         ),
       );
-       print(response.statusCode);
-       print(response.data);
-
+      print(response.statusCode);
+      print(response.data);
 
       if (response.statusCode == 200) {
         print('Image uploaded successfully');
@@ -203,13 +242,13 @@ class CarInfoRepo {
       FormData formData = FormData();
 
       // Add car images
-        formData.files.add(MapEntry(
-          'carImage',
-          await MultipartFile.fromFile(
-            carImage.path,
-            filename: 'car_image.jpg',
-          ),
-        ));
+      formData.files.add(MapEntry(
+        'carImage',
+        await MultipartFile.fromFile(
+          carImage.path,
+          filename: 'car_image.jpg',
+        ),
+      ));
 
       // Add other files
       formData.files.addAll([

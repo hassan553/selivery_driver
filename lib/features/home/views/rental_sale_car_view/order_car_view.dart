@@ -4,7 +4,6 @@ import 'package:selivery_driver/core/widgets/custom_image.dart';
 import '../../../../controllers/categoriescontroller.dart';
 import '../../../../core/widgets/show_awesomeDialog.dart';
 import '../sale_buy_form/sale_car_form_view.dart';
-
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_appBar.dart';
@@ -36,7 +35,7 @@ class _OrderCarViewState extends State<OrderCarView> {
   ];
   @override
   Widget build(BuildContext context) {
-    Get.put(CategoriesController());
+    
     return Scaffold(
       appBar: customAppBar(context),
       body: GetBuilder<CategoriesController>(

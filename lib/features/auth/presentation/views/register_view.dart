@@ -177,7 +177,7 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                                 context: context,
                                 message: 'تم تسجيل الدخوال بنجاح',
                                 requestStates: RequestStates.success);
-                            navigateOff(MainView());
+                            navigateOff(CompleteCarInfoView());
                           } else if (state is DriverGoogleRegisterError) {
                             print(state.message);
                             showErrorAwesomeDialog(

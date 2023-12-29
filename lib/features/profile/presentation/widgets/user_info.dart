@@ -34,7 +34,7 @@ class _UserInfoState extends State<UserInfo> {
           children: [
             GetBuilder<DriverProfileController>(builder:
                 (controller)=>CustomText(
-              title: 'النوع : ${controller.driverProfileModel?.gander??''}',
+              title: 'النوع : ${controller.driverProfileModel?.gender??''}',
               fontSize: 16,
             ),),
             GetBuilder<DriverProfileController>(builder:

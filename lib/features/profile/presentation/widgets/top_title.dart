@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selivery_driver/core/rescourcs/app_colors.dart';
-
+import 'package:get/get.dart';
+import 'package:selivery_driver/features/profile/controller/driver_profile_controller.dart';
 import '../../../../core/widgets/custom_image.dart';
 
 class TopTitleWidget extends StatelessWidget {
@@ -33,16 +34,18 @@ class TopTitleWidget extends StatelessWidget {
                   const TextStyle(color: AppColors.primaryColor, fontSize: 50),
             ),
             const SizedBox(width: 8),
-            SizedBox(
-              width: 100,
-              height: 80,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CustomNetworkImage(
-                  imagePath: image,
-                  boxFit: BoxFit.fill,
-                ),
-              ), // Replace with your image path
+            GetBuilder<DriverProfileController>(
+              builder: (controller) => SizedBox(
+                width: 100,
+                height: 80,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: CustomNetworkImage(
+                    imagePath: image,
+                    boxFit: BoxFit.fill,
+                  ),
+                ), // Replace with your image path
+              ),
             ),
             const SizedBox(width: 8),
             Text(

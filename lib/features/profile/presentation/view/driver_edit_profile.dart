@@ -23,12 +23,12 @@ class DriverEditProfileView extends StatefulWidget {
 
 class _DriverEditProfileViewState extends State<DriverEditProfileView> {
   final formKey = GlobalKey<FormState>();
-  DriverProfileController controller = Get.find();
+  DriverProfileController driverController = Get.find();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller.setControllers();
+    driverController.setControllers();
   }
 
   @override
@@ -99,20 +99,22 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
                           prefix: 'الاسم',
                           hint: controller.nameController),
                       const SizedBox(height: 15),
-                      InkWell(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return const MyDialog();
-                              },
-                            );
-                          },
-                          child: EditField(
-                              prefix: 'كلمة المرور',
-                              hint: TextEditingController(text: '*****'),
-                              isEnable: false)),
-                      const SizedBox(height: 15),
+                      if (controller.driverProfileModel?.googleId == null) ...[
+                        InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const MyDialog();
+                                },
+                              );
+                            },
+                            child: EditField(
+                                prefix: 'كلمة المرور',
+                                hint: TextEditingController(text: '*****'),
+                                isEnable: false)),
+                        const SizedBox(height: 15),
+                      ],
                       EditField(
                           validate: (p0) {
                             if (p0 == null) {
@@ -173,56 +175,56 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
             ),
           ),
           const CustomSizedBox(value: .01),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    CustomText(
-                      title: 'نوع السيارة',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    CustomText(
-                      title: 'Kia cerato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: AppColors.primaryColor)),
-                      child: CustomAssetsImage(
-                        path: 'assets/car.png',
-                        height: 70,
-                        width: screenSize(context).width * .6,
-                        boxFit: BoxFit.fill,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 5,
-                      child: Container(
-                        padding: const EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                        child: const Text('تغير الصوره'),
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-          const CustomSizedBox(value: .01),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Row(
+          //     children: [
+          //       Column(
+          //         mainAxisSize: MainAxisSize.min,
+          //         children: [
+          //           CustomText(
+          //             title: 'نوع السيارة',
+          //             fontSize: 16,
+          //             fontWeight: FontWeight.w600,
+          //           ),
+          //           CustomText(
+          //             title: 'Kia cerato',
+          //             fontSize: 16,
+          //             fontWeight: FontWeight.w600,
+          //           ),
+          //         ],
+          //       ),
+          //       const Spacer(),
+          //       Stack(
+          //         alignment: Alignment.bottomCenter,
+          //         children: [
+          //           Container(
+          //             decoration: BoxDecoration(
+          //                 borderRadius: BorderRadius.circular(8),
+          //                 border: Border.all(color: AppColors.primaryColor)),
+          //             child: CustomAssetsImage(
+          //               path: 'assets/car.png',
+          //               height: 70,
+          //               width: screenSize(context).width * .6,
+          //               boxFit: BoxFit.fill,
+          //             ),
+          //           ),
+          //           Positioned(
+          //             bottom: 5,
+          //             child: Container(
+          //               padding: const EdgeInsets.all(3),
+          //               decoration: BoxDecoration(
+          //                   borderRadius: BorderRadius.circular(10),
+          //                   color: Colors.white),
+          //               child: const Text('تغير الصوره'),
+          //             ),
+          //           )
+          //         ],
+          //       )
+          //     ],
+          //   ),
+          // ),
+          // const CustomSizedBox(value: .01),
           const CustomSizedBox(value: .03),
           GetBuilder<DriverProfileController>(
             builder: (controller) {

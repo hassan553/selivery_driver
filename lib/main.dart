@@ -14,7 +14,6 @@ void main() async {
   requestPermissionLocation();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   String? tok = await FirebaseMessagingService.getDeviceToken();
-  print("device token $tok");
   customErrorWidget();
   setupOrientation();
   runApp(const SeliveryDriver());

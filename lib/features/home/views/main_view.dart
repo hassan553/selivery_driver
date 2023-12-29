@@ -6,12 +6,14 @@ import '../../../core/helper/notifictions_helper.dart';
 import '../../../core/rescourcs/app_colors.dart';
 import '../../../core/services/cache_storage_services.dart';
 import '../../ads/views/all_ads_view.dart';
+import '../../profile/controller/driver_profile_controller.dart';
 import 'home_view.dart';
 import '../../setting/view/setting_view.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:get/get.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -21,6 +23,8 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+  DriverProfileController controller = Get.put(DriverProfileController());
+
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
   IO.Socket? socket;
@@ -72,7 +76,7 @@ class _MainViewState extends State<MainView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    
+
     getCurrentLocationForDriver();
     Future(() async {
       await FirebaseMessagingService.initialize();

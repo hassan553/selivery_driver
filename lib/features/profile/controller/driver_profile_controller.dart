@@ -105,6 +105,7 @@ class DriverProfileController extends GetxController {
         changeImageLoding = true;
         update();
         await driverProfileRepo.pickClientImage();
+         getDriverProfile();
         changeImageLoding = false;
         showSnackBarWidget(
             context: context,
@@ -134,7 +135,7 @@ class DriverProfileController extends GetxController {
       ageController.text = driverProfileModel?.age.toString() ?? '';
       password.text = '********';
       phoneController.text = driverProfileModel?.phone ?? '';
-      genderController.text = driverProfileModel?.gander ?? '';
+      genderController.text = driverProfileModel?.gender ?? '';
       update();
     } catch (error) {}
   }

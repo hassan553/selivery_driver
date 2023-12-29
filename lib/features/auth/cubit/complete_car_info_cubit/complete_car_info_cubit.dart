@@ -45,6 +45,15 @@ class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
 upload()async{
   await carInfoRepo.upload('asas',carLicense!);
 }
+void hassann()async{
+   carInfoRepo.hassan(
+      carImage: carImage!,
+      model: "car",
+      driverLicense: driverLicense!,
+      carLicense: carLicense!,
+      nationalId: nationalId!,
+    );
+}
   void completeCarInfo(context) async {
     final result = await carInfoRepo.uploadImage(
       carImage: carImage!,

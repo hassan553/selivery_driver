@@ -92,7 +92,6 @@ class DriverProfileRepo {
     carImage = await PickImage().pickImage();
     if (carImage != null) {
       await postDataWithFile(carImage!);
-      await getDriverProfile();
     }
   }
 
