@@ -7,6 +7,8 @@ import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
 import '../../../../../core/widgets/image_picker.dart';
 import '../../../../controllers/categoriescontroller.dart';
+import '../../../../core/widgets/snack_bar_widget.dart';
+import '../../../home/views/main_view.dart';
 import '../../cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
 import '../../date/car_info_repo.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
@@ -23,18 +25,15 @@ class CompleteCarInfoView extends StatefulWidget {
 
 class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
   TextEditingController controller = TextEditingController();
-  CategoriesController categoriesController = Get.put(CategoriesController());
-  @override
-  void initState() {
-    super.initState();
-    categoriesController.getCategories();
-    print('all categories ${categoriesController.categories}');
-  }
+  TextEditingController modelController = TextEditingController();
+  String category = '';
+  String categoryId = '';
 
   @override
   void dispose() {
     // TODO: implement dispose
     controller.dispose();
+    modelController.dispose();
     super.dispose();
   }
 
@@ -43,12 +42,59 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: BlocProvider(
-        create: (context) => CompleteCarInfoCubit(CarInfoRepo(), PickImage()),
+        create: (context) =>
+            CompleteCarInfoCubit(CarInfoRepo(), PickImage())..getCategoryData(),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                BlocConsumer<CompleteCarInfoCubit, CompleteCarInfoState>(
+                  listener: (context, state) {
+                    if (state is CompleteCarInfoCategorySuccess) {
+                      if (CompleteCarInfoCubit.get(context)
+                          .categories
+                          .isNotEmpty) {
+                        category = CompleteCarInfoCubit.get(context)
+                            .categories[0]['name'];
+                        categoryId = CompleteCarInfoCubit.get(context)
+                            .categories[0]['_id'];
+                      }
+                    }
+                    if (state is CompleteCarInfoSuccess) {
+                      showSnackBarWidget(
+                          context: context,
+                          message: state.message,
+                          requestStates: RequestStates.success);
+                      navigateOff(const MainView());
+                    }
+                    if (state is CompleteCarInfoError) {
+                      showSnackBarWidget(
+                          context: context,
+                          message: state.message,
+                          requestStates: RequestStates.error);
+                    }
+                    if (state is CompleteCarInfoEmptyImage) {
+                      showSnackBarWidget(
+                          context: context,
+                          message: "قم بدخال حقل الصور",
+                          requestStates: RequestStates.error);
+                    }
+                  },
+                  builder: (context, state) {
+                    return state is CompleteCarInfoCategoryLoading
+                        ? const Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('يرجا الانتطار '),
+                                CustomLoadingWidget(),
+                              ],
+                            ),
+                          )
+                        : Container();
+                  },
+                ),
                 const CustomSizedBox(value: .02),
                 Align(
                     alignment: Alignment.center,
@@ -61,11 +107,11 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
                       var cubit = CompleteCarInfoCubit.get(context);
                       return Column(
                         children: [
+                          const CustomSizedBox(value: .02),
+                          carInputFiledWidget(
+                              context, 'نوع الموديل', modelController),
                           const CustomSizedBox(value: .01),
-                          const CustomSizedBox(value: .01),
-                          definedCarType(
-                            context,
-                          ),
+                          definedCarType(context, cubit.categories),
                           const CustomSizedBox(value: .01),
                           carInfoTakeImage(
                               context,
@@ -100,7 +146,7 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
     );
   }
 
-  Row definedCarType(BuildContext context) {
+  Row definedCarType(BuildContext context, List items) {
     return Row(
       children: [
         const Expanded(
@@ -109,25 +155,30 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
             scaleFactor: .05,
           ),
         ),
-        Container(
-          width: screenSize(context).width * .6,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColors.white),
-          ),
-          child: const Row(
-            children: [
-              Icon(
-                Icons.arrow_drop_down_circle,
-                color: AppColors.white,
-              ),
-              Spacer(),
-              ResponsiveText(
-                text: '  سياره',
-                scaleFactor: .04,
-              ),
-            ],
+        InkWell(
+          onTap: () {
+            showItemSelectionDialog(context, items);
+          },
+          child: Container(
+            width: screenSize(context).width * .6,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: AppColors.white),
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.arrow_drop_down_circle,
+                  color: AppColors.white,
+                ),
+                const Spacer(),
+                ResponsiveText(
+                  text: category,
+                  scaleFactor: .04,
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -169,14 +220,15 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
 
   SizedBox carInfoButtonWidget(BuildContext context) {
     return SizedBox(
-      width: screenSize(context).width * .4,
+      width: screenSize(context).width * .8,
       child: BlocBuilder<CompleteCarInfoCubit, CompleteCarInfoState>(
         builder: (context, state) {
           return state is CompleteCarInfoLoading
-              ? const CustomLoadingWidget()
+              ?const  Center(child: CircularProgressIndicator(color: AppColors.white))
               : CustomButton(
                   function: () {
-                    CompleteCarInfoCubit.get(context).hassann();
+                    CompleteCarInfoCubit.get(context).hassann(
+                        category: categoryId, model: modelController.text);
                   },
                   title: 'انشاء',
                   fontSize: 25,
@@ -227,6 +279,42 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
           ),
         ),
       ),
+    );
+  }
+
+  void showItemSelectionDialog(BuildContext context, List items) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('قم بختيار القسم'),
+          content: SizedBox(
+            height: 200,
+            child: SingleChildScrollView(
+              child: ListBody(
+                children: List.generate(
+                    items.length,
+                    (index) => _buildListItem(
+                        context, items[index]['name'], items[index]['_id'])),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildListItem(BuildContext context, String itemName, String id) {
+    return ListTile(
+      title: Text(itemName),
+      onTap: () {
+        setState(() {
+          category = itemName;
+          categoryId = id;
+          print(categoryId);
+        });
+        Navigator.of(context).pop(); // Close the dialog
+      },
     );
   }
 }

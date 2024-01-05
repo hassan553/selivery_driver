@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dartz/dartz.dart';
@@ -45,10 +44,10 @@ Future<Either<String, String>> v(String idToken) async {
       print('myToken${CacheStorageServices().token}');
       return right('result done');
     } else {
-      return left(request.body.toString());
+      throw('لقد حدث خطا');
     }
   } catch (error) {
-    return left(error.toString());
+     throw ('لقد حدث خطا');
   }
 }
 

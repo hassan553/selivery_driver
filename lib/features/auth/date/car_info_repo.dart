@@ -1,25 +1,26 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:selivery_driver/core/services/cache_storage_services.dart';
 import '../../../../core/contants/api.dart';
 import '../../../../core/widgets/image_picker.dart';
+import 'package:dartz/dartz.dart';
 
 class CarInfoRepo {
-  void hassan({
+  Future<Either<String, String>> hassan({
     required File carImage,
     required File nationalId,
     required File carLicense,
     required File driverLicense,
     required String model,
+    required String category,
   }) async {
     try {
       var headers = {'Authorization': 'Bearer ${CacheStorageServices().token}'};
       var request = http.MultipartRequest('POST', completeCarInfoUrl);
       request.fields.addAll({
-        'category': '6553bc4b524c058dcc993aa3',
-        'model': 'Toyota Crolla 2008'
+        'category': category, //'6553bc4b524c058dcc993aa3',
+        'model': model
       });
 
       request.files
@@ -37,14 +38,16 @@ class CarInfoRepo {
       if (response.statusCode == 200) {
         print(await response.stream.bytesToString());
         print('done');
+        return right('تم رفع البيانات بنجاح');
       } else {
         print(response.reasonPhrase);
         print(response.statusCode);
         print('error');
         print(CacheStorageServices().token);
+        return left('لم نتمكن من رفع البيانات');
       }
     } catch (error) {
-      print(error.toString());
+      return left(error.toString());
     }
   }
 

@@ -1,11 +1,9 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
 import '../dataforcrud/categorieslistforsale.dart';
 
 import '../core/class/statusrequst.dart';
 import '../core/functions/handlingdata.dart';
-import '../models/carlistforsalemodel.dart';
 
 class CategoriesListForSalesController extends GetxController{
   StatusRequest  statusRequest = StatusRequest.none;

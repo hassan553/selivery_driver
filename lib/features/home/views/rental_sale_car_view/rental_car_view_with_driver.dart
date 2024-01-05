@@ -6,14 +6,13 @@ import 'rental_car_owner_view.dart';
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_appBar.dart';
-import '../../../../core/widgets/custom_image.dart';
 import '../../../../core/widgets/custom_sized_box.dart';
 import '../../../../core/widgets/responsive_text.dart';
 import '../../widgets/order_rental_top_part_widget.dart';
 
 class RentalCarViewWithDriver extends StatelessWidget {
   final String id;
-  RentalCarViewWithDriver({super.key, required this.id});
+  const RentalCarViewWithDriver({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class RentalCarViewWithDriver extends StatelessWidget {
       appBar: customAppBar(context),
       body: GetBuilder<CarWithDriverController>(builder:
           (controller)=>controller.statusRequest==StatusRequest.loading?
-              Center(child:  CircularProgressIndicator())
+              const Center(child:  CircularProgressIndicator())
               :Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,7 +74,7 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                             const EdgeInsets.only(right: 5),
                                             child: Column(
                                               children:  [
-                                                FittedBox(
+                                                const FittedBox(
                                                   child: ResponsiveText(
                                                     scaleFactor: .04,
                                                     text: "نوع السياره ",
@@ -83,7 +82,7 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 3,
                                                 ),
                                                 FittedBox(
@@ -94,7 +93,7 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 3,
                                                 ),
                                                 FittedBox(
@@ -112,11 +111,11 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                         ),
                                         Expanded(
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 8),
                                             child: Column(
                                               children: [
-                                                FittedBox(
+                                                const FittedBox(
                                                   child: ResponsiveText(
                                                     scaleFactor: .04,
                                                     text: "المسافة المسموحه ",
@@ -124,10 +123,10 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 3,
                                                 ),
-                                                FittedBox(
+                                                const FittedBox(
                                                   child: ResponsiveText(
                                                     scaleFactor: .04,
                                                     text: " 150 كيلو ",
@@ -135,7 +134,7 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 3,
                                                 ),
                                                 FittedBox(

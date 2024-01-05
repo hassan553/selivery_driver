@@ -2,9 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart';
 import '../services/cache_storage_services.dart';
 import 'statusrequst.dart';
 
@@ -12,7 +9,6 @@ import '../contants/api.dart';
 import '../functions/checkinternet.dart';
 import 'package:http/http.dart' as http;
 
-import '../functions/get_token.dart';
 import 'package:path/path.dart';
 
 class Crud {
@@ -155,9 +151,7 @@ class Crud {
 Future<Either<StatusRequest, Map>> addRequestWithImageOne(
     url, data, File? image,
     [String? namerequest]) async {
-  if (namerequest == null) {
-    namerequest = "files";
-  }
+  namerequest ??= "files";
  var headers = {
       'Accept': 'application/json',
       "Authorization": 'Bearer ${CacheStorageServices().token}',
@@ -199,8 +193,8 @@ _uploadImage(String title, File file) async {
     var request = http.MultipartRequest('PATCH', profileUpdateImageUri);
     request.fields["images"] = title;
     request.files.add(http.MultipartFile.fromBytes(
-        'image', File(file!.path).readAsBytesSync(),
-        filename: file!.path));
+        'image', File(file.path).readAsBytesSync(),
+        filename: file.path));
     request.headers['Authorization'] = 'Bearer ${CacheStorageServices().token}';
     request.headers['Content-Type'] = 'multipart/form-data';
     var res = await request.send();

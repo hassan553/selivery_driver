@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:selivery_driver/features/profile/presentation/widgets/custom_textfield.dart';
 import 'package:selivery_driver/features/profile/presentation/widgets/selecte_gender.dart';
@@ -8,10 +7,8 @@ import '../../controller/driver_profile_controller.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_image.dart';
 
-import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
-import '../../../../../core/widgets/custom_text.dart';
 import '../widgets/change_password_widget.dart';
 
 class DriverEditProfileView extends StatefulWidget {

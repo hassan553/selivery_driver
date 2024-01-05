@@ -7,12 +7,11 @@ import '../../../core/helper/notifictions_helper.dart';
 import '../../../core/services/cache_storage_services.dart';
 import '../../../core/widgets/snack_bar_widget.dart';
 import '../../auth/presentation/views/login_view.dart';
-import 'package:get/get.dart';
 
 import '../../profile/controller/driver_profile_controller.dart';
 
 class SettingController extends GetxController {
-  DriverProfileController _profileController =
+  final DriverProfileController _profileController =
       Get.find<DriverProfileController>();
 
   void openWhatsApp() async {

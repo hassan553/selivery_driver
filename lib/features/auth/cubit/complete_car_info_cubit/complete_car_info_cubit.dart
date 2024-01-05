@@ -1,11 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:selivery_driver/features/home/widgets/category_items.dart';
 import '../../../../../core/widgets/image_picker.dart';
+import '../../../../core/contants/api.dart';
+import '../../../../core/functions/checkinternet.dart';
+import '../../../../core/services/cache_storage_services.dart';
 import '../../date/car_info_repo.dart';
+import 'package:http/http.dart' as http;
 part 'complete_car_info_state.dart';
 
 class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
@@ -16,8 +20,6 @@ class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
       : super(CompleteCarInfoInitial());
 
   static CompleteCarInfoCubit get(context) => BlocProvider.of(context);
-  String? category;
-  String? model;
   File? carImage;
   File? nationalId;
   File? carLicense;
@@ -42,69 +44,55 @@ class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
     carLicense = await _pickImage.pickImage();
     emit(PickDriverCarLicenseImageState());
   }
-upload()async{
-  await carInfoRepo.upload('asas',carLicense!);
-}
-void hassann()async{
-   carInfoRepo.hassan(
-      carImage: carImage!,
-      model: "car",
-      driverLicense: driverLicense!,
-      carLicense: carLicense!,
-      nationalId: nationalId!,
-    );
-}
-  void completeCarInfo(context) async {
-    final result = await carInfoRepo.uploadImage(
-      carImage: carImage!,
-      model: "car",
-      driverLicense: driverLicense!,
-      carLicense: carLicense!,
-      nationalId: nationalId!,
-    );
-    print(result);
-    print("ddd");
-    if (category == null ||
-        model == null ||
-        carImage == null ||
-        nationalId == null ||
-        carLicense == null ||
-        driverLicense == null) {
-      // showAdaptiveDialog(
-      //   context: context,
-      //   builder: (context) => AlertDialog(
-      //     title: const Text("تنبيه"),
-      //     content: const Text( 'قم بدخال الحقل الفارغ'),
-      //     actions: <Widget>[
-      //       TextButton(
-      //         onPressed: () {
-      //           Navigator.of(context).pop(); // Close the alert dialog
-      //         },
-      //         child:const  Text('الغاء'),
-      //       ),
-      //     ],
-      //   )
-      // );
+
+  void hassann({
+    String? model,
+    String? category,
+  }) async {
+    if (await checkInternet()) {
+     if(carImage==null||driverLicense==null||carLicense==null||nationalId==null){
+      emit(CompleteCarInfoEmptyImage());
+     }else{
+       emit(CompleteCarInfoLoading());
+      final result = await carInfoRepo.hassan(
+          carImage: carImage!,
+          model: model ?? '',
+          driverLicense: driverLicense!,
+          carLicense: carLicense!,
+          nationalId: nationalId!,
+          category: category ?? '');
+      result.fold((l) => emit(CompleteCarInfoError(message: l)),
+          (r) => emit(CompleteCarInfoSuccess(message: r)));
+     }
     } else {
-      print("hhh");
-      emit(CompleteCarInfoLoading());
-      final result = await carInfoRepo.uploadImages2(
-        carImage: carImage!,
-        model: model!,
-        driverLicense: driverLicense!,
-        carLicense: carLicense!,
-        nationalId: nationalId!,
-      );
-      print(result);
-      result.fold((l) {
-        print(l.toString());
-        emit(
-          CompleteCarInfoError());
-        },
-          (r) {
-        print(r.toString());
-        emit(CompleteCarInfoSuccess());
-          });
+      emit(const CompleteCarInfoError(message: "لا يوجد اتصال بالانترنت"));
+    }
+  }
+
+  List categories = [];
+  Future getCategoryData() async {
+    if (await checkInternet()) {
+      try {
+        emit(CompleteCarInfoCategoryLoading());
+        var response = await http.get(Uri.parse(categoriesUrL),
+            headers: authHeadersWithToken(CacheStorageServices().token));
+        print(response.statusCode);
+        final result = jsonDecode(response.body);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          categories.addAll(result['categories']);
+          print('assssssss');
+          for (int i = 0; i < categories.length; i++) {
+            print(categories[i]["_id"]);
+          }
+          emit(CompleteCarInfoCategorySuccess());
+        } else {
+          emit(CompleteCarInfoCategoryError(result['message'].toString()));
+        }
+      } catch (error) {
+        emit(CompleteCarInfoCategoryError(error.toString()));
+      }
+    } else {
+      emit(const CompleteCarInfoCategoryError("لا يوجد اتصال بالانترنت"));
     }
   }
 }

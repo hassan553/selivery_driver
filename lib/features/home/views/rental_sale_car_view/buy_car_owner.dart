@@ -80,7 +80,7 @@ class CarOwnerView extends StatelessWidget {
                    FittedBox(
                     child: ResponsiveText(
                       scaleFactor: .05,
-                      text: 'رقم الموبيل : ${phone} ',
+                      text: 'رقم الموبيل : $phone ',
                       color: AppColors.black,
                       fontWeight: FontWeight.w500,
                     ),
@@ -151,34 +151,34 @@ class CarOwnerView extends StatelessWidget {
                               FittedBox(
                                 child: ResponsiveText(
                                   scaleFactor: .04,
-                                  text: "نوع السياره : ${cartype}",
+                                  text: "نوع السياره : $cartype",
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 3,
                               ),
                               FittedBox(
                                 child: ResponsiveText(
-                                  text: 'السعر :${price} جنيه',
+                                  text: 'السعر :$price جنيه',
                                   scaleFactor: .04,
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 3,
                               ),
                               FittedBox(
                                 child: ResponsiveText(
                                   scaleFactor: .04,
-                                  text: 'تاريخ النشر :${date}',
+                                  text: 'تاريخ النشر :$date',
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 3,
                               ),
                             ],
@@ -209,7 +209,7 @@ class CarOwnerView extends StatelessWidget {
               const CustomDivider(),
                ResponsiveText(
                 scaleFactor: .04,
-                text:"$desc",
+                text:desc,
                 color: AppColors.black,
                 fontWeight: FontWeight.bold,
               ),

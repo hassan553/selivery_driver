@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/show_awesomeDialog.dart';
 import '../../../../core/widgets/custom_loading_widget.dart';
-import '../../../home/views/main_view.dart';
 import '../../date/driver_auth_repo.dart';
 import '../widgets/google_sigin_widget.dart';
 import 'car_info_view.dart';
@@ -177,7 +176,7 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                                 context: context,
                                 message: 'تم تسجيل الدخوال بنجاح',
                                 requestStates: RequestStates.success);
-                            navigateOff(CompleteCarInfoView());
+                            navigateOff(const CompleteCarInfoView());
                           } else if (state is DriverGoogleRegisterError) {
                             print(state.message);
                             showErrorAwesomeDialog(

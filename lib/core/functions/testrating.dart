@@ -3,10 +3,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class RatingDialog extends StatelessWidget {
+  const RatingDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Center(child: Text('قيم السائق')),
+      title: const Center(child: Text('قيم السائق')),
       content: Column(
         children: [
           RatingBar.builder(
@@ -16,7 +18,7 @@ class RatingDialog extends StatelessWidget {
             allowHalfRating: false,
             itemCount: 3,
             itemSize: 40.0,
-            itemBuilder: (context, _) => Icon(
+            itemBuilder: (context, _) => const Icon(
               Icons.star,
               color: Colors.amber,
             ),
@@ -24,7 +26,7 @@ class RatingDialog extends StatelessWidget {
               print(rating);
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -40,7 +42,7 @@ class RatingDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         TextButton(
           onPressed: () {
@@ -55,7 +57,7 @@ class RatingDialog extends StatelessWidget {
             );
             Navigator.of(context).pop();
           },
-          child: Text('Submit'),
+          child: const Text('Submit'),
         ),
       ],
     );
@@ -63,7 +65,7 @@ class RatingDialog extends StatelessWidget {
 
   Widget buildRatingText(String text) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Text(text),
     );
   }

@@ -20,15 +20,15 @@ class RequestTripsModel {
 
   RequestTripsModel.fromJson(Map<String, dynamic> json) {
     pickupLocation = json['pickupLocation'] != null
-        ? new PickupLocation.fromJson(json['pickupLocation'])
+        ? PickupLocation.fromJson(json['pickupLocation'])
         : null;
     sId = json['_id'];
     passenger = json['passenger'] != null
-        ? new Passenger.fromJson(json['passenger'])
+        ? Passenger.fromJson(json['passenger'])
         : null;
     driver = json['driver'];
     destinationLocation = json['destinationLocation'] != null
-        ? new PickupLocation.fromJson(json['destinationLocation'])
+        ? PickupLocation.fromJson(json['destinationLocation'])
         : null;
     status = json['status'];
     fare = json['fare'];
@@ -36,21 +36,21 @@ class RequestTripsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pickupLocation != null) {
-      data['pickupLocation'] = this.pickupLocation!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (pickupLocation != null) {
+      data['pickupLocation'] = pickupLocation!.toJson();
     }
-    data['_id'] = this.sId;
-    if (this.passenger != null) {
-      data['passenger'] = this.passenger!.toJson();
+    data['_id'] = sId;
+    if (passenger != null) {
+      data['passenger'] = passenger!.toJson();
     }
-    data['driver'] = this.driver;
-    if (this.destinationLocation != null) {
-      data['destinationLocation'] = this.destinationLocation!.toJson();
+    data['driver'] = driver;
+    if (destinationLocation != null) {
+      data['destinationLocation'] = destinationLocation!.toJson();
     }
-    data['status'] = this.status;
-    data['fare'] = this.fare;
-    data['date'] = this.date;
+    data['status'] = status;
+    data['fare'] = fare;
+    data['date'] = date;
     return data;
   }
 }
@@ -67,9 +67,9 @@ class PickupLocation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['coordinates'] = this.coordinates;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['coordinates'] = coordinates;
     return data;
   }
 }
@@ -118,19 +118,19 @@ class Passenger {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['gender'] = this.gender;
-    data['age'] = this.age;
-    data['email'] = this.email;
-    data['verified'] = this.verified;
-    data['password'] = this.password;
-    data['image'] = this.image;
-    data['role'] = this.role;
-    data['available'] = this.available;
-    data['deviceToken'] = this.deviceToken;
-    data['__v'] = this.iV;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['name'] = name;
+    data['gender'] = gender;
+    data['age'] = age;
+    data['email'] = email;
+    data['verified'] = verified;
+    data['password'] = password;
+    data['image'] = image;
+    data['role'] = role;
+    data['available'] = available;
+    data['deviceToken'] = deviceToken;
+    data['__v'] = iV;
     return data;
   }
 }

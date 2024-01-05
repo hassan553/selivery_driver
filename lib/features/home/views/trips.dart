@@ -16,7 +16,7 @@ class TripsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        title: Text("الطلبات",style: TextStyle(
+        title: const Text("الطلبات",style: TextStyle(
           color: Colors.white,
           fontSize: 30
         ),),
@@ -25,8 +25,8 @@ class TripsScreen extends StatelessWidget {
       ),
       body: GetBuilder<GetRequestTripsController>(builder: (controller){
         if(controller.statusRequest==StatusRequest.loading){
-          return Center(
-            child: const CircularProgressIndicator(
+          return const Center(
+            child: CircularProgressIndicator(
               color: Colors.green,
             ),
           );

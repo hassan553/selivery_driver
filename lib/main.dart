@@ -4,7 +4,6 @@ import 'package:selivery_driver/app/app.dart';
 import 'package:selivery_driver/core/errors/widget_error.dart';
 import 'package:selivery_driver/core/helper/notifictions_helper.dart';
 import 'package:selivery_driver/firebase_options.dart';
-import 'core/helper/notifictions_helper.dart';
 import 'core/functions/location.dart';
 import 'core/services/cache_storage_services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,8 +18,6 @@ void main() async {
   setupOrientation();
   await Firebase.initializeApp(options:
   DefaultFirebaseOptions.currentPlatform);
-  // String? tok = await FirebaseMessagingService.getDeviceToken();
-  // print(tok);
   runApp(const SeliveryDriver());
 }
 

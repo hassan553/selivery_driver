@@ -30,7 +30,7 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
       appBar: customAppBar(context),
       body: GetBuilder<CarWithOutDriverController>(builder:
           (controller)=>controller.statusRequest==StatusRequest.loading?
-      Center(child:  CircularProgressIndicator())
+      const Center(child:  CircularProgressIndicator())
           :Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +74,7 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                         const EdgeInsets.only(right: 5),
                                         child: Column(
                                           children:  [
-                                            FittedBox(
+                                            const FittedBox(
                                               child: ResponsiveText(
                                                 scaleFactor: .04,
                                                 text: "نوع السياره ",
@@ -82,7 +82,7 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 3,
                                             ),
                                             FittedBox(
@@ -93,7 +93,7 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 3,
                                             ),
                                             FittedBox(
@@ -111,11 +111,11 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             horizontal: 8),
                                         child: Column(
                                           children: [
-                                            FittedBox(
+                                            const FittedBox(
                                               child: ResponsiveText(
                                                 scaleFactor: .04,
                                                 text: "المسافة المسموحه ",
@@ -123,10 +123,10 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 3,
                                             ),
-                                            FittedBox(
+                                            const FittedBox(
                                               child: ResponsiveText(
                                                 scaleFactor: .04,
                                                 text: " 150 كيلو ",
@@ -134,7 +134,7 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 3,
                                             ),
                                             FittedBox(

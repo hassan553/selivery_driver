@@ -12,7 +12,7 @@ import '../rental_sale_car_view/rental_car_view_with_driver.dart';
 
 class WithDriverOrNotView extends StatelessWidget {
   final String catId;
-   WithDriverOrNotView({super.key, required this.catId});
+   const WithDriverOrNotView({super.key, required this.catId});
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +61,9 @@ class WithDriverOrNotView extends StatelessWidget {
                     children: [
                       Image.asset('assets/tap.png'),
                       const SizedBox(width: 10),
-                      Text(
+                      const Text(
                         " بدون سائق ",
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: AppColors.white,
                           fontSize: 30,
                           fontWeight: FontWeight.w300,
@@ -103,9 +103,9 @@ class WithDriverOrNotView extends StatelessWidget {
                   children: [
                     Image.asset('assets/tap.png'),
                     const SizedBox(width: 10),
-                    Text(
+                    const Text(
                       "  بسائق ",
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.w300,

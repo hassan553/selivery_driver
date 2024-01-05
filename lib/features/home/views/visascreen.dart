@@ -16,27 +16,38 @@ class VisaScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Text("فيزا",
-          style:TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: Colors.greenAccent
-          ),),
+        title: const Text(
+          "فيزا",
+          style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.greenAccent),
+        ),
         centerTitle: true,
-        leading: IconButton(onPressed: (){
-          navigatorOff(context, MainView());
-        },icon: Icon(Icons.arrow_back,color: Colors.black,),),
+        leading: IconButton(
+          onPressed: () {
+            navigatorOff(context, const MainView());
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
       ),
-      body:GetBuilder<VisaController>(builder: (controller){
-        if(controller.statusRequest==StatusRequest.loading){
-          return Center(child: CircularProgressIndicator());
-        }else{
-          return WebView(
-            initialUrl: '${controller.url}',
-            javascriptMode: JavascriptMode.unrestricted,
-          );
-        }
-      },),
+      body: GetBuilder<VisaController>(
+        builder: (controller) {
+          if (controller.statusRequest == StatusRequest.loading) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            // return WebView(
+            //   initialUrl: '${controller.url}',
+            //   javascriptMode: JavascriptMode.unrestricted,
+            // );
+            //delete this return
+            return Container();
+          }
+        },
+      ),
     );
   }
 }

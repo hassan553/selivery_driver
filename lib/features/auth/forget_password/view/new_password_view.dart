@@ -14,7 +14,7 @@ import '../cubit/driver_forget_password_cubit.dart';
 import '../data/forgetpassword_repo.dart';
 
 class DriverNewPasswordView extends StatefulWidget {
-  DriverNewPasswordView({super.key});
+  const DriverNewPasswordView({super.key});
 
   @override
   State<DriverNewPasswordView> createState() => _DriverNewPasswordViewState();
@@ -159,7 +159,7 @@ class _DriverNewPasswordViewState extends State<DriverNewPasswordView> {
                                   context: context,
                                   message: 'تم تغير كلمه السر بنجاح',
                                   requestStates: RequestStates.success);
-                              navigateOff(MainView());
+                              navigateOff(const MainView());
                             } else if (state is NewForgetPasswordErrorState) {
                               showErrorAwesomeDialog(
                                   context, 'تنبيه', state.message);

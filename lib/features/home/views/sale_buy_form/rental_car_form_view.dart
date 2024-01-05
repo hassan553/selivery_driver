@@ -80,10 +80,10 @@ class RentalCarFormView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: AppColors.black),
                     ),
-                    child:  Column(
+                    child:  const Column(
                       mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children:const  [
+                        children:[
                           ResponsiveText(
                             text: '1-',
                             scaleFactor: .05,

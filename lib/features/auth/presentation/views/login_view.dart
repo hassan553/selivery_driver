@@ -123,7 +123,7 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                       ),
                       SizedBox(height: screenSize(context).height * .02),
                       CustomTextButton(
-                        function: () => navigateTo(DriverForgetPasswordView()),
+                        function: () => navigateTo(const DriverForgetPasswordView()),
                         title: 'لا اتذكر كلمه المرور',
                         color: AppColors.primaryColor,
                       ),
@@ -135,7 +135,7 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                               context: context,
                               message: 'تم تسجيل الدخوال بنجاح',
                               requestStates: RequestStates.success);
-                          navigateOff(MainView());
+                          navigateOff(const MainView());
                         } else if (state is DriverSendCodeToEmailState) {
                           showSnackBarWidget(
                               context: context,
@@ -146,7 +146,7 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                               context,
                               VerifyDriverEmailOTPView(
                                 email: email.text,
-                                screen: MainView(),
+                                screen: const MainView(),
                               ));
                         } else if (state is DriverLoginError) {
                           showErrorAwesomeDialog(
@@ -179,7 +179,7 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                                 context: context,
                                 message: 'تم تسجيل الدخوال بنجاح',
                                 requestStates: RequestStates.success);
-                            navigateOff(MainView());
+                            navigateOff(const MainView());
                           } else if (state is DriverGoogleLoginError) {
                             print(state.message);
                             showErrorAwesomeDialog(

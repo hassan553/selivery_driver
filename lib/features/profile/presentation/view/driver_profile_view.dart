@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
 import 'package:selivery_driver/features/profile/presentation/widgets/top_title.dart';
-import '../../../../../core/class/statusrequst.dart';
-import '../../../../../core/contants/api.dart';
 import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_image.dart';

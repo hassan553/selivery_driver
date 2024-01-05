@@ -16,7 +16,7 @@ import 'new_password_view.dart';
 
 class DriverForgetPasswordView extends StatefulWidget {
 
-  DriverForgetPasswordView({super.key});
+  const DriverForgetPasswordView({super.key});
 
   @override
   State<DriverForgetPasswordView> createState() => _DriverForgetPasswordViewState();
@@ -111,7 +111,7 @@ class _DriverForgetPasswordViewState extends State<DriverForgetPasswordView> {
                                   requestStates: RequestStates.success);
                               navigateOff(DriverOTPView(
                                 email: controller.text,
-                                screen: DriverNewPasswordView(),
+                                screen: const DriverNewPasswordView(),
                               ));
                             } else if (state is ForgetPasswordErrorState) {
                               showErrorAwesomeDialog(

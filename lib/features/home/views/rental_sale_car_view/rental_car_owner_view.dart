@@ -33,7 +33,7 @@ class RentalCarOwnerView extends StatelessWidget {
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: controller.statusRequest==StatusRequest.loading?
-              Center(child: CircularProgressIndicator()):Column(
+              const Center(child: CircularProgressIndicator()):Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
@@ -63,7 +63,7 @@ class RentalCarOwnerView extends StatelessWidget {
               const CustomSizedBox(value: .02),
                ResponsiveText(
                 scaleFactor: .05,
-                text: 'الاسم :${ownername} ',
+                text: 'الاسم :$ownername ',
                 color: AppColors.black,
                 fontWeight: FontWeight.w500,
               ),
@@ -156,7 +156,7 @@ class RentalCarOwnerView extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 3,
                               ),
                               FittedBox(
@@ -167,7 +167,7 @@ class RentalCarOwnerView extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 3,
                               ),
                               FittedBox(
@@ -178,7 +178,7 @@ class RentalCarOwnerView extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 3,
                               ),
                             ],
@@ -308,7 +308,7 @@ class RentalCarOwnerView extends StatelessWidget {
                ResponsiveText(
                 scaleFactor: .04,
                 text:
-                '$desc',
+                desc,
                 color: AppColors.black,
                 fontWeight: FontWeight.bold,
               ),

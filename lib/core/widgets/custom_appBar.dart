@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../features/home/views/mytripsscreen.dart';
 import '../../features/home/views/trips.dart';
-import '../contants/strings.dart';
 import 'custom_image.dart';
 import 'responsive_text.dart';
 

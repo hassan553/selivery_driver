@@ -26,6 +26,8 @@ class CashScreen extends StatelessWidget {
             TextFormField(
               textInputAction: TextInputAction.done,
               validator: (val){
+                return null;
+              
 
               },
               controller: controller.phoneController,
@@ -57,7 +59,7 @@ class CashScreen extends StatelessWidget {
               ),
             ),
             controller.statusRequest==StatusRequest.loading?
-            Center(child: const CircularProgressIndicator()):Container(
+            const Center(child: CircularProgressIndicator()):Container(
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),),

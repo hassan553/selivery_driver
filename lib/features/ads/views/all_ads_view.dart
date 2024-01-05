@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
 import 'package:selivery_driver/features/ads/controller/ads_controller.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../core/functions/global_function.dart';
 import '../../../core/rescourcs/app_colors.dart';
 import '../../../core/widgets/custom_appBar.dart';
 import '../../../core/widgets/custom_image.dart';
-import '../../../core/widgets/custom_sized_box.dart';
 import '../../../core/widgets/error_componant.dart';
 import '../../../core/widgets/responsive_text.dart';
-import '../../../main.dart';
 import '../model/ads_model.dart';
 import '../widget/web_view_widget.dart';
 
@@ -36,21 +33,20 @@ class _AllAdsViewState extends State<AllAdsView> {
       appBar: customAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(8),
-        child:  Obx(
-                () => controller.isLoading.value?const CustomLoadingWidget():
-                controller.allAdsList.isEmpty
-                    ? ErrorComponant(
-                        function: controller.getAllAdsData,
-                        message: controller.allAdsDataError.value)
-                    : ListView.builder(
-                        itemBuilder: (context, index) => customAdsWidget(
-                            context, index, controller.allAdsList[index]),
-                        itemCount: controller.allAdsList.length,
-                      ),
-              ),
-            ),
-          
-      
+        child: Obx(
+          () => controller.isLoading.value
+              ? const CustomLoadingWidget()
+              : controller.allAdsList.isEmpty
+                  ? ErrorComponant(
+                      function: controller.getAllAdsData,
+                      message: controller.allAdsDataError.value)
+                  : ListView.builder(
+                      itemBuilder: (context, index) => customAdsWidget(
+                          context, index, controller.allAdsList[index]),
+                      itemCount: controller.allAdsList.length,
+                    ),
+        ),
+      ),
     );
   }
 
@@ -79,7 +75,7 @@ class _AllAdsViewState extends State<AllAdsView> {
             alignment: Alignment.centerRight,
             child: Text(model.description ?? '')),
         const SizedBox(height: 8),
-         SizedBox(
+        SizedBox(
           width: screenSize(context).width,
           height: 120,
           child: Stack(
@@ -92,7 +88,7 @@ class _AllAdsViewState extends State<AllAdsView> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: AppColors.primaryColor)),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),                  
+                    borderRadius: BorderRadius.circular(20),
                     child: CustomNetworkImage(
                       imagePath: model.image,
                       boxFit: BoxFit.fill,
@@ -102,8 +98,8 @@ class _AllAdsViewState extends State<AllAdsView> {
               ),
               InkWell(
                 onTap: () {
-                   // navigateTo(WebPage(link: model.link ?? '')),
-    },
+                  navigateTo(WebPage(link: model.link ?? ''));
+                },
                 child: Card(
                   elevation: 10,
                   semanticContainer: true,

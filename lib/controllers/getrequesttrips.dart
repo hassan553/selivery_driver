@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:selivery_driver/dataforcrud/accepttrip.dart';
 
 import '../core/class/statusrequst.dart';
 import '../core/functions/handlingdata.dart';

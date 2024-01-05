@@ -8,9 +8,7 @@ import '../../../../core/widgets/custom_appBar.dart';
 
 import '../../../../core/widgets/custom_image.dart';
 import '../../../../core/widgets/responsive_text.dart';
-import '../../widgets/rental_buy_car_add_image.dart';
 import '../../widgets/rental_buy_car_form_widget.dart';
-import 'package:http/http.dart' as http;
 
 
 class SaleCarFormView extends StatefulWidget {
@@ -214,33 +212,33 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   BuyRentalCarFormWidget(title: 'الاسم',
                     controller: nameController,),
                   //SizedBox(height: 10),
                   //BuyRentalCarFormWidget(title: 'السن',controller: ageController,),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   BuyRentalCarFormWidget(title: 'رقم الموبايل',
                     controller: phoneController,),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   BuyRentalCarFormWidget(title: 'لينك الفيس بوك',
                     controller: faceLinkController,),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   BuyRentalCarFormWidget(title: 'لينك التليجرام',
                     controller: telController,),
                   // SizedBox(height: 10),
                   // BuyRentalCarFormWidget(title: 'نوع السياره',
                   //   controller: typeController,),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   BuyRentalCarFormWidget(title: 'سعر السياره',
                     controller: priceController,),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   BuyRentalCarFormWidget(title: 'اسم السيارة',
                     controller: CarNameController,),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   BuyRentalCarFormWidget(title: 'تفاصيل السياره',
                     controller: descController,),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   //RentalBuyCarAddImageWidget(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -274,7 +272,7 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
 
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   // GetBuilder<AddCarForSaleController>(builder:
                   //     (controller)=>Container(
                   //   child: MaterialButton(
@@ -299,7 +297,7 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
                             CarNameController.text,descController.text,
                             catId);
                       print("file${controller.file}");
-                      print("id   ${catId}");
+                      print("id   $catId");
                       //   sendData(nameController.text,
                       //       phoneController.text,
                       //       faceLinkController.text,
@@ -315,7 +313,7 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
                       //     CarNameController.text,
                       //     descController.text);
                     },
-                    child: Text("Add"),
+                    child: const Text("Add"),
                   ),
                 ],
               ),

@@ -16,7 +16,7 @@ class  MyTripsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        title: Text("رحالاتي",style: TextStyle(
+        title: const Text("رحالاتي",style: TextStyle(
             color: Colors.white,
             fontSize: 30
         ),),
@@ -25,14 +25,14 @@ class  MyTripsScreen extends StatelessWidget {
       ),
       body: GetBuilder<MyTripsController>(builder: (controller){
         if(controller.statusRequest==StatusRequest.loading){
-          return Center(
-            child: const CircularProgressIndicator(
+          return const Center(
+            child: CircularProgressIndicator(
               color: Colors.green,
             ),
           );
         }
         else if(controller.mytrips.isEmpty){
-         return Center(
+         return const Center(
            child: Text("لا يوجد رحالات",style: TextStyle(
              fontSize: 25,
              color: Colors.black

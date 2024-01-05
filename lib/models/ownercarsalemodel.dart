@@ -24,7 +24,7 @@ class OwnerModel {
 
   OwnerModel.fromJson(Map<String, dynamic> json) {
     rating =
-    json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
+    json['rating'] != null ? Rating.fromJson(json['rating']) : null;
     sId = json['_id'];
     name = json['name'];
     gender = json['gender'];
@@ -37,19 +37,19 @@ class OwnerModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.rating != null) {
-      data['rating'] = this.rating!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (rating != null) {
+      data['rating'] = rating!.toJson();
     }
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['gender'] = this.gender;
-    data['age'] = this.age;
-    data['email'] = this.email;
-    data['verified'] = this.verified;
-    data['image'] = this.image;
-    data['status'] = this.status;
-    data['available'] = this.available;
+    data['_id'] = sId;
+    data['name'] = name;
+    data['gender'] = gender;
+    data['age'] = age;
+    data['email'] = email;
+    data['verified'] = verified;
+    data['image'] = image;
+    data['status'] = status;
+    data['available'] = available;
     return data;
   }
 }
@@ -68,10 +68,10 @@ class Rating {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cool'] = this.cool;
-    data['good'] = this.good;
-    data['fair'] = this.fair;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['cool'] = cool;
+    data['good'] = good;
+    data['fair'] = fair;
     return data;
   }
 }

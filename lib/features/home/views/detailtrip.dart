@@ -20,7 +20,7 @@ class TripDetails extends StatelessWidget {
     Get.put(DetailsTripController());
     return Scaffold(
       appBar: AppBar(
-        title: Text("تفاصيل الرحلة",style: TextStyle(
+        title: const Text("تفاصيل الرحلة",style: TextStyle(
             color: Colors.white,
             fontSize: 30
         ),),
@@ -29,7 +29,7 @@ class TripDetails extends StatelessWidget {
       ),
       body: GetBuilder<DetailsTripController>(builder: (controller){
         if(controller.statusRequest==StatusRequest.loading){
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               color: Colors.green,
             ),
@@ -52,12 +52,12 @@ class TripDetails extends StatelessWidget {
                   ),
                 ),
                 Center(
-                  child: Text("$name",style: TextStyle(
+                  child: Text(name,style: const TextStyle(
                       fontSize: 25,
                       color: Colors.black
                   ),),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text("السعر :35 جنيها"),
                   trailing: Icon(Icons.price_change_rounded,color: Colors.green,),
                 ),
@@ -126,7 +126,7 @@ class TripDetails extends StatelessWidget {
                      IconButton(onPressed: (){
                        navigateTo(ChatScreen(clientid: clientid,));
                      },
-                         icon: Icon(Icons.chat_bubble,size: 25,
+                         icon: const Icon(Icons.chat_bubble,size: 25,
                            color: Colors.green,))
                    ],
                  ),
@@ -153,7 +153,7 @@ class TripDetails extends StatelessWidget {
           );
         }
         else if(status=="ended"){
-          return Center(child: Text("تم الانتهاء من الرحلة",
+          return const Center(child: Text("تم الانتهاء من الرحلة",
           style: TextStyle(
             color: Colors.black,
             fontSize: 25

@@ -13,7 +13,7 @@ class PaymentScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        title: Text("الاشتراك",style: TextStyle(
+        title: const Text("الاشتراك",style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 30,
           color: Colors.white
@@ -25,7 +25,7 @@ class PaymentScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
+          const Center(
             child: Text("أختر طريقة الدفع",style: TextStyle(
               fontSize: 29,
               fontWeight: FontWeight.bold,
@@ -35,18 +35,18 @@ class PaymentScreen extends StatelessWidget {
           InkWell(
             onTap: (){
               //go to visa uri
-            navigateTo(VisaScreen());
+            navigateTo(const VisaScreen());
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("فيزا",style: TextStyle(
+                const Text("فيزا",style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 50,
                   color: Colors.white
                 ),),
-                SizedBox(width: 10,),
-                Container(
+                const SizedBox(width: 10,),
+                SizedBox(
                   height: 120,
                   width: 120,
                   child: Image.asset("assets/visa.png"),
@@ -62,13 +62,13 @@ class PaymentScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("كاش",style: TextStyle(
+                const Text("كاش",style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 50,
                   color: Colors.white
                 ),),
-                SizedBox(width: 10,),
-                Container(
+                const SizedBox(width: 10,),
+                SizedBox(
                   height: 120,
                   width: 120,
                   child: Image.asset("assets/cash.jpg"),

@@ -25,10 +25,10 @@ class  CashWebViewScreen extends StatelessWidget {
           navigatorOff(context, MainView());
         },icon: Icon(Icons.arrow_back,color: Colors.black,),),
       ),
-      body:WebView(
-      initialUrl: '$url',
-      javascriptMode: JavascriptMode.unrestricted,
-    ),
+    //   body:WebView(
+    //   initialUrl: '$url',
+    //   javascriptMode: JavascriptMode.unrestricted,
+    // ),
     );
   }
 }

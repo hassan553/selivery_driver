@@ -45,9 +45,9 @@ class DuringTripMapView extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                   Column(
+                   const Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children: [
                       ResponsiveText(
                         text: '7 دقائق',
                         scaleFactor: .05,

@@ -10,7 +10,6 @@ import 'rental_sale_car_view/order_car_view.dart';
 import '../../../core/rescourcs/app_colors.dart';
 import '../../../core/widgets/custom_appBar.dart';
 import '../widgets/category_items.dart';
-import 'order_car_view/category_get_location_from_user_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 
@@ -54,7 +53,7 @@ handeldate(){
         title: "مرحبأ",
         middleText: "الرجاء الاشتراك في خدمتنا لكي يسمح لك باستخدام التطبيق والقيام بالرحالات ",
     onConfirm: (){
-          navigateTo(PaymentScreen());
+          navigateTo(const PaymentScreen());
     },
     textConfirm: "أشتراك",
         barrierDismissible: true);
