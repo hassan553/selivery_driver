@@ -88,48 +88,6 @@ class RentalCarFormView extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-<<<<<<< HEAD
-                  Container(
-                    width: screenSize(context).width * .6,
-                    //height: screenSize(context).height * .15,
-                    padding:const  EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.black),
-                    ),
-                    child:  const Column(
-                      mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children:[
-                          ResponsiveText(
-                            text: '1-',
-                            scaleFactor: .05,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          ResponsiveText(
-                            text: '2-',
-                            scaleFactor: .05,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          ResponsiveText(
-                            text: '3-',
-                            scaleFactor: .05,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              child: ResponsiveText(
-                                text: '+',
-                                scaleFactor: .05,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.white,
-                              ),
-                            ),
-                          )
-                        ]),
-=======
                   InkWell(
                       onTap: () async {
                         await controller.uploadfile();
@@ -147,7 +105,6 @@ class RentalCarFormView extends StatelessWidget {
                             == null ?
                         CustomAssetsImage(path:'assets/add_image.png')
                             : Image.file(controller.file!),),)
->>>>>>> c7463fe8ab49235c670f6d8b7a4e4981616bacff
                   ),
 
                 ],
