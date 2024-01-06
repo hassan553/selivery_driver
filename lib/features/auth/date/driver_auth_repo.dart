@@ -16,7 +16,6 @@ class DriverAuthRepo {
         body: jsonEncode({'email': email, 'password': password,
           "deviceToken":await FirebaseMessagingService.getDeviceToken()}),
 
- 
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);

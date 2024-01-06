@@ -1,9 +1,9 @@
 //'https://selivery.onrender.com/';
-const baseUri = 'http://192.168.1.122:8000/';
+const baseUri = 'http://192.168.1.5:8000/';
 const authBaseUri = '${baseUri}auth/';
 final clientLogin = Uri.parse('${authBaseUri}login/client');
 final clientRegister = Uri.parse('${authBaseUri}signup/client');
-final driverLogin = Uri.parse('https://selivery.onrender.com/auth/login/driver');
+final driverLogin = Uri.parse('http://192.168.1.5:8000/auth/login/driver');
 final driverRegister = Uri.parse('http://192.168.1.122:8000/auth/signup/driver');
 final driversGoogleSignIn = Uri.parse('${authBaseUri}google/driver');
 
