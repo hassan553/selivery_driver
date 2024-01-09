@@ -107,24 +107,24 @@ class DriverProfileController extends GetxController {
         await driverProfileRepo.pickClientImage();
          getDriverProfile();
         changeImageLoding = false;
-        showSnackBarWidget(
-            context: context,
-            message: 'تم التغير بنجاح',
-            requestStates: RequestStates.success);
+        // showSnackBarWidget(
+        //     context: context,
+        //     message: 'تم التغير بنجاح',
+        //     requestStates: RequestStates.success);
 
         print('done');
       } catch (error) {
         changeImageLoding = false;
-        showSnackBarWidget(
-            context: context,
-            message: "لقد حدث خطا",
-            requestStates: RequestStates.error);
+        // showSnackBarWidget(
+        //     context: context,
+        //     message: "لقد حدث خطا",
+        //     requestStates: RequestStates.error);
       }
     } else {
-      showSnackBarWidget(
-          context: context,
-          message: 'لا يوجد اتصال بالانترنت',
-          requestStates: RequestStates.error);
+      // showSnackBarWidget(
+      //     context: context,
+      //     message: 'لا يوجد اتصال بالانترنت',
+      //     requestStates: RequestStates.error);
     }
     update();
   }

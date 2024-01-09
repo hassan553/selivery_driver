@@ -15,7 +15,7 @@ Future<Either<String, Unit>> handleSignInWithGoogle() async {
     if (googleUser != null) {
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
-      print('token ${googleAuth.accessToken}');
+      print('token ؤرؤر ${googleAuth.accessToken}');
       final result = await v(googleAuth.accessToken ?? '');
       result.fold((l) {
         return left(l);
@@ -37,6 +37,7 @@ Future<Either<String, String>> v(String idToken) async {
         body: json.encode({"idToken": idToken, 'deviceToken': await FirebaseMessagingService.getDeviceToken()
         }));
     final result = json.decode(request.body);
+    print(request.statusCode);
     print(result);
     if (request.statusCode == 200) {
       await CacheStorageServices().setToken(result['token']);

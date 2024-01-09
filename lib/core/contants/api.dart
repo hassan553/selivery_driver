@@ -1,7 +1,7 @@
 //'https://selivery.onrender.com/';
-
+//'http://192.168.1.122:8000/';
 const baseUri =
-    'http://192.168.1.122:8000/';
+    'https://www.selivery-app.com/';
 const authBaseUri = '${baseUri}auth/';
 final driverLogin =
     Uri.parse('${authBaseUri}login/driver');
