@@ -77,7 +77,6 @@ class _DriverNewPasswordViewState extends State<DriverNewPasswordView> {
                       const CustomSizedBox(value: .01),
                       TextFormField(
                         controller: newPasswordController,
-                      
                         focusNode: newPasswordFocus,
                         obscureText: true,
                         onFieldSubmitted: (value) => FocusScope.of(context)
@@ -130,7 +129,7 @@ class _DriverNewPasswordViewState extends State<DriverNewPasswordView> {
                             return 'يجب ان تعيد كلمه المرور';
                           }
                           return null;
-                              },
+                        },
                         textDirection: TextDirection.ltr,
                         decoration: InputDecoration(
                           fillColor: AppColors.white,

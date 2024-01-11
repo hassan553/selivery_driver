@@ -5,6 +5,5 @@ ThemeData appTheme() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
     primaryColor: AppColors.primaryColor,
-    //fontFamily: GoogleFonts.notoSansArabic().fontFamily,
   );
 }

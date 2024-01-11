@@ -6,7 +6,6 @@ import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_text.dart';
-import '../../../../core/services/cache_storage_services.dart';
 import '../../controller/driver_profile_controller.dart';
 import '../widgets/update_profile.dart';
 import '../widgets/user_info.dart';
@@ -78,7 +77,6 @@ class _DriverProfileViewState extends State<DriverProfileView> {
               const UserInfo(),
               const CustomSizedBox(value: .03),
               UpdateProfile(function: () {
-                print('toooken ${CacheStorageServices().token}');
                 navigateTo(const DriverEditProfileView());
               }),
               const CustomSizedBox(value: .01),
@@ -224,6 +222,6 @@ class _DriverProfileViewState extends State<DriverProfileView> {
     if (list == null || list == []) {
       return '';
     }
-    return controller.driverProfileModel?.vehicle?.images?.first??'';
+    return controller.driverProfileModel?.vehicle?.images?.first ?? '';
   }
 }

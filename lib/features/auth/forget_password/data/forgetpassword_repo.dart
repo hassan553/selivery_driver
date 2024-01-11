@@ -33,7 +33,7 @@ class DriverForgetPasswordRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
-      print('ererR ${result["message"]}');
+
       if (response.statusCode == 200) {
         return Right(result['message']);
       } else {
@@ -54,11 +54,9 @@ class DriverForgetPasswordRepo {
       );
       final result = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        print(result['message']);
         CacheStorageServices().setToken(result['token']);
         return Right(result['message']);
       } else {
-        print(result['message']);
         return Left(result['message']);
       }
     } catch (e) {

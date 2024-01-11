@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../core/functions/checkinternet.dart';
 import '../../../core/widgets/snack_bar_widget.dart';
 import '../data/driver_profile_model.dart';
-import '../data/driverdata.dart';
+import '../data/driver_data.dart';
 
 class DriverProfileController extends GetxController {
   DriverProfileRepo driverProfileRepo = DriverProfileRepo();
@@ -39,12 +39,12 @@ class DriverProfileController extends GetxController {
   void changePassword(
       {required context,
       required String newPassword,
-      required String oldPassord}) async {
+      required String oldPassword}) async {
     if (await checkInternet()) {
       changePassIsLoading = true;
       update();
       final result = await driverProfileRepo.updateDriverPassword(
-          newPassword: newPassword, oldPassword: oldPassord);
+          newPassword: newPassword, oldPassword: oldPassword);
       result.fold((l) {
         changePassIsLoading = false;
         showSnackBarWidget(
@@ -105,26 +105,16 @@ class DriverProfileController extends GetxController {
         changeImageLoding = true;
         update();
         await driverProfileRepo.pickClientImage();
-         getDriverProfile();
+        getDriverProfile();
         changeImageLoding = false;
-        // showSnackBarWidget(
-        //     context: context,
-        //     message: 'تم التغير بنجاح',
-        //     requestStates: RequestStates.success);
-
-        print('done');
       } catch (error) {
         changeImageLoding = false;
-        // showSnackBarWidget(
-        //     context: context,
-        //     message: "لقد حدث خطا",
-        //     requestStates: RequestStates.error);
       }
     } else {
-      // showSnackBarWidget(
-      //     context: context,
-      //     message: 'لا يوجد اتصال بالانترنت',
-      //     requestStates: RequestStates.error);
+      showSnackBarWidget(
+          context: context,
+          message: 'لا يوجد اتصال بالانترنت',
+          requestStates: RequestStates.error);
     }
     update();
   }

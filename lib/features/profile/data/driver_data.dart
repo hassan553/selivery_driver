@@ -17,17 +17,13 @@ class DriverProfileRepo {
       );
       final result = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        print(result);
         clientProfileModel = DriverProfileModel.fromJson(result['driver']);
 
-        print(clientProfileModel);
         return Right(clientProfileModel);
       } else {
-        print(result['message']);
         return Left(result['message']);
       }
     } catch (e) {
-      print(e.toString());
       return Left(e.toString());
     }
   }
@@ -40,7 +36,7 @@ class DriverProfileRepo {
   }) async {
     try {
       DriverProfileModel clientProfileModel;
-      print('token${CacheStorageServices().token}');
+
       final response = await http.patch(
         profileUpdateInfoUri,
         body: jsonEncode(
@@ -48,11 +44,10 @@ class DriverProfileRepo {
         headers: authHeadersWithToken(CacheStorageServices().token),
       );
       final result = jsonDecode(response.body);
-      print(result['message']);
 
       if (response.statusCode == 200) {
         clientProfileModel = DriverProfileModel.fromJson(result['driver']);
-        print(clientProfileModel);
+
         return Right(clientProfileModel);
       } else {
         return Left(result['message']);
@@ -73,15 +68,11 @@ class DriverProfileRepo {
       );
       final res = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        print(res['message']);
         return const Right('لقد تم تغير كلمة السر بنجاح');
       } else {
-        print(res['message']);
-
         return const Left('قم باعادة المحاوله');
       }
     } catch (e) {
-      print(e.toString());
       return Left(e.toString());
     }
   }
@@ -118,11 +109,8 @@ class DriverProfileRepo {
 
       var response = await http.Response.fromStream(myrequest);
       final result = jsonDecode(response.body);
-      print(result['message']);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print("tm");
-        print(response.body);
       } else {
         throw Exception(result['message']);
       }

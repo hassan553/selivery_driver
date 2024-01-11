@@ -16,7 +16,6 @@ class DriverRegisterCubit extends Cubit<DriverRegisterState> {
       emit(DriverRegisterLoading());
       final result =
           await driverRegisterRepo.driverRegisterRepo(name, email, password);
-      
 
       result.fold(
         (l) => emit(DriverRegisterError(l)),
@@ -26,7 +25,8 @@ class DriverRegisterCubit extends Cubit<DriverRegisterState> {
       emit(const DriverRegisterError("لا يوجد اتصال بالانترنت"));
     }
   }
-   void registerWithGoogle() async {
+
+  void registerWithGoogle() async {
     if (await checkInternet()) {
       emit(DriverGoogleRegisterLoading());
       final result = await handleSignInWithGoogle();

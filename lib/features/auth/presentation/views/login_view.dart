@@ -123,7 +123,8 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                       ),
                       SizedBox(height: screenSize(context).height * .02),
                       CustomTextButton(
-                        function: () => navigateTo(const DriverForgetPasswordView()),
+                        function: () =>
+                            navigateTo(const DriverForgetPasswordView()),
                         title: 'لا اتذكر كلمه المرور',
                         color: AppColors.primaryColor,
                       ),
@@ -181,7 +182,6 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                                 requestStates: RequestStates.success);
                             navigateOff(const MainView());
                           } else if (state is DriverGoogleLoginError) {
-                            print(state.message);
                             showErrorAwesomeDialog(
                                 context, 'تنبيه', state.message);
                           }

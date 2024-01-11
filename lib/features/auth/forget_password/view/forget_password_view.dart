@@ -15,15 +15,15 @@ import '../data/forgetpassword_repo.dart';
 import 'new_password_view.dart';
 
 class DriverForgetPasswordView extends StatefulWidget {
-
   const DriverForgetPasswordView({super.key});
 
   @override
-  State<DriverForgetPasswordView> createState() => _DriverForgetPasswordViewState();
+  State<DriverForgetPasswordView> createState() =>
+      _DriverForgetPasswordViewState();
 }
 
 class _DriverForgetPasswordViewState extends State<DriverForgetPasswordView> {
- final controller = TextEditingController();
+  final controller = TextEditingController();
   final formKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -35,7 +35,8 @@ class _DriverForgetPasswordViewState extends State<DriverForgetPasswordView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => DriverForgetPasswordCubit(DriverForgetPasswordRepo()),
+        create: (context) =>
+            DriverForgetPasswordCubit(DriverForgetPasswordRepo()),
         child: InkWell(
           onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
           child: Container(
@@ -75,7 +76,7 @@ class _DriverForgetPasswordViewState extends State<DriverForgetPasswordView> {
                         const CustomSizedBox(value: .01),
                         TextFormField(
                           textDirection: TextDirection.ltr,
-                         controller: controller,
+                          controller: controller,
                           validator: (String? value) {
                             if (value == null) {
                               return 'قيمة فارغة غير صالحة';
@@ -101,7 +102,8 @@ class _DriverForgetPasswordViewState extends State<DriverForgetPasswordView> {
                           ),
                         ),
                         const CustomSizedBox(value: .05),
-                        BlocConsumer<DriverForgetPasswordCubit, DriverForgetPasswordState>(
+                        BlocConsumer<DriverForgetPasswordCubit,
+                            DriverForgetPasswordState>(
                           listener: (context, state) {
                             if (state is ForgetPasswordSuccessState) {
                               showSnackBarWidget(
@@ -115,7 +117,7 @@ class _DriverForgetPasswordViewState extends State<DriverForgetPasswordView> {
                               ));
                             } else if (state is ForgetPasswordErrorState) {
                               showErrorAwesomeDialog(
-                              context, 'تنبيه', state.message);
+                                  context, 'تنبيه', state.message);
                             }
                           },
                           builder: (context, state) {
@@ -140,7 +142,7 @@ class _DriverForgetPasswordViewState extends State<DriverForgetPasswordView> {
                                       child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children:  [
+                                        children: [
                                           Icon(
                                             Icons.check_box,
                                             color: AppColors.white,

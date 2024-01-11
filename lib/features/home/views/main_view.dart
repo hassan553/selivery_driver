@@ -39,7 +39,6 @@ class _MainViewState extends State<MainView> {
     "autoConnect": false,
   };
   address() {
-
     Timer.periodic(const Duration(seconds: 30), (Timer timer) {
       setState(() {
         socket!.emit("update_driver_location", {
@@ -88,7 +87,6 @@ class _MainViewState extends State<MainView> {
     initSocketForDriver();
     //address
     address();
-    FirebaseMessagingService.getDeviceToken();
   }
 
   @override

@@ -18,7 +18,6 @@ class FirebaseMessagingService {
   // Get the device token for push notifications
   static Future<String?> getDeviceToken() async {
     try {
-      print(await _firebaseMessaging.getToken());
       return await _firebaseMessaging.getToken();
     } catch (error) {
       return null;
@@ -29,26 +28,18 @@ class FirebaseMessagingService {
   static void configureForegroundMessaging() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (message.notification != null) {
-        // Handle notification message
         final notification = message.notification!;
-        // Extract notification details
         final title = notification.title ?? '';
         final body = notification.body ?? '';
         Get.snackbar(title, body);
-        print(title);
-        print(body);
       }
     });
   }
 
   static Future<void> backgroundHandler(RemoteMessage message) async {
-    // Handle notification message
-    final notification = message.notification!;
-    // Extract notification details
-    final title = notification.title ?? '';
-    final body = notification.body ?? '';
-    print(title);
-    print(body);
+    // final notification = message.notification!;
+    // final title = notification.title ?? '';
+    // final body = notification.body ?? '';
   }
 
   // Subscribe to a topic
@@ -78,7 +69,7 @@ class FirebaseMessagingService {
   static void _handleNotification(RemoteMessage message) {
     final notification = message.notification;
     final data = message.data;
-    print(' i click on message');
+    //navigateTo(const MainView());
   }
 
   static Future sendNotification(
@@ -106,12 +97,8 @@ class FirebaseMessagingService {
       body: jsonEncode(notificationData),
     );
 
-    if (response.statusCode == 200) {
-      print('Notification sent successfully');
-    } else {
-      print('Failed to send notification. Status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
+    if (response.statusCode != 200) {
+      Get.snackbar('تنبيه', "فشل في الارسال");
     }
   }
-  
 }
