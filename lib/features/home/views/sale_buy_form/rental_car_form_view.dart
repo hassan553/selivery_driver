@@ -121,7 +121,7 @@ class RentalCarFormView extends StatelessWidget {
                     descController.text,
                     driverController.text,
                     catId);
-              },child: Text("Add"),),
+              },child: Text("اضافة"),),
 
             ],
           ),

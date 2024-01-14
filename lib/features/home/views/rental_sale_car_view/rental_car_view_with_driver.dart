@@ -29,9 +29,16 @@ class RentalCarViewWithDriver extends StatelessWidget {
     return Scaffold(
       appBar: customAppBar(context),
       body: GetBuilder<CarWithDriverController>(builder:
-          (controller)=>controller.statusRequest==StatusRequest.loading?
-              const Center(child:  CircularProgressIndicator())
-              :Column(
+          (controller){
+        if(controller.statusRequest==StatusRequest.loading){
+          return Center(child: CircularProgressIndicator());
+        }else if(controller.carswithdriver.isEmpty){
+          return Center(child: Text("لا يوجد سيارات متاحة الان",style: TextStyle(
+            fontSize: 20,
+            color: Colors.black
+          ),));
+        }else{
+          return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -55,7 +62,7 @@ class RentalCarViewWithDriver extends StatelessWidget {
                           return Column(
                             children: [
                               Image.network(
-                                "http://192.168.1.10:8000/${controller.carswithdriver[index]['car']['images'][0]}",
+                                "https://www.selivery-app.com/images/${controller.carswithdriver[index]['car']['images'][0]}",
                                 width: p1.maxWidth * .6,
                                 height: p1.maxHeight * .4,
                                 fit: BoxFit.fill,
@@ -155,9 +162,12 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                       height: 5,
                                     ),
                                     InkWell(
-                                      onTap: () => navigateTo( RentalCarOwnerView(
+                                      onTap: () => navigateTo(
+                                          RentalCarOwnerView(
+                                            face:controller.carswithdriver[index]['facebookLink'] ,
+                                            tel: controller.carswithdriver[index]['telegramLink'],
                                         ownerId:controller.carswithdriver[index]['userId'],
-                                          price:controller.carswithdriver[index]['price'],
+                                        price:controller.carswithdriver[index]['price'],
                                         phone:controller.carswithdriver[index]['phone'] ,
                                         image: controller.carswithdriver[index]['car']['images'][0],
                                         cartype:controller.carswithdriver[index]['car']['type'] ,
@@ -195,7 +205,9 @@ class RentalCarViewWithDriver extends StatelessWidget {
                 ),
               ),
             ],
-          ),),
+          );
+        }
+          }),
     );
   }
 }

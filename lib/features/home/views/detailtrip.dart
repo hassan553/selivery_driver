@@ -48,7 +48,7 @@ class TripDetails extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       //color: Colors.amberAccent,
                     ),
-                    child: Image.network("http://192.168.1.5:8000/$image"),
+                    child: Image.network("https://www.selivery-app.com/images/$image"),
                   ),
                 ),
                 Center(

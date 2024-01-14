@@ -184,8 +184,8 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
     //   }
     @override
     Widget build(BuildContext context) {
-      AddCarForSaleController controller=   Get.put(AddCarForSaleController());
-      print("id$catId");
+      AddCarForSaleController controller=
+      Get.put(AddCarForSaleController());
       return Scaffold(
         appBar: customAppBar(context),
         body: Container(
@@ -273,21 +273,7 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  // GetBuilder<AddCarForSaleController>(builder:
-                  //     (controller)=>Container(
-                  //   child: MaterialButton(
-                  //     onPressed: () {
-                  //    controller.
-                  //    addCarData(nameController.text, phoneController.text,
-                  //        faceLinkController.text, telController.text,
-                  //        priceController.text,
-                  //        CarNameController.text, descController.text,
-                  //        catId, imagename!);
-                  //   // print(imagename);
-                  //     },
-                  //     child: Text("Add"),
-                  //   ),
-                  // )),
+
                   MaterialButton(
                     onPressed: () {
                         controller.
@@ -296,24 +282,9 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
                             priceController.text,
                             CarNameController.text,descController.text,
                             catId);
-                      print("file${controller.file}");
-                      print("id   $catId");
-                      //   sendData(nameController.text,
-                      //       phoneController.text,
-                      //       faceLinkController.text,
-                      //       telController.text,
-                      //       priceController.text,
-                      //       typeController.text,
-                      //       descController.text, catId, _file!);
-                      // addd(nameController.text,
-                      //     phoneController.text,
-                      //     faceLinkController.text,
-                      //     telController.text,
-                      //     priceController.text,
-                      //     CarNameController.text,
-                      //     descController.text);
+
                     },
-                    child: const Text("Add"),
+                    child: const Text("اضافة"),
                   ),
                 ],
               ),

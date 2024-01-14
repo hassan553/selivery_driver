@@ -69,7 +69,7 @@ class _MainViewState extends State<MainView> {
   }
 
   initSocketForDriver() {
-    socket = IO.io("http://192.168.1.122:8000", options);
+    socket = IO.io("https://www.selivery-app.com/", options);
     socket!.connect();
     socket!.onConnect((_) => print("connect with server"));
     socket!.emit("driverAuthenticate", CacheStorageServices().id);

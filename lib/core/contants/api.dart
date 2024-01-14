@@ -37,13 +37,13 @@ final profileClientUpdatePassword = Uri.parse('${baseUri}user/changePassword');
 const String categoriesUrL = '${baseUri}category';
 String CategoriesList(id) => "${baseUri}vehicles/sale/category/$id";
 //getdata for owner sale car
-String ownerData(id) => "${baseUri}user/driver/$id";
+String ownerData(id) => "${baseUri}user/owner/$id";
 
 //trips
-String endtrip(id) => "http://192.168.1.5:8000/trip/$id/end_trip";
-String rejecttrip(id) => "http://192.168.1.5:8000/trip/$id/reject";
+String endtrip(id) => "${baseUri}trip/$id/end_trip";
+String rejecttrip(id) => "${baseUri}trip/$id/reject";
 String arrivertoclient(id) =>
-    "http://192.168.1.5:8000/trip/$id/arrived_to_pickupLocation";
+    "${baseUri}trip/$id/arrived_to_pickupLocation";
 
 // add rent car
 const String rentcar = '${baseUri}vehicles/rent';
@@ -52,16 +52,16 @@ String carsWithoutDriver(id) =>
     "${baseUri}vehicles/rent/without_driver/category/$id";
 const String addCarForSale = "${baseUri}vehicles/sale";
 const String getrequesttrips =
-    "http://192.168.1.5:8000/trip/get_driver_requests";
-String accepttrips(id) => "http://192.168.1.5:8000/trip/$id/accept";
-const String mytrips = "http://192.168.1.5:8000/driver/trips";
+    "${baseUri}trip/get_driver_requests";
+String accepttrips(id) => "${baseUri}trip/$id/accept";
+const String mytrips = "${baseUri}driver/trips";
 
 //payments
 
 final visaUrl =
-    Uri.parse("https://selivery.onrender.com/payments/card_payment");
+    Uri.parse("${baseUri}payments/card_payment");
 final CashUrl =
-    Uri.parse("https://selivery.onrender.com/payments/wallet_payment");
+    Uri.parse("${baseUri}payments/wallet_payment");
 
 /////////
 final authHeaders = {

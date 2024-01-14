@@ -15,8 +15,9 @@ late OwnerModel ownerModel;
     var response = await ownerData.getData(id);
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
-     ownerModel = OwnerModel.fromJson(response['driver']);
-      print("owner $ownerModel");
+     ownerModel = OwnerModel.fromJson(response['owner']);
+     update();
+    //  print("owner $ownerModel");
       print("okkkkkkk");
     }else{
       print("someerror");
