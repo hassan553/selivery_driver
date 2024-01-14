@@ -14,7 +14,6 @@ class _SplashViewState extends State<SplashView> {
   void splashNavTimer() {
     Future.delayed(const Duration(seconds: 2), () {
       navigateOff(const DriverLoginView());
-      
     });
   }
 

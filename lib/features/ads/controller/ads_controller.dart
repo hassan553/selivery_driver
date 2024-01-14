@@ -1,19 +1,15 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:selivery_driver/core/services/cache_storage_services.dart';
-
 import '../../../core/contants/api.dart';
 import '../../../core/functions/checkinternet.dart';
-
 import '../model/ads_model.dart';
 
 class AdsController extends GetxController {
   var isLoading = false.obs;
   var allAdsDataError = ''.obs;
   RxList allAdsList = <AdsModel>[].obs;
-
 
   Future<void> getAllAdsData() async {
     if (await checkInternet()) {
@@ -27,7 +23,6 @@ class AdsController extends GetxController {
         final result = jsonDecode(response.body);
 
         if (response.statusCode == 200) {
-          print('all ads   ${result['ads']}');
           var r = result['ads'] as List;
           r.map((e) {
             allAdsList.add(AdsModel.fromJson(e));
@@ -50,6 +45,5 @@ class AdsController extends GetxController {
     } else {
       allAdsDataError.value = 'لا يوجد اتصال بالانترنت';
     }
-    print(allAdsList);
   }
 }

@@ -166,7 +166,7 @@ class _MyDialogState extends State<MyDialog> {
                                     context: context,
                                     newPassword:
                                         newPasswordController.text.trim(),
-                                    oldPassord:
+                                    oldPassword:
                                         oldPasswordController.text.trim());
                               }
                             },

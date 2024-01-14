@@ -6,7 +6,9 @@ import '../../../../core/contants/api.dart';
 import '../../../core/helper/notifictions_helper.dart';
 import '../../../core/services/cache_storage_services.dart';
 
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+//zom5566com@gmail.com
+//Hazem-5566@@
+final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
 Future<Either<String, Unit>> handleSignInWithGoogle() async {
   try {
@@ -15,62 +17,38 @@ Future<Either<String, Unit>> handleSignInWithGoogle() async {
     if (googleUser != null) {
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
-      print('token ؤرؤر ${googleAuth.accessToken}');
-      final result = await v(googleAuth.accessToken ?? '');
-      result.fold((l) {
-        return left(l);
-      }, (r) {
-        return right(unit);
-      });
+      await _loginWithGoogle(googleAuth.accessToken ?? '');
     }
     return right(unit);
   } catch (error) {
+    print('errror ${error}');
     return left(error.toString());
   }
 }
 
-Future<Either<String, String>> v(String idToken) async {
+Future _loginWithGoogle(String idToken) async {
+  String message = 'لقد حدث خطأ ما';
   try {
-    print('ooo$idToken');
     var request = await http.post(driversGoogleSignIn,
         headers: authHeaders,
-        body: json.encode({"idToken": idToken, 'deviceToken': await FirebaseMessagingService.getDeviceToken()
+        body: json.encode({
+          "idToken": idToken,
+          'deviceToken': await FirebaseMessagingService.getDeviceToken()
         }));
     final result = json.decode(request.body);
-    print(request.statusCode);
-    print(result);
+    print('error ${result['message']}');
+    message = result['message'];
     if (request.statusCode == 200) {
+      print('error ${result['message']}');
       await CacheStorageServices().setToken(result['token']);
-      print('google token ${request.body.toString()}');
-      print('myToken${CacheStorageServices().token}');
-      return right('result done');
     } else {
-      throw('لقد حدث خطا');
+      throw (result['message'].toString());
     }
   } catch (error) {
-     throw ('لقد حدث خطا');
+    throw (message);
   }
 }
 
 googleLogOut() async {
   await _googleSignIn.signOut();
-  print('done');
 }
-
-// Future<UserCredential> signInWithGoogleH() async {
-//   // Trigger the authentication flow
-//   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-//   // Obtain the auth details from the request
-//   final GoogleSignInAuthentication? googleAuth =
-//       await googleUser?.authentication;
-
-//   // Create a new credential
-//   final credential = GoogleAuthProvider.credential(
-//     accessToken: googleAuth?.accessToken,
-//     idToken: googleAuth?.idToken,
-//   );
-//   print('cccc$credential');
-//   // Once signed in, return the UserCredential
-//   return await FirebaseAuth.instance.signInWithCredential(credential);
-// }

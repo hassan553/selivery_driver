@@ -22,7 +22,9 @@ class SettingController extends GetxController {
       } else {
         throw 'لقد حدث خطا';
       }
-    } catch (error) {}
+    } catch (error) {
+      return Get.defaultDialog(middleText: 'لقد حدث خطا');
+    }
   }
 
   subscribe(context) async {

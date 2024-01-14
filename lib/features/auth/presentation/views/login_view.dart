@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:selivery_driver/core/services/cache_storage_services.dart';
 import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
 import 'package:selivery_driver/features/home/views/main_view.dart';
 import '../../../../../core/widgets/show_awesomeDialog.dart';
@@ -123,7 +124,8 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                       ),
                       SizedBox(height: screenSize(context).height * .02),
                       CustomTextButton(
-                        function: () => navigateTo(const DriverForgetPasswordView()),
+                        function: () =>
+                            navigateTo(const DriverForgetPasswordView()),
                         title: 'لا اتذكر كلمه المرور',
                         color: AppColors.primaryColor,
                       ),
@@ -179,9 +181,9 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                                 context: context,
                                 message: 'تم تسجيل الدخوال بنجاح',
                                 requestStates: RequestStates.success);
+                            print('tttoken ${CacheStorageServices().token}');
                             navigateOff(const MainView());
                           } else if (state is DriverGoogleLoginError) {
-                            print(state.message);
                             showErrorAwesomeDialog(
                                 context, 'تنبيه', state.message);
                           }

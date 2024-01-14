@@ -31,7 +31,6 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     controller.dispose();
     modelController.dispose();
     super.dispose();
@@ -224,10 +223,11 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
       child: BlocBuilder<CompleteCarInfoCubit, CompleteCarInfoState>(
         builder: (context, state) {
           return state is CompleteCarInfoLoading
-              ?const  Center(child: CircularProgressIndicator(color: AppColors.white))
+              ? const Center(
+                  child: CircularProgressIndicator(color: AppColors.white))
               : CustomButton(
                   function: () {
-                    CompleteCarInfoCubit.get(context).hassann(
+                    CompleteCarInfoCubit.get(context).takeImages(
                         category: categoryId, model: modelController.text);
                   },
                   title: 'انشاء',
@@ -311,9 +311,9 @@ class _CompleteCarInfoViewState extends State<CompleteCarInfoView> {
         setState(() {
           category = itemName;
           categoryId = id;
-          print(categoryId);
+          
         });
-        Navigator.of(context).pop(); // Close the dialog
+        Navigator.of(context).pop(); 
       },
     );
   }

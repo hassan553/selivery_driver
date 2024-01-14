@@ -33,59 +33,9 @@ class _SettingViewState extends State<SettingView> {
             const CustomSizedBox(value: .03),
             notificationWidget(),
             const CustomSizedBox(value: .03),
-            //ringtoneWidget(),
-            // const CustomSizedBox(value: .03),
-            // settingWidget('assets/Settings.png', 'إعدادت الحساب والخصوصية '),
-            // const CustomSizedBox(value: .03),
-            //connect with us .i use same setting widget
             settingWidget('assets/Man On Phone.png', ' تواصل معنا'),
             const CustomSizedBox(value: .03),
-            //  socialAccountWidget(context),
-            //const CustomSizedBox(value: .03),
             logoutWidget(context),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Container socialAccountWidget(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color(0xff262E2D),
-      ),
-      child: FittedBox(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomAssetsImage(
-              path: 'assets/whatsApp.png',
-              width: screenSize(context).width * .08,
-              boxFit: BoxFit.fill,
-            ),
-            const ResponsiveText(
-              text: 'واتساب',
-              scaleFactor: .04,
-              color: Colors.white,
-            ),
-            const ResponsiveText(
-              text: '01115690625',
-              scaleFactor: .04,
-              color: Colors.white,
-            ),
-            const SizedBox(width: 10),
-            CustomAssetsImage(
-              path: 'assets/Group 22.png',
-              width: screenSize(context).width * .08,
-              boxFit: BoxFit.fill,
-            ),
-            const ResponsiveText(
-              text: 'www.facebook.com/MahmoudAd.3?md',
-              scaleFactor: .04,
-              color: Colors.white,
-            ),
           ],
         ),
       ),
@@ -94,7 +44,7 @@ class _SettingViewState extends State<SettingView> {
 
   Widget logoutWidget(BuildContext context) {
     return InkWell(
-      onTap: ()=>controller.logout(),
+      onTap: () => controller.logout(),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -127,51 +77,6 @@ class _SettingViewState extends State<SettingView> {
           ),
         ],
       ),
-    );
-  }
-
-  Row ringtoneWidget() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomAssetsImage(path: 'assets/Musical Notes.png'),
-            const ResponsiveText(
-              text: 'نغمة رنين الإشعار',
-              scaleFactor: .06,
-            ),
-          ],
-        ),
-        const Spacer(
-          flex: 3,
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: const Color(0xff262E2D),
-          ),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.arrow_drop_down,
-                color: AppColors.white,
-              ),
-              ResponsiveText(
-                text: 'voice 1',
-                scaleFactor: .04,
-                color: AppColors.white,
-              ),
-            ],
-          ),
-        ),
-        const Spacer(
-          flex: 1,
-        ),
-      ],
     );
   }
 
