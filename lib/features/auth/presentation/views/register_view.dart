@@ -76,6 +76,19 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                         imagePath: 'assets/image.png',
                       )),
                       SizedBox(height: screenSize(context).height * .05),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.primaryColor,
+                        ),
+                        child: Text(
+                          'الرجاء كتابة الاسم ثلاثي مطابق للاسم في بطاقة الهوية الشخصية لانه يتم مراجعته من قبل ادارة التطبيق حتي لا يتم حظرك .',
+                          style:
+                              TextStyle(color: AppColors.white, fontSize: 16),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
                       CustomTextFieldWidget(
                         controller: name,
                         focusNode: nameFocus,

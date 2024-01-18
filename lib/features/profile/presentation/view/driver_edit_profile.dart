@@ -71,7 +71,46 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
                           ),
                           InkWell(
                             onTap: () {
-                              controller.changePicture(context);
+                              Get.defaultDialog(
+                                title: 'تنبيه',
+                                content: Text(
+                                  "الرجاء رفع صورة شخصية تتطابق مع الصورة الموجودة في الهوية الشخصية. شكرًا لتعاونكم.",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.black87),
+                                ),
+                                actions: [
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      fixedSize:
+                                          MaterialStateProperty.all<Size>(
+                                              const Size(100, 50)),
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              AppColors.primaryColor),
+                                    ),
+                                    onPressed: () {
+                                      controller.changePicture(context);
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('التالي'),
+                                  ),
+                                  const SizedBox(width: 25),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      fixedSize:
+                                          MaterialStateProperty.all<Size>(
+                                              const Size(100, 50)),
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.red),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('اغلاق'),
+                                  ),
+                                ],
+                              );
                             },
                             child: CircleAvatar(
                               backgroundColor: AppColors.primaryColor,
@@ -112,6 +151,18 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
                                 isEnable: false)),
                         const SizedBox(height: 15),
                       ],
+                      EditField(
+                          // validate: (p0) {
+                          //   if (p0 == null) {
+                          //     return 'لا يسمح بقيمه فارغه';
+                          //   } else if (p0.isEmpty) {
+                          //     return 'لا يسمح بقيمه فارغه';
+                          //   }
+                          //   return null;
+                          // },
+                          prefix: 'السيره الذاتيه',
+                          hint: controller.bioController),
+                      const SizedBox(height: 15),
                       EditField(
                           validate: (p0) {
                             if (p0 == null) {
@@ -171,57 +222,6 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
               ),
             ),
           ),
-          const CustomSizedBox(value: .01),
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Row(
-          //     children: [
-          //       Column(
-          //         mainAxisSize: MainAxisSize.min,
-          //         children: [
-          //           CustomText(
-          //             title: 'نوع السيارة',
-          //             fontSize: 16,
-          //             fontWeight: FontWeight.w600,
-          //           ),
-          //           CustomText(
-          //             title: 'Kia cerato',
-          //             fontSize: 16,
-          //             fontWeight: FontWeight.w600,
-          //           ),
-          //         ],
-          //       ),
-          //       const Spacer(),
-          //       Stack(
-          //         alignment: Alignment.bottomCenter,
-          //         children: [
-          //           Container(
-          //             decoration: BoxDecoration(
-          //                 borderRadius: BorderRadius.circular(8),
-          //                 border: Border.all(color: AppColors.primaryColor)),
-          //             child: CustomAssetsImage(
-          //               path: 'assets/car.png',
-          //               height: 70,
-          //               width: screenSize(context).width * .6,
-          //               boxFit: BoxFit.fill,
-          //             ),
-          //           ),
-          //           Positioned(
-          //             bottom: 5,
-          //             child: Container(
-          //               padding: const EdgeInsets.all(3),
-          //               decoration: BoxDecoration(
-          //                   borderRadius: BorderRadius.circular(10),
-          //                   color: Colors.white),
-          //               child: const Text('تغير الصوره'),
-          //             ),
-          //           )
-          //         ],
-          //       )
-          //     ],
-          //   ),
-          // ),
-          // const CustomSizedBox(value: .01),
           const CustomSizedBox(value: .03),
           GetBuilder<DriverProfileController>(
             builder: (controller) {
@@ -237,7 +237,8 @@ class _DriverEditProfileViewState extends State<DriverEditProfileView> {
                                 age: controller.ageController.text,
                                 gender: controller.genderController.text,
                                 name: controller.nameController.text,
-                                phone: controller.phoneController.text);
+                                phone: controller.phoneController.text,
+                                bio: controller.bioController.text);
                           }
                         },
                         height: 50,

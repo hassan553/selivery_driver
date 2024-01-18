@@ -49,7 +49,6 @@ class _DriverLoginViewState extends State<DriverLoginView> {
     password.dispose();
     emailFocus.dispose();
     passwordFocus.dispose();
-
     super.dispose();
   }
 

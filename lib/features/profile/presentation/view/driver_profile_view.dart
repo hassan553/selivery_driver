@@ -186,9 +186,9 @@ class _DriverProfileViewState extends State<DriverProfileView> {
                 color: AppColors.primaryColor.withOpacity(.7),
                 borderRadius: BorderRadius.circular(8),
               ),
-              padding: const EdgeInsets.all(5),
-              child: const Text(
-                "",
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                controller.driverProfileModel?.bio ?? "",
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 12),

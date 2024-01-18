@@ -30,6 +30,7 @@ class CarInfoRepo {
 
       http.StreamedResponse response = await request.send();
       print('stutus code ${response.request}');
+      
       if (response.statusCode == 200) {
         return right('تم رفع البيانات بنجاح');
       } else {
