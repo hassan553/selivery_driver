@@ -81,7 +81,6 @@ class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
         final result = jsonDecode(response.body);
         if (response.statusCode == 200 || response.statusCode == 201) {
           categories.addAll(result['categories']);
-
           emit(CompleteCarInfoCategorySuccess());
         } else {
           emit(CompleteCarInfoCategoryError(result['message'].toString()));

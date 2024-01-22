@@ -14,7 +14,7 @@ class DriverForgetPasswordRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(result['message']);
       } else {
         return Left(result['message']);
@@ -34,7 +34,7 @@ class DriverForgetPasswordRepo {
       );
       final result = jsonDecode(response.body);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(result['message']);
       } else {
         return Left(result['message']);
@@ -53,7 +53,7 @@ class DriverForgetPasswordRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         CacheStorageServices().setToken(result['token']);
         return Right(result['message']);
       } else {
@@ -73,7 +73,7 @@ class DriverForgetPasswordRepo {
       );
 
       final result = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(result['message']);
       } else {
         return Left(result['message']);

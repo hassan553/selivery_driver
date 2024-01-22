@@ -38,7 +38,7 @@ Future _loginWithGoogle(String idToken) async {
     final result = json.decode(request.body);
     print('error ${result['message']}');
     message = result['message'];
-    if (request.statusCode == 200) {
+    if (result.statusCode == 200 || result.statusCode == 201) {
       print('error ${result['message']}');
       await CacheStorageServices().setToken(result['token']);
     } else {

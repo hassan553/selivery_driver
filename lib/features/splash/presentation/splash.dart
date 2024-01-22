@@ -40,12 +40,12 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 
-  Center splashBody() {
-    return Center(
-      child: Image.asset(
-        'assets/logo.png',
-        fit: BoxFit.cover,
-      ),
+ Widget splashBody() {
+    return Image.asset(
+      'assets/splash.jpg',
+      width: screenSize(context).width,
+      height: screenSize(context).height,
+      fit: BoxFit.cover,
     );
   }
 }

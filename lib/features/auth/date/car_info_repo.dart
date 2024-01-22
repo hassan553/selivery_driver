@@ -17,7 +17,6 @@ class CarInfoRepo {
       var headers = {'Authorization': 'Bearer ${CacheStorageServices().token}'};
       var request = http.MultipartRequest('POST', completeCarInfoUrl);
       request.fields.addAll({'category': category, 'model': model});
-
       request.files
           .add(await http.MultipartFile.fromPath('carImages', carImage.path));
       request.files.add(
@@ -29,9 +28,10 @@ class CarInfoRepo {
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
-      print('stutus code ${response.request}');
-      
-      if (response.statusCode == 200) {
+      final r = await response.stream.bytesToString();
+      print('stutus code ${r}');
+      print('stutus code ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return right('تم رفع البيانات بنجاح');
       } else {
         return left('لم نتمكن من رفع البيانات');

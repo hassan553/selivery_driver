@@ -17,7 +17,7 @@ class VerifyDriverEmailAddressRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         await CacheStorageServices().setToken(result['token']);
         await CacheStorageServices().setId(result['driver']['_id']);
         return Right(result['message']);
@@ -37,7 +37,7 @@ class VerifyDriverEmailAddressRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(result['message']);
       } else {
         return Left(result['message']);

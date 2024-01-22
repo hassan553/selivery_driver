@@ -19,4 +19,17 @@ class OtpErrorState extends DriverVerifyCodeState {
   const OtpErrorState({required this.message});
 }
 
-class ResendOtpState extends DriverVerifyCodeState {}
+
+class ResendOtpErrorState extends DriverVerifyCodeState {
+  final String message;
+
+  const ResendOtpErrorState({required this.message});
+}
+
+class ResendOtpSuccessState extends DriverVerifyCodeState {
+  final String message;
+
+  const ResendOtpSuccessState({required this.message});
+}
+
+class ResendOtpLoadingState extends DriverVerifyCodeState {}
