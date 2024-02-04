@@ -6,8 +6,7 @@ import '../../../../core/contants/api.dart';
 import '../../../core/helper/notifictions_helper.dart';
 import '../../../core/services/cache_storage_services.dart';
 
-//zom5566com@gmail.com
-//Hazem-5566@@
+
 final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
 Future<Either<String, Unit>> handleSignInWithGoogle() async {
@@ -36,10 +35,10 @@ Future _loginWithGoogle(String idToken) async {
           'deviceToken': await FirebaseMessagingService.getDeviceToken()
         }));
     final result = json.decode(request.body);
-    print('error ${result['message']}');
+    print('errorس ${result.statusCode}');
     message = result['message'];
     if (result.statusCode == 200 || result.statusCode == 201) {
-      print('error ${result['message']}');
+      print('errorس ${result['message']}');
       await CacheStorageServices().setToken(result['token']);
     } else {
       throw (result['message'].toString());

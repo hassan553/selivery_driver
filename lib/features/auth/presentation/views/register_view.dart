@@ -4,7 +4,6 @@ import '../../../../../core/widgets/show_awesomeDialog.dart';
 import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../date/driver_auth_repo.dart';
 import '../widgets/google_sigin_widget.dart';
-import 'car_info_view.dart';
 import '../../verify_email/views/otp_view.dart';
 import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
@@ -14,6 +13,7 @@ import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_text_filed.dart';
 import '../../../../../core/widgets/snack_bar_widget.dart';
 import '../../cubit/register/driver_register_cubit.dart';
+import 'upload_driver_data_view/welcome_view.dart';
 
 class DriverRegisterView extends StatefulWidget {
   const DriverRegisterView({super.key});
@@ -153,9 +153,8 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                           navigatorOff(
                               context,
                               VerifyDriverEmailOTPView(
-                                email: email.text,
-                                screen: const CompleteCarInfoView(),
-                              ));
+                                  email: email.text,
+                                  screen: const WelcomeView()));
                         } else if (state is DriverRegisterError) {
                           showErrorAwesomeDialog(
                               context, 'تنبيه', state.message);
@@ -189,9 +188,9 @@ class _DriverRegisterViewState extends State<DriverRegisterView> {
                                 context: context,
                                 message: 'تم تسجيل الدخوال بنجاح',
                                 requestStates: RequestStates.success);
-                            navigateOff(const CompleteCarInfoView());
+                            navigateOff(const WelcomeView());
                           } else if (state is DriverGoogleRegisterError) {
-                            print(state.message);
+                            
                             showErrorAwesomeDialog(
                                 context, 'تنبيه', state.message);
                           }

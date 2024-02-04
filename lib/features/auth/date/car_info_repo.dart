@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:selivery_driver/core/functions/checkinternet.dart';
 import 'package:selivery_driver/core/services/cache_storage_services.dart';
 import '../../../../core/contants/api.dart';
 import 'package:dartz/dartz.dart';
@@ -38,6 +40,97 @@ class CarInfoRepo {
       }
     } catch (error) {
       return left(error.toString());
+    }
+  }
+
+  Future<Either<String, String>> uploadImage(
+      {required File image, required Uri uri, required String title}) async {
+    if (await checkInternet()) {
+      try {
+        print('url $uri');
+        var headers = {
+          'Accept': 'application/json',
+          "Authorization": 'Bearer ${CacheStorageServices().token}',
+          "Content-Type": 'multipart/form-data',
+        };
+
+        var request = http.MultipartRequest("POST", uri);
+        request.headers.addAll(headers);
+        var fileExtension = image.path;
+
+        var length = await image.length();
+        var stream = http.ByteStream(image.openRead());
+
+        var multipartFile =
+            http.MultipartFile(title, stream, length, filename: image.path);
+        request.files.add(multipartFile);
+
+        var myrequest = await request.send();
+
+        var response = await http.Response.fromStream(myrequest);
+        final result = jsonDecode(response.body);
+        print('message ${result['message']}');
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          return right(result['message']);
+        } else {
+          return left(result['message']);
+        }
+      } catch (error) {
+        print('message ${error.toString()}');
+        return left(error.toString());
+      }
+    } else {
+      return left("لا يوجد اتصال بالانترنت");
+    }
+  }
+
+  Future<Either<String, String>> uploadCategory(
+      String category, String model) async {
+    if (await checkInternet()) {
+      try {
+        final response = await http.post(
+          openRequestUri,
+          body: jsonEncode({'category': category, 'model': model}),
+          headers: authHeadersWithToken(CacheStorageServices().token),
+        );
+        final result = jsonDecode(response.body);
+        print('message ${result['message']}');
+        print(response.statusCode);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          return Right(result['message']);
+        } else {
+          return Left(result['message']);
+        }
+      } catch (e) {
+        print('message ${e.toString()}');
+        return Left(e.toString());
+      }
+    } else {
+      return left("لا يوجد اتصال بالانترنت");
+    }
+  }
+
+  Future<Either<String, String>> getStep() async {
+    if (await checkInternet()) {
+      try {
+        final response = await http.get(
+          openRequestUri,
+          headers: authHeadersWithToken(CacheStorageServices().token),
+        );
+        final result = jsonDecode(response.body);
+        print('message ${result['message']}');
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          String? res = result['request'][0]['_id'];
+          return Right(res ?? '');
+        } else {
+          return Left(result['message']);
+        }
+      } catch (e) {
+        print('message ${e.toString()}');
+        return Left(e.toString());
+      }
+    } else {
+      return left("لا يوجد اتصال بالانترنت");
     }
   }
 }

@@ -14,7 +14,9 @@ class DriverForgetPasswordRepo {
         headers: authHeaders,
       );
       final result = jsonDecode(response.body);
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      print("result ${result['message']}");
+      print("status code ${response.statusCode}");
+      if (response.statusCode == 200 ) {
         return Right(result['message']);
       } else {
         return Left(result['message']);
@@ -34,7 +36,7 @@ class DriverForgetPasswordRepo {
       );
       final result = jsonDecode(response.body);
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.statusCode == 200 ) {
         return Right(result['message']);
       } else {
         return Left(result['message']);
