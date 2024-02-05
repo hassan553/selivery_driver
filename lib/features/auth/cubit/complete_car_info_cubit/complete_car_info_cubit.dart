@@ -206,7 +206,7 @@ class CompleteCarInfoCubit extends Cubit<CompleteCarInfoState> {
     }, (r) {
       emit(DriverLicenseSuccessState());
        
-      navigateTo(MainView());
+      navigateOff(MainView());
     });
   }
 }
