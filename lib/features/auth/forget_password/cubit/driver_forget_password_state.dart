@@ -19,7 +19,20 @@ class ForgetPasswordErrorState extends DriverForgetPasswordState {
 }
 
 class ReSendForgetPasswordVerificationCodeToEmailState
+    extends DriverForgetPasswordState {
+  final String message;
+  ReSendForgetPasswordVerificationCodeToEmailState({required this.message});
+}
+
+class ReSendForgetPasswordVerificationCodeToEmailLoadingState
     extends DriverForgetPasswordState {}
+
+class ReSendForgetPasswordVerificationCodeToEmailErrorState
+    extends DriverForgetPasswordState {
+  final String message;
+  ReSendForgetPasswordVerificationCodeToEmailErrorState(
+      {required this.message});
+}
 
 class ForgetPasswordOTPCodeLoadingState extends DriverForgetPasswordState {}
 

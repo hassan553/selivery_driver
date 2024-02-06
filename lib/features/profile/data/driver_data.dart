@@ -33,6 +33,7 @@ class DriverProfileRepo {
     String? gender,
     String? phone,
     int? age,
+    String? bio,
   }) async {
     try {
       DriverProfileModel clientProfileModel;
@@ -40,7 +41,7 @@ class DriverProfileRepo {
       final response = await http.patch(
         profileUpdateInfoUri,
         body: jsonEncode(
-            {'name': name, 'gender': gender, 'phone': phone, 'age': age}),
+            {'bio':bio,'name': name, 'gender': gender, 'phone': phone, 'age': age}),
         headers: authHeadersWithToken(CacheStorageServices().token),
       );
       final result = jsonDecode(response.body);

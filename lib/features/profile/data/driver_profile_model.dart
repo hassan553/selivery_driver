@@ -2,6 +2,7 @@
 class DriverProfileModel {
   Rating? rating;
   String? sId;
+  String? bio;
   String? name;
   String? gender;
   int? age;
@@ -30,6 +31,7 @@ class DriverProfileModel {
       this.status,
       this.available,
       this.iV,
+      this.bio,
       this.vehicle,this.googleId});
 
   DriverProfileModel.fromJson(Map<String, dynamic> json) {
@@ -38,6 +40,7 @@ class DriverProfileModel {
     name = json['name'];
     gender = json['gender'];
     age = json['age'];
+     bio = json['bio'];
     email = json['email'];
     verified = json['verified'];
     password = json['password'];
@@ -59,6 +62,7 @@ class DriverProfileModel {
     data['_id'] = sId;
     data['name'] = name;
     data['gender'] = gender;
+       data['bio'] = bio;
     data['age'] = age;
     data['email'] = email;
     data['verified'] = verified;

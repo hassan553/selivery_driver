@@ -26,10 +26,16 @@ class DriverForgetPasswordCubit extends Cubit<DriverForgetPasswordState> {
     }
   }
 
-  void reSendForgetPasswordVerificationCodeToEmail(String email) async {
-    await _driverForgetPasswordRepo
+  
+   void reSendForgetPasswordVerificationCodeToEmail(String email) async {
+    emit(ReSendForgetPasswordVerificationCodeToEmailLoadingState());
+    final result = await _driverForgetPasswordRepo
         .reSendForgetPasswordVerificationCodeToEmail(email);
-    emit(ReSendForgetPasswordVerificationCodeToEmailState());
+    result.fold(
+      (l) => emit(
+          ReSendForgetPasswordVerificationCodeToEmailErrorState(message: l)),
+      (r) => emit(ReSendForgetPasswordVerificationCodeToEmailState(message: r)),
+    );
   }
 
   void verifyEmailWithCode(String email, int code) async {

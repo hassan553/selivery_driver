@@ -10,6 +10,8 @@ import 'core/helper/notifictions_helper.dart';
 import 'core/services/cache_storage_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'dart:io';
+import '../core/class/http_override.dart';
 //dart run flutter_native_splash:create
 //dart run flutter_native_splash:create --path=flutter_native_splash.yaml
 
@@ -28,6 +30,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(
       FirebaseMessagingService.backgroundHandler);
+  HttpOverrides.global = MyHttpOverrides();
   customErrorWidget();
   setupOrientation();
   HttpOverrides.global = MyHttpOverrides();

@@ -48,7 +48,7 @@ class CustomNetworkImage extends StatelessWidget {
       }
       String i = '${baseUri}images\\$image';
       print(i);
-      if (i == baseUri) {
+      if (i == baseUri||i=='https://www.selivery-app.com/images\\') {
         return '';
       }
       return i;
@@ -64,7 +64,7 @@ class CustomNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.network(
-      checkImage(imagePath??''),
+      checkImage(imagePath),
       fit: boxFit,
       loadingBuilder: (BuildContext context, Widget child,
           ImageChunkEvent? loadingProgress) {

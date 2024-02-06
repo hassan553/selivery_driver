@@ -12,7 +12,7 @@ class DriverProfileController extends GetxController {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController ageController = TextEditingController(text: '0');
   final TextEditingController password = TextEditingController();
-
+  final TextEditingController bioController = TextEditingController();
   bool isLoading = false;
   String errorMessage = '';
   DriverProfileModel? driverProfileModel;
@@ -28,6 +28,7 @@ class DriverProfileController extends GetxController {
         isLoading = false;
         driverProfileModel = r;
         errorMessage = '';
+        print("bio ${driverProfileModel?.bio}");
       });
     } else {
       errorMessage = 'لا يوجد اتصال بالانترنت';
@@ -66,17 +67,23 @@ class DriverProfileController extends GetxController {
   }
 
   bool updateProfileLoading = false;
-  void updateProfile(
-      {required context,
-      required String name,
-      required String phone,
-      required String gender,
-      required String age}) async {
+  void updateProfile({
+    required context,
+    required String name,
+    required String phone,
+    required String gender,
+    required String age,
+    required String bio,
+  }) async {
     if (await checkInternet()) {
       updateProfileLoading = true;
       update();
       final result = await driverProfileRepo.updateClientProfileInfo(
-          age: int.parse(age), gender: gender, name: name, phone: phone);
+          age: int.parse(age),
+          bio: bio,
+          gender: gender,
+          name: name,
+          phone: phone);
       result.fold((l) {
         updateProfileLoading = false;
         showSnackBarWidget(
@@ -126,6 +133,7 @@ class DriverProfileController extends GetxController {
       password.text = '********';
       phoneController.text = driverProfileModel?.phone ?? '';
       genderController.text = driverProfileModel?.gender ?? '';
+      bioController.text = driverProfileModel?.bio ?? ' ';
       update();
     } catch (error) {}
   }
@@ -144,6 +152,7 @@ class DriverProfileController extends GetxController {
     genderController.dispose();
     phoneController.dispose();
     password.dispose();
+    bioController.dispose();
     super.dispose();
   }
 }

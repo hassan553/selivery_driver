@@ -25,7 +25,7 @@ class DriverOTPView extends StatefulWidget {
 
 class _DriverOTPViewState extends State<DriverOTPView> {
   bool _isResendEnabled = false;
-  int _resendCooldown = 6 * 60; // 6 minutes in seconds
+  int _resendCooldown = 2 * 60; // 6 minutes in seconds
   Timer? _resendCooldownTimer;
 
   @override
@@ -40,19 +40,19 @@ class _DriverOTPViewState extends State<DriverOTPView> {
         if (_resendCooldown > 0) {
           _resendCooldown--;
         } else {
-          _isResendEnabled = false;
+          _isResendEnabled = true;
           _resendCooldownTimer?.cancel();
         }
       });
     });
   }
 
-  void _handleResendCode(String email) {
+  void _handleResendCode(String email,context) {
     BlocProvider.of<DriverForgetPasswordCubit>(context)
         .reSendForgetPasswordVerificationCodeToEmail(email);
     setState(() {
-      _isResendEnabled = true;
-      _resendCooldown = 6 * 60; // Reset the cooldown
+      _isResendEnabled = false;
+      _resendCooldown = 2 * 60; // Reset the cooldown
       _startResendCooldownTimer();
     });
   }
@@ -99,18 +99,41 @@ class _DriverOTPViewState extends State<DriverOTPView> {
                       path: 'assets/orderCar.png',
                       width: screenSize(context).width * .8,
                     ),
-                    TextButton(
-                      onPressed: _isResendEnabled
-                          ? () => _handleResendCode(widget.email)
-                          : null,
-                      child: Text(
-                        _isResendEnabled
-                            ? 'Resend Verification Code'
-                            : 'Resend in $_resendCooldown seconds',
-                        style: TextStyle(
-                          color: _isResendEnabled ? Colors.blue : Colors.grey,
-                        ),
-                      ),
+                     BlocConsumer<DriverForgetPasswordCubit, DriverForgetPasswordState>(
+                      listener: (context, state) {
+                        if (state
+                            is ReSendForgetPasswordVerificationCodeToEmailErrorState) {
+                          showErrorAwesomeDialog(
+                              context, 'تنبيه', state.message);
+                        } else if (state
+                            is ReSendForgetPasswordVerificationCodeToEmailState) {
+                          showSnackBarWidget(
+                              context: context,
+                              message: state.message,
+                              requestStates: RequestStates.success);
+                        }
+                      },
+                      builder: (contex, state) {
+                        return state
+                                is ReSendForgetPasswordVerificationCodeToEmailLoadingState
+                            ? CustomLoadingWidget()
+                            : TextButton(
+                                onPressed: _isResendEnabled
+                                    ? () =>
+                                        _handleResendCode(widget.email, contex)
+                                    : null,
+                                child: Text(
+                                  _isResendEnabled
+                                      ? 'إعادة إرسال رمز التحقق'
+                                      : 'إعادة الإرسال خلال $_resendCooldown ثواني',
+                                  style: TextStyle(
+                                    color: _isResendEnabled
+                                        ? Colors.blue
+                                        : Colors.grey,
+                                  ),
+                                ),
+                              );
+                      },
                     ),
                     NumericKeyboardScreen(
                         screen: widget.screen, email: widget.email),

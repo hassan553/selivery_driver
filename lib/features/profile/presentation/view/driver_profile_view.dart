@@ -24,6 +24,12 @@ class DriverProfileView extends StatefulWidget {
 
 class _DriverProfileViewState extends State<DriverProfileView> {
   DriverProfileController controller = Get.find<DriverProfileController>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('vv${controller.driverProfileModel?.vehicle?.images}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +76,10 @@ class _DriverProfileViewState extends State<DriverProfileView> {
               const CustomDivider(),
               driverEvaulte(),
               const CustomDivider(),
-              if (controller.driverProfileModel?.vehicle != null) ...[
-                carType(),
-                const CustomDivider(),
-              ],
+              // if (controller.driverProfileModel?.vehicle?.images!=[]) ...[
+              //   carType(),
+              //   const CustomDivider(),
+              // ],
               const UserInfo(),
               const CustomSizedBox(value: .03),
               UpdateProfile(function: () {
@@ -112,7 +118,7 @@ class _DriverProfileViewState extends State<DriverProfileView> {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: AppColors.primaryColor)),
             child: CustomNetworkImage(
-              imagePath: checkCarImage(),
+              imagePath: checkCarImage() ,
               boxFit: BoxFit.fill,
             ),
           ),
@@ -186,9 +192,9 @@ class _DriverProfileViewState extends State<DriverProfileView> {
                 color: AppColors.primaryColor.withOpacity(.7),
                 borderRadius: BorderRadius.circular(8),
               ),
-              padding: const EdgeInsets.all(5),
-              child: const Text(
-                "",
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                controller.driverProfileModel?.bio ?? "",
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 12),
@@ -217,11 +223,16 @@ class _DriverProfileViewState extends State<DriverProfileView> {
     );
   }
 
-  String checkCarImage() {
+  String? checkCarImage() {
     List<String>? list = controller.driverProfileModel?.vehicle?.images;
-    if (list == null || list == []) {
+    print('list $list');
+
+    if (list == null || list.isEmpty) {
+      print('if');
       return '';
+    } else {
+      
+      return list.first;
     }
-    return controller.driverProfileModel?.vehicle?.images?.first ?? '';
   }
 }

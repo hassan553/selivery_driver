@@ -15,6 +15,8 @@ final verifyClientResendEmailCodeUrl =
     Uri.parse('${authBaseUri}resend_verification_code');
 //profile
 final driverProfile = Uri.parse("${baseUri}user/profile");
+///completeCarInfoUrl/////
+final openRequestUri=Uri.parse('${baseUri}request'); 
 final completeCarInfoUrl = Uri.parse('${baseUri}request');
 final getAllAdsUri = Uri.parse('${baseUri}advertisement');
 final sendNewPasswordUrl = Uri.parse('${baseUri}user/setPassword');
@@ -25,7 +27,7 @@ final verifyClientForgetPasswordCodeUrl =
     Uri.parse('${authBaseUri}client/verify_password_code');
 final verifyDriverForgetPasswordCodeUrl =
     Uri.parse('${authBaseUri}driver/verify_password_code');
-
+//driver Google Sign In
 final driverGoogleSignIn = Uri.parse('${authBaseUri}google/driver');
 ///////profile uri
 const profileUri = '${baseUri}user/profile';

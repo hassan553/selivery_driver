@@ -26,7 +26,9 @@ class DriverVerifyCodeCubit extends Cubit<DriverVerifyCodeState> {
   }
 
   void resendEmailVerifyCode(String email) async {
-    await verifyEmailAddressRepo.clientResendEmailCode(email);
-    emit(ResendOtpState());
+    emit(ResendOtpLoadingState());
+    final result = await verifyEmailAddressRepo.clientResendEmailCode(email);
+    result.fold((l) => emit(ResendOtpErrorState(message: l)),
+        (r) => emit(ResendOtpSuccessState(message: r)));
   }
 }
