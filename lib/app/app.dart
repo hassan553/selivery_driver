@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:selivery_driver/binding.dart';
 import 'package:selivery_driver/features/auth/presentation/views/car_info_view.dart';
 import '../core/rescourcs/app_theme.dart';
+import '../features/home/views/main_view.dart';
 import '../features/splash/presentation/splash.dart';
+import '../features/text.dart';
 
 class SeliveryDriver extends StatelessWidget {
   const SeliveryDriver({super.key});
@@ -13,10 +15,10 @@ class SeliveryDriver extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: MyBinding(),
-      title: 'Selivery ',
+      title: 'Selivery',
       theme: appTheme(),
       textDirection: TextDirection.rtl,
-      home:CompleteCarInfoView(),
+      home:SplashView(),
     );
   }
 }

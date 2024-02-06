@@ -51,8 +51,15 @@ class TripsScreen extends StatelessWidget {
                         ),
                         onPressed: (){
                            navigateTo(TripDetails(
-                             image: controller.Requesttrips[index].passenger!.image!,
-                             name:controller.Requesttrips[index].passenger!.name! ,
+                             devicetoken: controller.Requesttrips[index].passenger!.deviceToken!,
+                             pick1:controller.Requesttrips[index].pickupLocation!.coordinates!.first ,
+                             pick2:controller.Requesttrips[index].pickupLocation!.coordinates!.last ,
+                             des1:controller.Requesttrips[index].destinationLocation!.coordinates!.first ,
+                             des2:controller.Requesttrips[index].destinationLocation!.coordinates!.last ,
+                             image: controller.Requesttrips[index].
+                             passenger!.image!,
+                             name:controller.Requesttrips[index].
+                             passenger!.name! ,
                              id: controller.Requesttrips[index].sId!,
                              clientid: controller.Requesttrips[index].passenger!.sId!,
                              status: controller.Requesttrips[index].status!,

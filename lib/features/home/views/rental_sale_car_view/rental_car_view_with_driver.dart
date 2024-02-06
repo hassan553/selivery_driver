@@ -164,8 +164,6 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                     InkWell(
                                       onTap: () => navigateTo(
                                           RentalCarOwnerView(
-                                            face:controller.carswithdriver[index]['facebookLink'] ,
-                                            tel: controller.carswithdriver[index]['telegramLink'],
                                         ownerId:controller.carswithdriver[index]['userId'],
                                         price:controller.carswithdriver[index]['price'],
                                         phone:controller.carswithdriver[index]['phone'] ,
@@ -183,7 +181,7 @@ class RentalCarViewWithDriver extends StatelessWidget {
                                         ),
                                         child: const ResponsiveText(
                                           scaleFactor: .04,
-                                          text: 'للطب والاستفار',
+                                          text: 'للطب والاستفسار',
                                           color: AppColors.white,
                                           fontWeight: FontWeight.bold,
                                         ),

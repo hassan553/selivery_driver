@@ -113,8 +113,6 @@ class OrderCarDetailsView extends StatelessWidget {
                                               ownerId:controller.
                                               categories[index]['userId'],
                                               phone:controller.categories[index]['phone'],
-                                              face:controller.categories[index]['facebookLink'] ,
-                                              tel: controller.categories[index]['telegramLink'],
                                               cartype:controller.categories[index]
                                               ['car']['type'] ,
                                               price: controller.categories[index]
@@ -135,7 +133,7 @@ class OrderCarDetailsView extends StatelessWidget {
                                             ),
                                             child: const ResponsiveText(
                                               scaleFactor: .04,
-                                              text: 'للطب والاستفار',
+                                              text: 'للطب والاستفسار',
                                               color: AppColors.white,
                                               fontWeight: FontWeight.bold,
                                             ),

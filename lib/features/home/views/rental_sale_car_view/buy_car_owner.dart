@@ -15,13 +15,14 @@ class CarOwnerView extends StatelessWidget {
   final String ownerId;
   final String phone;
   final String cartype;
-  final String face;
-  final String tel;
   final int price;
   final String date;
   final String image;
   final String desc;
-  const CarOwnerView({super.key, required this.ownerId, required this.phone, required this.cartype, required this.price, required this.date, required this.image, required this.desc, required this.face, required this.tel});
+  const CarOwnerView({super.key, required this.ownerId,
+    required this.phone, required this.cartype,
+    required this.price, required this.date, required this.image,
+    required this.desc});
 
   @override
   Widget build(BuildContext context) {
@@ -93,43 +94,43 @@ class CarOwnerView extends StatelessWidget {
                       path: 'assets/whatsApp.png'),
                 ],
               ),
-              const CustomSizedBox(value: .01),
-              FittedBox(
-                child: Row(
-                  children: [
-                     ResponsiveText(
-                      scaleFactor: .05,
-                      text: "للينك الفيس بوك : $face ",
-                      color: AppColors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    CustomAssetsImage(
-                      height: screenSize(context).height * .05,
-                      width: screenSize(context).width * .05,
-                      boxFit: BoxFit.fill,
-                      path: 'assets/facebook.png',
-                    ),
-                  ],
-                ),
-              ),
-              const CustomSizedBox(value: .01),
-              FittedBox(
-                child: Row(
-                  children: [
-                     ResponsiveText(
-                      scaleFactor: .05,
-                      text: "للينك  التليجرام  : $tel ",
-                      color: AppColors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    CustomAssetsImage(
-                        height: screenSize(context).height * .05,
-                        width: screenSize(context).width * .05,
-                        boxFit: BoxFit.fill,
-                        path: 'assets/telegram.png'),
-                  ],
-                ),
-              ),
+              // const CustomSizedBox(value: .01),
+              // FittedBox(
+              //   child: Row(
+              //     children: [
+              //        ResponsiveText(
+              //         scaleFactor: .05,
+              //         text: "للينك الفيس بوك : $face ",
+              //         color: AppColors.black,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //       CustomAssetsImage(
+              //         height: screenSize(context).height * .05,
+              //         width: screenSize(context).width * .05,
+              //         boxFit: BoxFit.fill,
+              //         path: 'assets/facebook.png',
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const CustomSizedBox(value: .01),
+              // FittedBox(
+              //   child: Row(
+              //     children: [
+              //        ResponsiveText(
+              //         scaleFactor: .05,
+              //         text: "للينك  التليجرام  : $tel ",
+              //         color: AppColors.black,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //       CustomAssetsImage(
+              //           height: screenSize(context).height * .05,
+              //           width: screenSize(context).width * .05,
+              //           boxFit: BoxFit.fill,
+              //           path: 'assets/telegram.png'),
+              //     ],
+              //   ),
+              // ),
               const CustomSizedBox(value: .02),
               Container(
                 width: screenSize(context).width,

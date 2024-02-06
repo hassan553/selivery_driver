@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:selivery_driver/app/app.dart';
@@ -10,7 +12,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 //dart run flutter_native_splash:create
 //dart run flutter_native_splash:create --path=flutter_native_splash.yaml
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   CacheStorageServices.init();
   requestPermissionLocation();
@@ -19,6 +30,7 @@ void main() async {
       FirebaseMessagingService.backgroundHandler);
   customErrorWidget();
   setupOrientation();
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const SeliveryDriver());
 }
 

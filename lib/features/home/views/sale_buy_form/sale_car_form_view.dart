@@ -220,12 +220,12 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
                   const SizedBox(height: 10),
                   BuyRentalCarFormWidget(title: 'رقم الموبايل',
                     controller: phoneController,),
-                  const SizedBox(height: 10),
-                  BuyRentalCarFormWidget(title: 'لينك الفيس بوك',
-                    controller: faceLinkController,),
-                  const SizedBox(height: 10),
-                  BuyRentalCarFormWidget(title: 'لينك التليجرام',
-                    controller: telController,),
+                  // const SizedBox(height: 10),
+                  // BuyRentalCarFormWidget(title: 'لينك الفيس بوك',
+                  //   controller: faceLinkController,),
+                  // const SizedBox(height: 10),
+                  // BuyRentalCarFormWidget(title: 'لينك التليجرام',
+                  //   controller: telController,),
                   // SizedBox(height: 10),
                   // BuyRentalCarFormWidget(title: 'نوع السياره',
                   //   controller: typeController,),
@@ -278,7 +278,7 @@ class _SaleCarFormViewState extends State<SaleCarFormView> {
                     onPressed: () {
                         controller.
                         addCarData(nameController.text, phoneController.text,
-                            faceLinkController.text, telController.text,
+
                             priceController.text,
                             CarNameController.text,descController.text,
                             catId);

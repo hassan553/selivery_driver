@@ -165,8 +165,6 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                       onTap: () =>
                                           navigateTo(
                                               RentalCarOwnerView(
-                                                  face:controller.carswithoutdriver[index]['facebookLink'] ,
-                                                  tel: controller.carswithoutdriver[index]['telegramLink'],
                                                   ownerId:controller.carswithoutdriver[index]['userId'],
                                                   price:controller.carswithoutdriver[index]['price'],
                                                   phone:controller.carswithoutdriver[index]['phone'] ,
@@ -184,7 +182,7 @@ class RentalCarViewWithoutDriver extends StatelessWidget {
                                         ),
                                         child: const ResponsiveText(
                                           scaleFactor: .04,
-                                          text: 'للطب والاستفار',
+                                          text: 'للطب والاستفسار',
                                           color: AppColors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
