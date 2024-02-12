@@ -20,20 +20,18 @@ class Crud {
             body: data,
             headers:authHeadersWithTokenIm(CacheStorageServices().token));
         if (response.statusCode == 200 || response.statusCode == 201) {
-          print(response.statusCode);
-          print(response.body);
+          
           //Map reponseBody = jsonDecode(response.body);
           return Right(jsonDecode(response.body));
         } else {
-          print(response.statusCode);
-          print(response.body);
+         
           return const Left(StatusRequest.serverFailure);
         }
       } else {
         return const Left(StatusRequest.offlineFailure);
       }
     } catch (e) {
-      print("error is ${e.toString()}");
+      
       return const Left(StatusRequest.serverFailure);
     }
   }
@@ -48,20 +46,18 @@ class Crud {
               "Authorization":"Bearer ${CacheStorageServices().token}",
             });
         if (response.statusCode == 200 || response.statusCode == 201) {
-          print(response.statusCode);
-          print(response.body);
+         
           //Map reponseBody = jsonDecode(response.body);
           return Right(jsonDecode(response.body));
         } else {
-          print(response.statusCode);
-          print(response.body);
+      
           return const Left(StatusRequest.serverFailure);
         }
       } else {
         return const Left(StatusRequest.offlineFailure);
       }
     } catch (e) {
-      print("error is ${e.toString()}");
+     
       return const Left(StatusRequest.serverFailure);
     }
   }
@@ -83,7 +79,7 @@ class Crud {
         return const Left(StatusRequest.offlineFailure);
       }
     } catch (e) {
-      print(e.toString());
+      
       return const Left(StatusRequest.serverFailure);
     }
   }
@@ -96,7 +92,7 @@ class Crud {
             body: data);
         if (response.statusCode == 200 || response.statusCode == 201) {
           // Map reponseBody = jsonDecode(response.body);
-          print("responsennnn ${response.body}");
+          
           return Right(jsonDecode(response.body));
         } else {
           return const Left(StatusRequest.serverFailure);
@@ -174,13 +170,12 @@ Future<Either<StatusRequest, Map>> addRequestWithImageOne(
   data.forEach((key, value) {
     request.fields[key] = value;
   });
-  // add Data to request
-  // Send Request
+  
   var myrequest = await request.send();
   // For get Response Body
   var response = await http.Response.fromStream(myrequest);
   if (response.statusCode == 200 || response.statusCode == 201) {
-    print(response.body);
+   
     Map responsebody = jsonDecode(response.body);
     return Right(responsebody);
   } else {
@@ -198,9 +193,8 @@ _uploadImage(String title, File file) async {
     request.headers['Authorization'] = 'Bearer ${CacheStorageServices().token}';
     request.headers['Content-Type'] = 'multipart/form-data';
     var res = await request.send();
-    print('response ${res.toString()}');
-    print('image upload success');
+    
   } catch (error) {
-    print(error.toString());
+    
   }
 }

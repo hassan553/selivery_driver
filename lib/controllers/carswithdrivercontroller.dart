@@ -18,10 +18,9 @@ List carswithdriver = [];
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
    carswithdriver.addAll(response['vehicles']);
-      print("categories rent $carswithdriver");
-      print("okkkkkkk");
+      
     }else{
-      print("someerror");
+    
     }
     update();
   }

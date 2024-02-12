@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../../../core/widgets/responsive_text.dart';
 import 'package:get/get.dart';
-
 import '../../controller/driver_profile_controller.dart';
 
 class MyDialog extends StatefulWidget {

@@ -28,7 +28,7 @@ class DriverProfileController extends GetxController {
         isLoading = false;
         driverProfileModel = r;
         errorMessage = '';
-        print("bio ${driverProfileModel?.bio}");
+       
       });
     } else {
       errorMessage = 'لا يوجد اتصال بالانترنت';

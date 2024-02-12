@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/controllers/cashcontroller.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
+import '../../../controllers/cashcontroller.dart';
+import '../../../core/class/statusrequst.dart';
 
 class CashScreen extends StatelessWidget {
   const CashScreen({super.key});

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'orders_details_view.dart';
-
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_appBar.dart';

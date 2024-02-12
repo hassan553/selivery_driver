@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/dataforcrud/cash.dart';
+import '../core/class/statusrequst.dart';
+import '../core/functions/global_function.dart';
+import '../dataforcrud/cash.dart';
 
 import '../core/functions/handlingdata.dart';
 import '../features/home/views/cashwebview.dart';
@@ -29,7 +29,7 @@ class CashController extends GetxController{
       navigateTo(CashWebViewScreen(url:url.toString(),));
 
     }else{
-      print("someerror");
+      
     }
     update();
   }

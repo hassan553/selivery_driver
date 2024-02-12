@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:selivery_driver/features/auth/cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
-import 'package:selivery_driver/features/auth/presentation/views/upload_driver_data_view/car_license_view.dart';
-import 'package:selivery_driver/features/auth/presentation/widgets/sow_dailog.dart';
-import '../../../../../core/functions/global_function.dart';
+import '../../../cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
+import '../../widgets/sow_dailog.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
 import '../../../../../core/widgets/snack_bar_widget.dart';

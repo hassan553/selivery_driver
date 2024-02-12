@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/controllers/visacontroller.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/features/home/views/main_view.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import '../../../controllers/visacontroller.dart';
+import '../../../core/class/statusrequst.dart';
+import '../../../core/functions/global_function.dart';
+import 'main_view.dart';
 
 class VisaScreen extends StatelessWidget {
   const VisaScreen({super.key});

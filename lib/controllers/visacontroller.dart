@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
-import 'package:selivery_driver/dataforcrud/visa.dart';
+import '../core/class/statusrequst.dart';
+import '../dataforcrud/visa.dart';
 
 import '../core/functions/handlingdata.dart';
 
@@ -18,12 +18,12 @@ class VisaController extends GetxController{
     var response = await visaData.getData();
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
-       //print(response['url']);
+      
        url =response['url'];
-       print("$url");
+      
 
     }else{
-      print("someerror");
+     
     }
     update();
   }

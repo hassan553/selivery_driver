@@ -3,7 +3,6 @@ import '../../features/home/views/mytripsscreen.dart';
 import '../../features/home/views/trips.dart';
 import 'custom_image.dart';
 import 'responsive_text.dart';
-
 import '../functions/global_function.dart';
 import '../rescourcs/app_colors.dart';
 

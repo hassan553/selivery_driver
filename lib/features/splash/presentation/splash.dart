@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:selivery_driver/features/auth/presentation/views/login_view.dart';
+import '../../auth/presentation/views/login_view.dart';
 import '../../../core/functions/global_function.dart';
 import '../../../core/rescourcs/app_colors.dart';
 import '../../../core/services/cache_storage_services.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:selivery_driver/core/services/cache_storage_services.dart';
-import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
-import 'package:selivery_driver/features/home/views/main_view.dart';
+import '../../../../core/services/cache_storage_services.dart';
+import '../../../../core/widgets/custom_loading_widget.dart';
+import '../../../home/views/main_view.dart';
 import '../../../../../core/widgets/show_awesomeDialog.dart';
 import '../../verify_email/views/otp_view.dart';
 import '../../../../../core/functions/global_function.dart';

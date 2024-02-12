@@ -67,9 +67,9 @@ class FirebaseMessagingService {
   }
 
   static void _handleNotification(RemoteMessage message) {
-    final notification = message.notification;
-    final data = message.data;
-    //navigateTo(const MainView());
+    // final notification = message.notification;
+    // final data = message.data;
+    // //navigateTo(const MainView());
   }
 
   static Future sendNotification(

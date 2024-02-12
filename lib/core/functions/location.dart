@@ -20,9 +20,8 @@ requestPermissionLocation() async {
     if (permission == LocationPermission.deniedForever) {
       return Get.snackbar("تنبية", "لايمكنك استخدام التطبيق من دون الموقع");
     }
-  } on PlatformException catch (error) {
-    print('error ${error.toString()}');
-  } catch (error) {
-    print('error ${error.toString()}');
+  } on PlatformException catch (_) {
+  } catch (_) {
+    
   }
 }

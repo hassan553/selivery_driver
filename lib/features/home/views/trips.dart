@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/controllers/getrequesttrips.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/features/home/views/detailtrip.dart';
+import '../../../controllers/getrequesttrips.dart';
+import '../../../core/class/statusrequst.dart';
+import '../../../core/functions/global_function.dart';
+import 'detailtrip.dart';
 
 import '../../../core/rescourcs/app_colors.dart';
 

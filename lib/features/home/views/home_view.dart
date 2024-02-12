@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/features/home/views/payment.dart';
+import '../../../core/functions/global_function.dart';
+import 'payment.dart';
 import '../../../core/contants/api.dart';
 import '../../../core/services/cache_storage_services.dart';
 import 'rental_sale_car_view/order_car_view.dart';

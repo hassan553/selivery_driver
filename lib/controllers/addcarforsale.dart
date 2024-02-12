@@ -18,7 +18,6 @@ class AddCarForSaleController extends GetxController {
     if (myfile != null) {
       return File(myfile.path);
     } else {
-      print("no image");
     }
 
   }
@@ -46,7 +45,6 @@ class AddCarForSaleController extends GetxController {
             // navigateOff(MainView());
             Get.back();
           });
-      print("someerror");
 
       statusRequest = StatusRequest.failure;
     }

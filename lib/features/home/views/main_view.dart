@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:selivery_driver/features/profile/presentation/view/driver_profile_view.dart';
+import '../../profile/presentation/view/driver_profile_view.dart';
 import '../../../controllers/categoriescontroller.dart';
 import '../../../core/helper/notifictions_helper.dart';
 import '../../../core/rescourcs/app_colors.dart';

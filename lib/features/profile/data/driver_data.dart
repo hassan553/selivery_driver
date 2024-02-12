@@ -1,4 +1,4 @@
-import 'package:selivery_driver/features/profile/data/driver_profile_model.dart';
+import 'driver_profile_model.dart';
 import '../../../../core/contants/api.dart';
 import 'dart:convert';
 import 'dart:io';
