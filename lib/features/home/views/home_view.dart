@@ -58,7 +58,7 @@ handeldate(){
     textConfirm: "أشتراك",
         barrierDismissible: true);
   }else{
-    print("noo");
+
   }
 }
 
