@@ -14,7 +14,8 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   void splashNavTimer() {
-    Future.delayed(const Duration(seconds: 2), () => navigateOff(DriverLoginView()));
+    Future.delayed(const Duration(seconds: 2),
+            () => checkAuth());
   }
 
   checkAuth() {

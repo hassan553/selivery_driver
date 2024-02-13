@@ -25,7 +25,7 @@ class SeliveryDriver extends StatelessWidget {
         title: 'Selivery سائق',
         theme: appTheme(),
         textDirection: TextDirection.rtl,
-        home: const SplashView(),
+        home: const MainView(),
       ),
     );
   }

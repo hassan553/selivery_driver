@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:selivery_driver/controllers/mytripscontroller.dart';
 import 'package:selivery_driver/features/home/views/detailtrip.dart';
+import 'package:selivery_driver/features/home/views/tripdetailswithoutdestionation.dart';
 
 import '../../../core/class/statusrequst.dart';
 import '../../../core/functions/global_function.dart';
@@ -57,19 +58,34 @@ class  MyTripsScreen extends StatelessWidget {
 
                         ),
                         onPressed: (){
-                          navigateTo(TripDetails(
-                            devicetoken:controller.mytrips[index].passenger!.deviceToken! ,
-                            pick1:controller.mytrips[index].pickupLocation!.coordinates!.first ,
-                            pick2:controller.mytrips[index].pickupLocation!.coordinates!.last ,
-                            des1:controller.mytrips[index].destinationLocation!.coordinates!.first ,
-                            des2:controller.mytrips[index].destinationLocation!.coordinates!.last ,
-                            image: controller.mytrips[index].passenger!.image!,
-                            name:controller.mytrips[index].passenger!.
-                            name! ,
-                            id: controller.mytrips[index].sId!,
-                            status: controller.mytrips[index].status!,
-                            clientid:controller.mytrips[index].passenger!.sId! ,
-                          ));
+                          if(controller.mytrips[index].destinationLocation==null){
+                            navigateTo(TripDetailsWithoutDestination(
+                              devicetoken:controller.mytrips[index].passenger!.deviceToken! ,
+                              pick1:controller.mytrips[index].pickupLocation!.coordinates!.first ,
+                              pick2:controller.mytrips[index].pickupLocation!.coordinates!.last ,
+                              image: controller.mytrips[index].passenger!.image!,
+                              name:controller.mytrips[index].passenger!.
+                              name! ,
+                              id: controller.mytrips[index].sId!,
+                              status: controller.mytrips[index].status!,
+                              clientid:controller.mytrips[index].passenger!.sId! ,
+                            ));
+                          }else{
+                            navigateTo(TripDetails(
+                              devicetoken:controller.mytrips[index].passenger!.deviceToken! ,
+                              pick1:controller.mytrips[index].pickupLocation!.coordinates!.first ,
+                              pick2:controller.mytrips[index].pickupLocation!.coordinates!.last ,
+                              des1:controller.mytrips[index].destinationLocation!.coordinates!.first ,
+                              des2:controller.mytrips[index].destinationLocation!.coordinates!.last ,
+                              image: controller.mytrips[index].passenger!.image!,
+                              name:controller.mytrips[index].passenger!.
+                              name! ,
+                              id: controller.mytrips[index].sId!,
+                              status: controller.mytrips[index].status!,
+                              clientid:controller.mytrips[index].passenger!.sId! ,
+                            ));
+                          }
+
                         },child: const Text("التفاصيل",
                         style: TextStyle(
                           color: Colors.black,

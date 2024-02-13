@@ -4,6 +4,7 @@ import 'package:selivery_driver/controllers/getrequesttrips.dart';
 import 'package:selivery_driver/core/class/statusrequst.dart';
 import 'package:selivery_driver/core/functions/global_function.dart';
 import 'package:selivery_driver/features/home/views/detailtrip.dart';
+import 'package:selivery_driver/features/home/views/tripdetailswithoutdestionation.dart';
 
 import '../../../core/rescourcs/app_colors.dart';
 
@@ -50,20 +51,40 @@ class TripsScreen extends StatelessWidget {
 
                         ),
                         onPressed: (){
-                           navigateTo(TripDetails(
-                             devicetoken: controller.Requesttrips[index].passenger!.deviceToken!,
-                             pick1:controller.Requesttrips[index].pickupLocation!.coordinates!.first ,
-                             pick2:controller.Requesttrips[index].pickupLocation!.coordinates!.last ,
-                             des1:controller.Requesttrips[index].destinationLocation!.coordinates!.first ,
-                             des2:controller.Requesttrips[index].destinationLocation!.coordinates!.last ,
-                             image: controller.Requesttrips[index].
-                             passenger!.image!,
-                             name:controller.Requesttrips[index].
-                             passenger!.name! ,
-                             id: controller.Requesttrips[index].sId!,
-                             clientid: controller.Requesttrips[index].passenger!.sId!,
-                             status: controller.Requesttrips[index].status!,
-                           ));
+                          if(controller.Requesttrips[index].destinationLocation==null){
+                            navigateTo(
+                                TripDetailsWithoutDestination(
+                                  devicetoken: controller.Requesttrips[index].passenger!.deviceToken!,
+                                  pick1:controller.Requesttrips[index].pickupLocation!.coordinates!.first ,
+                                  pick2:controller.Requesttrips[index].pickupLocation!.coordinates!.last ,
+                                  image: controller.Requesttrips[index].
+                                  passenger!.image!,
+                                  name:controller.Requesttrips[index].
+                                  passenger!.name! ,
+                                  id: controller.Requesttrips[index].sId!,
+                                  clientid: controller.Requesttrips[index].passenger!.sId!,
+                                  status: controller.Requesttrips[index].status!,
+                                )
+                            );
+                          }else{
+                            navigateTo(
+                                TripDetails(
+                                  devicetoken: controller.Requesttrips[index].passenger!.deviceToken!,
+                                  pick1:controller.Requesttrips[index].pickupLocation!.coordinates!.first ,
+                                  pick2:controller.Requesttrips[index].pickupLocation!.coordinates!.last ,
+                                  des1:controller.Requesttrips[index].destinationLocation!.coordinates!.first ,
+                                  des2:controller.Requesttrips[index].destinationLocation!.coordinates!.last ,
+                                  image: controller.Requesttrips[index].
+                                  passenger!.image!,
+                                  name:controller.Requesttrips[index].
+                                  passenger!.name! ,
+                                  id: controller.Requesttrips[index].sId!,
+                                  clientid: controller.Requesttrips[index].passenger!.sId!,
+                                  status: controller.Requesttrips[index].status!,
+                                )
+                            );
+                          }
+
                       },child: const Text("التفاصيل",
                         style: TextStyle(
                         color: Colors.black,

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import '../../features/auth/presentation/views/login_view.dart';
+import '../functions/global_function.dart';
 import '../services/cache_storage_services.dart';
 import 'statusrequst.dart';
 
@@ -71,10 +73,26 @@ class Crud {
       if (await checkInternet()) {
         var response = await http.get(Uri.parse(linkurl),
             headers: authHeadersWithToken(CacheStorageServices().token));
+        if(response.statusCode==401){
+          final response = await http.get(
+            Uri.parse('${authBaseUri}refresh-token'),
+            headers: authHeadersWithToken(CacheStorageServices().token),
+          );
+          final result = jsonDecode(response.body);
+          print('message ${result['token']}');
+          if (response.statusCode == 200) {
+            print(response.body);
+            CacheStorageServices().setToken(result['token']);
+            getData(linkurl);
+          } else {
+            if (result['message'] == "Token is not valid" ||
+                result['message'] == 'Your are not authorized.') {
+              navigateOff(DriverLoginView());
+            }
+          }
+        }
         print(response.statusCode);
         if (response.statusCode == 200 || response.statusCode == 201) {
-          // Map reponseBody = jsonDecode(response.body);
-         // print("responsennnn ${response.body}");
           return Right(jsonDecode(response.body));
         } else {
           return const Left(StatusRequest.serverFailure);
@@ -87,7 +105,6 @@ class Crud {
       return const Left(StatusRequest.serverFailure);
     }
   }
-
   Future<Either<StatusRequest, Map>> updateData(linkurl, Map data) async {
     try {
       if (await checkInternet()) {
@@ -204,3 +221,46 @@ _uploadImage(String title, File file) async {
     print(error.toString());
   }
 }
+
+
+// token
+
+
+// bool refreshLoading = false;
+// Future<void> refreshToken() async {
+//   print('refresh token');
+//   if (await checkInternet()) {
+//     refreshLoading = true;
+//     update();
+//     try {
+//       print('oooorR---${CacheStorageServices().token}');
+//       final response = await http.get(
+//         Uri.parse('${authBaseUri}refresh-token'),
+//         headers: authHeadersWithToken(CacheStorageServices().token),
+//       );
+//       final result = jsonDecode(response.body);
+//       print('message ${result['token']}');
+//       if (response.statusCode == 200) {
+//         CacheStorageServices().setToken(result['token']);
+//         refreshLoading = false;
+//         error.value = '';
+//         print('done');
+//         getHomeData();
+//       } else {
+//         refreshLoading = false;
+//         error.value = result['message'];
+//         print(error.value);
+//         if (result['message'] == "Token is not valid" ||
+//             result['message'] == 'Your are not authorized.') {
+//           navigatorOff(LoginView());
+//         }
+//       }
+//     } catch (e) {
+//       refreshLoading = false;
+//       error.value = e.toString();
+//     }
+//   } else {
+//     error.value = 'لا يوجد اتصال بالانترنت';
+//   }
+//   update();
+// }

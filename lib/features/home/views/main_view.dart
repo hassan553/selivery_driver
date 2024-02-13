@@ -24,8 +24,11 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+
   DriverProfileController controller = Get.put(DriverProfileController());
   CategoriesController categoriesController = Get.put(CategoriesController());
+
+
 
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);

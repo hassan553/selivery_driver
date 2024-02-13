@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:selivery_driver/controllers/getrequesttrips.dart';
+import 'package:selivery_driver/controllers/mytripscontroller.dart';
 import 'package:selivery_driver/core/functions/global_function.dart';
 import 'package:selivery_driver/features/home/views/payment.dart';
 import '../../../core/contants/api.dart';
@@ -22,6 +24,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
 
    getProfileDate() async {
     try {
