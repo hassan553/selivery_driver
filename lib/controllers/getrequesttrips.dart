@@ -17,14 +17,13 @@ class GetRequestTripsController extends GetxController{
     var response = await reguestTripsData.getData();
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
-      print(response['trips']);
+      
       List x=response['trips'];
       Requesttrips.addAll(x.
       map((e)=>RequestTripsModel.fromJson(e)));
       //print(Requesttrips);
     }else{
-      print(response);
-      print("someerror to get trips");
+      
     }
     update();
   }

@@ -105,8 +105,7 @@ class DetailsTripController extends GetxController{
       Get.defaultDialog(title: "هلا",
           middleText: "لقد قمت برفض الرحلة");
     }else{
-      print(response);
-      print("someerror to accept trips");
+      
     }
     update();
   }
@@ -120,8 +119,7 @@ class DetailsTripController extends GetxController{
       Get.defaultDialog(title: "هلا",
           middleText: "لقد تم الانتهاء من الرحلة");
     }else{
-      print(response);
-      print("someerror to end trips");
+     
     }
     update();
   }
@@ -135,8 +133,7 @@ class DetailsTripController extends GetxController{
       Get.defaultDialog(title: "هلا",
           middleText: "لقدتم الوصول للعميل");
     }else{
-      print(response);
-      print("someerror to end trips");
+     
     }
     update();
   }

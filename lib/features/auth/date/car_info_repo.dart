@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:selivery_driver/core/functions/checkinternet.dart';
-import 'package:selivery_driver/core/services/cache_storage_services.dart';
+import '../../../core/functions/checkinternet.dart';
+import '../../../core/services/cache_storage_services.dart';
 import '../../../../core/contants/api.dart';
 import 'package:dartz/dartz.dart';
 
@@ -31,8 +31,7 @@ class CarInfoRepo {
 
       http.StreamedResponse response = await request.send();
       final r = await response.stream.bytesToString();
-      print('stutus code ${r}');
-      print('stutus code ${response.statusCode}');
+     
       if (response.statusCode == 200 || response.statusCode == 201) {
         return right('تم رفع البيانات بنجاح');
       } else {
@@ -47,7 +46,7 @@ class CarInfoRepo {
       {required File image, required Uri uri, required String title}) async {
     if (await checkInternet()) {
       try {
-        print('url $uri');
+       
         var headers = {
           'Accept': 'application/json',
           "Authorization": 'Bearer ${CacheStorageServices().token}',
@@ -69,14 +68,14 @@ class CarInfoRepo {
 
         var response = await http.Response.fromStream(myrequest);
         final result = jsonDecode(response.body);
-        print('message ${result['message']}');
+       
         if (response.statusCode == 200 || response.statusCode == 201) {
           return right(result['message']);
         } else {
           return left(result['message']);
         }
       } catch (error) {
-        print('message ${error.toString()}');
+        
         return left(error.toString());
       }
     } else {
@@ -94,15 +93,14 @@ class CarInfoRepo {
           headers: authHeadersWithToken(CacheStorageServices().token),
         );
         final result = jsonDecode(response.body);
-        print('message ${result['message']}');
-        print(response.statusCode);
+        
         if (response.statusCode == 200 || response.statusCode == 201) {
           return Right(result['message']);
         } else {
           return Left(result['message']);
         }
       } catch (e) {
-        print('message ${e.toString()}');
+      
         return Left(e.toString());
       }
     } else {
@@ -118,7 +116,7 @@ class CarInfoRepo {
           headers: authHeadersWithToken(CacheStorageServices().token),
         );
         final result = jsonDecode(response.body);
-        print('message ${result['message']}');
+       
         if (response.statusCode == 200 || response.statusCode == 201) {
           String? res = result['request'][0]['_id'];
           return Right(res ?? '');
@@ -126,7 +124,7 @@ class CarInfoRepo {
           return Left(result['message']);
         }
       } catch (e) {
-        print('message ${e.toString()}');
+       
         return Left(e.toString());
       }
     } else {

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:selivery_driver/controllers/mytripscontroller.dart';
 import 'package:selivery_driver/features/home/views/detailtrip.dart';
 import 'package:selivery_driver/features/home/views/tripdetailswithoutdestionation.dart';
-
 import '../../../core/class/statusrequst.dart';
 import '../../../core/functions/global_function.dart';
 import '../../../core/rescourcs/app_colors.dart';

@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/features/auth/presentation/views/upload_driver_data_view/upload_car_image_view.dart';
-import 'package:selivery_driver/features/auth/presentation/views/upload_driver_data_view/upload_national_id.dart';
-import 'package:selivery_driver/features/home/views/main_view.dart';
+import '../../../../core/functions/global_function.dart';
+import '../../presentation/views/upload_driver_data_view/upload_car_image_view.dart';
+import '../../presentation/views/upload_driver_data_view/upload_national_id.dart';
+import '../../../home/views/main_view.dart';
 import '../../../../../core/widgets/image_picker.dart';
 import '../../../../core/contants/api.dart';
 import '../../../../core/functions/checkinternet.dart';

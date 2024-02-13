@@ -23,8 +23,7 @@ class MyTripsController extends GetxController{
       map((e)=>RequestTripsModel.fromJson(e)));
       //print(Requesttrips);
     }else{
-      print(response);
-      print("someerror to get trips");
+   
     }
     update();
   }

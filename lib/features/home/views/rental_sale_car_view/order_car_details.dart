@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
+import '../../../../core/class/statusrequst.dart';
 import '../../../../controllers/categorieslistforsales.dart';
 import '../../../../core/widgets/custom_sized_box.dart';
 import '../../../../core/functions/global_function.dart';

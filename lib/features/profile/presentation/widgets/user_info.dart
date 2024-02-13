@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/core/widgets/custom_text.dart';
+import '../../../../core/widgets/custom_text.dart';
 
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
@@ -18,7 +18,7 @@ class UserInfo extends StatefulWidget {
 class _UserInfoState extends State<UserInfo> {
   @override
   Widget build(BuildContext context) {
-    DriverProfileController controller = Get.find();
+  //Get.find();
     return Container(
       width: screenSize(context).width,
       decoration: BoxDecoration(

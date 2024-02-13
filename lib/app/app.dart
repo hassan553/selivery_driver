@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/binding.dart';
-import 'package:selivery_driver/core/widgets/image_picker.dart';
-import 'package:selivery_driver/features/auth/cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
-import 'package:selivery_driver/features/auth/presentation/views/upload_driver_data_view/welcome_view.dart';
+import '../binding.dart';
+import '../core/widgets/image_picker.dart';
+import '../features/auth/cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
+import '../features/auth/presentation/views/login_view.dart';
+import '../features/auth/presentation/views/upload_driver_data_view/welcome_view.dart';
 import '../core/rescourcs/app_theme.dart';
 import '../features/home/views/main_view.dart';
 import '../features/auth/date/car_info_repo.dart';
@@ -25,7 +26,7 @@ class SeliveryDriver extends StatelessWidget {
         title: 'Selivery سائق',
         theme: appTheme(),
         textDirection: TextDirection.rtl,
-        home: const MainView(),
+        home:  SplashView(),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:selivery_driver/features/auth/cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
+import '../../../cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
 import '../../../../../core/functions/global_function.dart';
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_loading_widget.dart';

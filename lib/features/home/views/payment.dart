@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/core/rescourcs/app_colors.dart';
-import 'package:selivery_driver/features/home/views/visascreen.dart';
+import '../../../core/functions/global_function.dart';
+import '../../../core/rescourcs/app_colors.dart';
+import 'visascreen.dart';
 
 import 'cashscreen.dart';
 

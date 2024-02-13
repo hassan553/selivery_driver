@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'driver_arrive_to_user.dart';
-
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_appBar.dart';

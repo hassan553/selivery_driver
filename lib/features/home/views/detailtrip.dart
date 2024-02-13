@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:selivery_driver/controllers/tripdetails.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/features/home/views/chats.dart';
+import '../../../controllers/tripdetails.dart';
+import '../../../core/class/statusrequst.dart';
+import '../../../core/functions/global_function.dart';
+import 'chats.dart';
 import 'package:geocoding/geocoding.dart';
 
 import '../../../core/rescourcs/app_colors.dart';

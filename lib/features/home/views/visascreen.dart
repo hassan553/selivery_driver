@@ -1,17 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/controllers/visacontroller.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/features/home/views/main_view.dart';
+import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '../../../controllers/visacontroller.dart';
+import '../../../core/class/statusrequst.dart';
+import '../../../core/functions/global_function.dart';
+import 'main_view.dart';
 
-class VisaScreen extends StatelessWidget {
+class VisaScreen extends StatefulWidget {
   const VisaScreen({super.key});
 
   @override
+  State<VisaScreen> createState() => _VisaScreenState();
+}
+
+class _VisaScreenState extends State<VisaScreen> {
+
+  VisaController visaController= Get.put(VisaController());
+
+  WebViewController? controller;
+  giveControllerValue() {
+    try {
+      controller = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setBackgroundColor(const Color(0x00000000))
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onProgress: (int progress) {
+              // Update loading bar.
+            },
+            onPageStarted: (String url) {},
+            onPageFinished: (String url) {},
+            onWebResourceError: (WebResourceError error) {},
+            onNavigationRequest: (NavigationRequest request) {
+              if (request.url
+                  .startsWith('https://www.youtube.com/watch?v=snxybJkFeUo')) {
+                return NavigationDecision.prevent;
+              }
+              return NavigationDecision.navigate;
+            },
+          ),
+        )
+        ..loadRequest(Uri.parse(visaController.url??""));
+    } catch (error) {}
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    giveControllerValue();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Get.put(VisaController());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -35,16 +77,11 @@ class VisaScreen extends StatelessWidget {
         ),
       ),
       body: GetBuilder<VisaController>(
-        builder: (controller) {
-          if (controller.statusRequest == StatusRequest.loading) {
-            return const Center(child: CircularProgressIndicator());
+        builder: (controllerw) {
+          if (controllerw.statusRequest == StatusRequest.loading) {
+            return CustomLoadingWidget();
           } else {
-            // return WebView(
-            //   initialUrl: '${controller.url}',
-            //   javascriptMode: JavascriptMode.unrestricted,
-            // );
-            //delete this return
-            return Container();
+            return  WebViewWidget(controller: controller!);
           }
         },
       ),

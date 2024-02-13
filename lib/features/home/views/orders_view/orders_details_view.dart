@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/custom_appBar.dart';
 import '../../../../core/widgets/custom_image.dart';
-
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_sized_box.dart';

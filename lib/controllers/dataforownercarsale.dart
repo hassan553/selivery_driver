@@ -18,9 +18,9 @@ late OwnerModel ownerModel;
      ownerModel = OwnerModel.fromJson(response['owner']);
      update();
     //  print("owner $ownerModel");
-      print("okkkkkkk");
+   
     }else{
-      print("someerror");
+     
     }
     update();
   }

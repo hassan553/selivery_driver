@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/controllers/chatcontroller.dart';
+import '../../../controllers/chatcontroller.dart';
 
 import '../../../core/helper/notifictions_helper.dart';
 import '../../../core/services/cache_storage_services.dart';

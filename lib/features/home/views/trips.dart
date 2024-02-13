@@ -5,7 +5,6 @@ import 'package:selivery_driver/core/class/statusrequst.dart';
 import 'package:selivery_driver/core/functions/global_function.dart';
 import 'package:selivery_driver/features/home/views/detailtrip.dart';
 import 'package:selivery_driver/features/home/views/tripdetailswithoutdestionation.dart';
-
 import '../../../core/rescourcs/app_colors.dart';
 
 class TripsScreen extends StatelessWidget {

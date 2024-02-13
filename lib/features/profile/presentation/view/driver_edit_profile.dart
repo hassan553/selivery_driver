@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/features/profile/presentation/widgets/custom_textfield.dart';
-import 'package:selivery_driver/features/profile/presentation/widgets/selecte_gender.dart';
+import '../widgets/custom_textfield.dart';
+import '../widgets/selecte_gender.dart';
 import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../controller/driver_profile_controller.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_image.dart';
-
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
 import '../widgets/change_password_widget.dart';

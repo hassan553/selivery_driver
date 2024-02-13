@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/controllers/cashcontroller.dart';
-import 'package:selivery_driver/core/class/statusrequst.dart';
+import 'package:selivery_driver/core/widgets/custom_loading_widget.dart';
+import '../../../controllers/cashcontroller.dart';
+import '../../../core/class/statusrequst.dart';
 
 class CashScreen extends StatelessWidget {
   const CashScreen({super.key});
@@ -27,8 +28,6 @@ class CashScreen extends StatelessWidget {
               textInputAction: TextInputAction.done,
               validator: (val){
                 return null;
-              
-
               },
               controller: controller.phoneController,
               cursorColor: Colors.white,
@@ -59,7 +58,7 @@ class CashScreen extends StatelessWidget {
               ),
             ),
             controller.statusRequest==StatusRequest.loading?
-            const Center(child: CircularProgressIndicator()):Container(
+            const CustomLoadingWidget():Container(
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),),

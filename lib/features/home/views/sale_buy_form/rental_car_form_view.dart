@@ -7,27 +7,57 @@ import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_appBar.dart';
 import '../../../../core/widgets/custom_image.dart';
 import '../../../../core/widgets/responsive_text.dart';
-import '../../widgets/rental_buy_car_add_image.dart';
 import '../../widgets/rental_buy_car_form_widget.dart';
 
-class RentalCarFormView extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController faceLinkController = TextEditingController();
-  TextEditingController telController = TextEditingController();
-  TextEditingController typeController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController descController = TextEditingController();
-  TextEditingController driverController = TextEditingController();
-  TextEditingController requirmentController = TextEditingController();
+class RentalCarFormView extends StatefulWidget {
   final String catId;
   RentalCarFormView({super.key, required this.catId});
 
   @override
+  State<RentalCarFormView> createState() => _RentalCarFormViewState();
+}
+
+class _RentalCarFormViewState extends State<RentalCarFormView> {
+  TextEditingController nameController = TextEditingController();
+
+  TextEditingController ageController = TextEditingController();
+
+  TextEditingController phoneController = TextEditingController();
+
+  TextEditingController faceLinkController = TextEditingController();
+
+  TextEditingController telController = TextEditingController();
+
+  TextEditingController typeController = TextEditingController();
+
+  TextEditingController priceController = TextEditingController();
+
+  TextEditingController descController = TextEditingController();
+
+  TextEditingController driverController = TextEditingController();
+
+  TextEditingController requirmentController = TextEditingController();
+
+ 
+  @override
+  void dispose() {
+    nameController.dispose();
+    ageController.dispose();
+    phoneController.dispose();
+    faceLinkController.dispose();
+    telController.dispose();
+    typeController.dispose();
+    priceController.dispose();
+    descController.dispose();
+    driverController.dispose();
+    requirmentController.dispose();
+    super.dispose();
+  }
+ 
+  @override
   Widget build(BuildContext context) {
     Get.put(AddCarForRentController());
-    print("id rent $catId");
+    
     return Scaffold(
       appBar: customAppBar(context),
       body: GetBuilder<AddCarForRentController>(builder:
@@ -117,7 +147,7 @@ class RentalCarFormView extends StatelessWidget {
                     typeController.text,
                     descController.text,
                     driverController.text,
-                    catId);
+                    widget.catId);
               },child: Text("اضافة"),),
 
             ],

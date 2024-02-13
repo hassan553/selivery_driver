@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'dart:convert';
@@ -6,6 +8,12 @@ import 'package:http/http.dart' as http;
 class FirebaseMessagingService {
   static final FirebaseMessaging _firebaseMessaging =
       FirebaseMessaging.instance;
+
+ static StreamController<int> streamController= StreamController<int>();
+
+  static int counter = 0 ;
+  static Stream<int> get not=> streamController.stream;
+
 
   // Initialize Firebase Messaging and request permission
   static Future<void> initialize() async {
@@ -31,15 +39,16 @@ class FirebaseMessagingService {
         final notification = message.notification!;
         final title = notification.title ?? '';
         final body = notification.body ?? '';
+        counter++;
+        streamController.add(counter);
         Get.snackbar(title, body);
       }
     });
   }
 
   static Future<void> backgroundHandler(RemoteMessage message) async {
-    // final notification = message.notification!;
-    // final title = notification.title ?? '';
-    // final body = notification.body ?? '';
+    counter++;
+    streamController.add(counter);
   }
 
   // Subscribe to a topic
@@ -67,9 +76,9 @@ class FirebaseMessagingService {
   }
 
   static void _handleNotification(RemoteMessage message) {
-    final notification = message.notification;
-    final data = message.data;
-    //navigateTo(const MainView());
+    // final notification = message.notification;
+    // final data = message.data;
+    // //navigateTo(const MainView());
   }
 
   static Future sendNotification(

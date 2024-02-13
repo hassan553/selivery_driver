@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:selivery_driver/core/rescourcs/app_colors.dart';
+import '../../../../core/rescourcs/app_colors.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/features/profile/controller/driver_profile_controller.dart';
+import '../../controller/driver_profile_controller.dart';
 import '../../../../core/widgets/custom_image.dart';
 
 class TopTitleWidget extends StatelessWidget {

@@ -27,10 +27,8 @@ class CategoriesController extends GetxController{
       //   statusRequest = StatusRequest.failure;
       // }
       categories.addAll(response['categories']);
-      print("categories $categories");
-      print("okkkkkkk");
+
     }else{
-      print("someerror");
     }
     update();
   }

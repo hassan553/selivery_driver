@@ -20,7 +20,6 @@ class AddCarForRentController extends GetxController{
     if(myfile != null){
       return File(myfile.path);
     }else{
-      print("no image");
     }
 
   }
@@ -62,7 +61,7 @@ class AddCarForRentController extends GetxController{
             // navigateOff(MainView());
             Get.back();
           });
-      print("someerror");
+      
       statusRequest = StatusRequest.failure;
 
     }

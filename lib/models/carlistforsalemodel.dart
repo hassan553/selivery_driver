@@ -1,4 +1,4 @@
-class carListModel {
+class CarListModel {
   String? userId;
   String? ownerName;
   String? phone;
@@ -10,7 +10,7 @@ class carListModel {
   String? sId;
   int? iV;
 
-  carListModel(
+  CarListModel(
       {this.userId,
         this.ownerName,
         this.phone,
@@ -22,7 +22,7 @@ class carListModel {
         this.sId,
         this.iV});
 
-  carListModel.fromJson(Map<String, dynamic> json) {
+  CarListModel.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     ownerName = json['ownerName'];
     phone = json['phone'];

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:selivery_driver/features/auth/cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
-import 'package:selivery_driver/features/auth/presentation/views/upload_driver_data_view/upload_car_image_view.dart';
-import '../../../../../core/functions/global_function.dart';
+import '../../../cubit/complete_car_info_cubit/complete_car_info_cubit.dart';
+
 import '../../../../../core/rescourcs/app_colors.dart';
 import '../../../../../core/widgets/custom_sized_box.dart';
 import '../../../../../core/widgets/snack_bar_widget.dart';

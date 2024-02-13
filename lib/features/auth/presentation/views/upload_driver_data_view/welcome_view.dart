@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:selivery_driver/core/functions/global_function.dart';
-import 'package:selivery_driver/core/rescourcs/app_colors.dart';
-import 'package:selivery_driver/features/auth/presentation/views/upload_driver_data_view/upload_category_view.dart';
+import '../../../../../core/functions/global_function.dart';
+import '../../../../../core/rescourcs/app_colors.dart';
+import 'upload_category_view.dart';
 
 import '../../widgets/next_button.dart';
 

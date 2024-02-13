@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:selivery_driver/core/widgets/custom_image.dart';
+import '../../../../core/widgets/custom_image.dart';
 import '../../../../controllers/categoriescontroller.dart';
 import '../../../../core/widgets/show_awesomeDialog.dart';
 import '../sale_buy_form/sale_car_form_view.dart';

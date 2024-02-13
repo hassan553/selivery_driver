@@ -22,10 +22,9 @@ class CategoriesListForSalesController extends GetxController{
       //     carListModel.fromJson(e as Map<String, dynamic>)));
       categories.addAll(response['vehicles']);
      // carlistmodel = carListModel.fromJson(response);
-      print("categories sale $categories");
-      print("ok for sale");
+      
     }else{
-      print("someerror");
+    
     }
     update();
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/dataforownercarsale.dart';
 import '../../../../core/class/statusrequst.dart';
-
 import '../../../../core/functions/global_function.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_appBar.dart';
@@ -27,7 +26,6 @@ class CarOwnerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(OwnerCarForSaleController()..getownerdata(ownerId));
-    print(ownerId);
     return GetBuilder<OwnerCarForSaleController>(builder:
         (controller)=>Scaffold(
       appBar: customAppBar(context),

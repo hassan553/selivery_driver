@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:selivery_driver/controllers/getrequesttrips.dart';
-import 'package:selivery_driver/controllers/mytripscontroller.dart';
+
 import 'package:selivery_driver/core/functions/global_function.dart';
+import 'package:selivery_driver/core/helper/notifictions_helper.dart';
 import 'package:selivery_driver/features/home/views/payment.dart';
+
 import '../../../core/contants/api.dart';
 import '../../../core/services/cache_storage_services.dart';
 import 'rental_sale_car_view/order_car_view.dart';
@@ -61,7 +62,7 @@ handeldate(){
     textConfirm: "أشتراك",
         barrierDismissible: true);
   }else{
-    print("noo");
+
   }
 }
 
@@ -73,19 +74,20 @@ handeldate(){
   }
 
   @override
+  void dispose() {
+     FirebaseMessagingService.streamController.close();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: customAppBar(context),
+      appBar: customAppBarForHome(context),
       body: ListView(
         children: const [
           SizedBox(height: 10),
-          // CategoryItem(
-          //   imagePath: 'assets/orderCar.png',
-          //   title: 'طلب مركبة',
-          //   isRental: false,
-          //   screen: GetLocationFromUserView(),
-          // ),
           CategoryItem(
             imagePath: 'assets/rentalCar.png',
             title: 'تأجير مركبة',
