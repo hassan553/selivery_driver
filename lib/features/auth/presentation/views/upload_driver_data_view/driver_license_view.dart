@@ -48,14 +48,14 @@ class _UploadDriverLicenseViewState extends State<UploadDriverLicenseView> {
                       showSnackBarWidget(
                           context: context,
                           message: state.message,
-                          requestStates: RequestStates.error);
+                          requestStates: RequestStates.success);
                     }
                     if (CompleteCarInfoCubit.get(context).driverLicense ==
                         null) {
                       showSnackBarWidget(
                           context: context,
                           message: "قم بتحديد صورة الرخصة",
-                          requestStates: RequestStates.error);
+                          requestStates: RequestStates.success);
                     }
                   },
                   builder: (context, state) {

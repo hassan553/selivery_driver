@@ -43,13 +43,13 @@ class UploadNationalIdView extends StatelessWidget {
                       showSnackBarWidget(
                           context: context,
                           message: state.message,
-                          requestStates: RequestStates.error);
+                          requestStates: RequestStates.success);
                     }
                     if (CompleteCarInfoCubit.get(context).nationalId == null) {
                       showSnackBarWidget(
                           context: context,
                           message: "قم بختيار صورة البطاقة",
-                          requestStates: RequestStates.error);
+                          requestStates: RequestStates.success);
                     }
                   },
                   builder: (context, state) {

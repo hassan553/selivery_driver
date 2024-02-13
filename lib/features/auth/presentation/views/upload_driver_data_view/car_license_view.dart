@@ -46,13 +46,13 @@ class UploadCarLicenseView extends StatelessWidget {
                       showSnackBarWidget(
                           context: context,
                           message: state.message,
-                          requestStates: RequestStates.error);
+                          requestStates: RequestStates.success);
                     }
                      if (CompleteCarInfoCubit.get(context).carImage == null) {
                       showSnackBarWidget(
                           context: context,
                           message: "قم بتحديد صورة رخصة المركبة",
-                          requestStates: RequestStates.error);
+                          requestStates: RequestStates.success);
                     }
                   },
                   builder: (context, state) {
